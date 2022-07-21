@@ -1,0 +1,53 @@
+﻿using Acr.UserDialogs;
+using Archiver.Model;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Text;
+using System.Threading.Tasks;
+using Xamarin.Forms;
+
+namespace Archiver.ViewModel
+{
+    public class AlbumViewModel 
+    {
+        private Album _album;
+        public Command LoadAlbumsCmd { get; }
+        public ObservableCollection<Album> Albums { get; set; }
+        public Album Album
+        {
+            get { return _album; }
+            set
+            {
+                _album = value;
+                //OnPropertyChanged();
+            }
+        }   
+        
+        public AlbumViewModel()
+        {
+            LoadAlbumsCmd = new Command(async () => await ExcLoadAlbumsCmd());
+            Albums = new ObservableCollection<Album>();
+        }
+
+        public async void OnAppearing()
+        {
+            await ExcLoadAlbumsCmd();
+        }
+
+        //γέμισμα της Albums
+        async Task ExcLoadAlbumsCmd()
+        {
+            Albums.Clear();
+          
+            var lalbums = await App.Database.GetAlbumsAsync();
+
+            foreach (var album in lalbums)
+            {
+                Albums.Add(album);
+            }  
+            
+        }
+    }
+}

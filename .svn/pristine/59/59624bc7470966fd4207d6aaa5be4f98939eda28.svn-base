@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ViewModel="clr-namespace:Archiver.ViewModel;assembly=Archiver"
+             x:Class="Archiver.View.AlbumDetails">
+
+    <ContentPage.BindingContext>
+        <ViewModel:AlbumDetailsViewModel/> 
+    </ContentPage.BindingContext>
+    
+    <ContentPage.Content>
+        <StackLayout>
+            <Frame BackgroundColor="DeepSkyBlue">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="0.2*"/>
+                        <ColumnDefinition Width="0.2*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label x:Name="txtAlbumName" Grid.Row="0" Grid.Column="0" FontSize="Title" 
+                           HorizontalOptions="StartAndExpand" Text="{Binding Album.Name}" TextColor="White"
+                           FontAttributes="Bold"/>
+
+                    <Label Grid.Row="0" Grid.Column="1" Text="Items:" TextColor="White" 
+                           VerticalOptions="EndAndExpand"/>
+
+                    <Label x:Name="txtItemQty" Grid.Row="0" Grid.Column="2" Text="{Binding ItemQty}" 
+                           TextColor="White" VerticalOptions="EndAndExpand"/>
+                
+                    <Label x:Name="txtDescription" Grid.Row="1" FontSize="Small" Grid.ColumnSpan="2" 
+                           Grid.Column="0" HorizontalOptions="StartAndExpand" Text="{Binding Album.Description}"
+                           TextColor="White"/>
+                    
+                    <Button x:Name="btnAddItem" Grid.Row="1" Grid.Column="2" Text="+" FontSize="Large" 
+                            BackgroundColor="Transparent" TextColor="white"/>
+
+                </Grid>
+            </Frame>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

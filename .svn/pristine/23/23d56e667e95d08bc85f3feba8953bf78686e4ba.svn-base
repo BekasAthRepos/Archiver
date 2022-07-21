@@ -1,0 +1,38 @@
+﻿using Acr.UserDialogs;
+using Archiver.Model;
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Windows.Input;
+using Xamarin.Forms;
+
+namespace Archiver.ViewModel
+{
+    public class AddAlbumViewModel
+    {
+        public Album newAlbum {get; set;}
+        public ICommand AddAlbumCmd => new Command(AddAlbum);
+
+        public AddAlbumViewModel() 
+        {
+            newAlbum = new Album(); 
+        }
+
+        public async void AddAlbum()
+        {
+            bool validInputData = true;
+            if((string.IsNullOrWhiteSpace(newAlbum.Name)))
+            {
+                validInputData = false;
+                UserDialogs.Instance.Alert("Give a name...");
+            }
+
+            if (validInputData)
+            {
+                await App.Database.InsertAlbum(newAlbum);
+                await App.Current.MainPage.Navigation.PopAsync();
+            }
+        }
+
+    }
+}

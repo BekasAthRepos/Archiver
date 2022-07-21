@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Archiver.View.AddAlbumPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Add album"
+                VerticalOptions="Start" HorizontalOptions="Center" FontSize="Large"
+                FontAttributes="Bold" TextColor="Black"/>
+
+            <Entry x:Name="inName" Placeholder="Name" HorizontalOptions="Start"/>
+            <Editor x:Name="inDescr" Placeholder="Description" />
+            <Button x:Name="btnAddAlbum" Text="Add Album" HorizontalOptions="Center" TextColor="White"
+                    BackgroundColor="Green"/>
+
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

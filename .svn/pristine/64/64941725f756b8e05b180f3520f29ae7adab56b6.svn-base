@@ -1,0 +1,73 @@
+﻿using Acr.UserDialogs;
+using Archiver.Model;
+using Archiver.View;
+using Archiver.ViewModel;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Xamarin.Forms;
+
+namespace Archiver
+{
+    public partial class MainPage : ContentPage
+    {
+        AlbumViewModel albumView;  
+        public MainPage()
+        {
+            InitializeComponent();
+            albumView = new AlbumViewModel();
+            BindingContext = albumView;
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            albumView.OnAppearing();
+        }
+
+        private async void AddAlbumClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new AddAlbumPage());
+        }
+
+        private async void AlbumClicked(object sender, ItemTappedEventArgs args)
+        {
+            if(args.Item == null)
+                return;
+
+            await Navigation.PushAsync(new AlbumDetails(args.Item as Album));
+        }
+
+        private async void EditItemClicked(object sender, EventArgs args)
+        {
+            MenuItem mi = (MenuItem)sender;
+            Album album = mi.CommandParameter as Album;
+
+            //await navigation... Πάνε στην σελίδα για edit
+            await DisplayAlert("edit..","","ok");
+        }
+
+        private async void DeleteItemClicked(object sender, EventArgs args)
+        {
+            MenuItem mi = (MenuItem)sender;
+            int id = (int)mi.CommandParameter;
+
+            if (await DisplayAlert("Warning!", "Delete Album?", "Yes", "No" ))
+            {
+                int d = await App.Database.DeleteAlbum(id);
+
+                if (d > 0)
+                {
+                    await DisplayAlert("Success", "", "ok");
+                }
+                else
+                {
+                    await DisplayAlert("Error", "", "ok");
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,43 @@
+﻿using Archiver.Model;
+using Archiver.View;
+using Archiver.ViewModel;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Xamarin.Forms;
+
+namespace Archiver
+{
+    public partial class MainPage : ContentPage
+    {
+        AlbumViewModel albumView;  
+        public MainPage()
+        {
+            InitializeComponent();
+            albumView = new AlbumViewModel();
+            BindingContext = albumView;
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            albumView.OnAppearing();
+        }
+
+        private async void AddAlbumClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new AddAlbumPage());
+        }
+
+        private async void AlbumClicked(object sender, ItemTappedEventArgs args)
+        {
+            if(args.Item == null)
+                return;
+
+            await Navigation.PushAsync(new AlbumDetails(args.Item as Album));
+        }
+    }
+}

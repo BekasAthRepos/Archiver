@@ -1,0 +1,31 @@
+﻿using Archiver.Model;
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Windows.Input;
+using Xamarin.Forms;
+
+namespace Archiver.ViewModel
+{
+    public class AlbumDetailsViewModel
+    {
+        public Album album { get; set; }
+        public int itemQty { get; set; }
+
+        public ICommand GetItemQtyCmd => new Command(GetItemQty);
+
+        public AlbumDetailsViewModel(Album album)
+        {
+            this.album = (Album)album.Clone();
+        }
+
+        public AlbumDetailsViewModel() { }
+
+        async void GetItemQty()
+        {
+            itemQty = await App.Database.GetItemQty(album.Id);
+        }
+
+        
+    }
+}

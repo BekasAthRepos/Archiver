@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ViewModel="clr-namespace:Archiver.ViewModel;assembly=Archiver"
+             x:Class="Archiver.MainPage">
+
+    <ContentPage.BindingContext>
+        <ViewModel:AlbumViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
+                <Label Text="Archiver" HorizontalTextAlignment="Center" TextColor="White" 
+                       FontSize="36" FontAttributes="Bold"/>
+            </Frame>
+
+            <ListView x:Name="lvAlbums"
+                      ItemsSource="{Binding Albums}"                    
+                      HasUnevenRows="True"
+                      SeparatorColor="Transparent">
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.3*"/>
+                                    <ColumnDefinition Width="0.7*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Label Text="{Binding Name}" TextColor="Black" Grid.Column="0"/>
+                                <Label Text="{Binding Description}" TextColor="Black" Grid.Column="1"/>
+                            </Grid>
+                            
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            
+        
+        </StackLayout>
+    </ContentPage.Content>
+
+</ContentPage>

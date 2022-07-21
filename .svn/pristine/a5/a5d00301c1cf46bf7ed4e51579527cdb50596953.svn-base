@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ViewModel="clr-namespace:Archiver.ViewModel;assembly=Archiver"
+             x:Class="Archiver.View.EditAlbumPage">
+
+    <ContentPage.BindingContext>
+        <ViewModel:EditAlbumViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <StackLayout>
+
+            <Frame>
+                <Label Text="{Binding Album.Name}" FontSize="Large" FontAttributes="Bold"/>
+            </Frame>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.3*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+
+                <Label Text="Name: " Grid.Column="0" Grid.Row="0" VerticalOptions="Center"
+                       HorizontalOptions="Center"/>
+                <Entry Text="{Binding Album.Name}" HorizontalOptions="CenterAndExpand" 
+                       Grid.Column="1" Grid.Row="0"/>
+
+                <Label Text="Description: " Grid.Column="0" Grid.Row="1" VerticalOptions="Center"
+                       HorizontalOptions="Center"/>
+                <Entry Text="{Binding Album.Description}" HorizontalOptions="CenterAndExpand" 
+                       Grid.Column="1" Grid.Row="1"/>
+
+                <Button Text="Save" Grid.Row="2" Grid.ColumnSpan="2" HorizontalOptions="Center" 
+                        BackgroundColor="LimeGreen" TextColor="White" Command="{Binding SaveClickedCmd}"/>
+
+            </Grid>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

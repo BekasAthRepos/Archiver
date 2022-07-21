@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ViewModel="clr-namespace:Archiver.ViewModel;assembly=Archiver"
+             x:Class="Archiver.MainPage">
+
+    <ContentPage.Content>
+        <StackLayout>
+            <Frame BackgroundColor="Orange" Padding="24" CornerRadius="0">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="0.3*"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <Label Grid.Column="0" Text="Archiver" HorizontalTextAlignment="Center" TextColor="black" 
+                         FontSize="36" FontAttributes="Bold"/>
+
+                    <Button Grid.Column="1" Text ="Add" TextColor="Blue" FontSize="Large" BackgroundColor="Transparent"
+                            Clicked="AddAlbumClicked" WidthRequest="15" BorderColor="White" BorderWidth="2"/>
+                </Grid>
+            </Frame>
+
+            <ListView x:Name="lvAlbums"
+                      ItemsSource="{Binding Albums}"
+                      ItemTapped="AlbumClicked"
+                      HasUnevenRows="True"
+                      SeparatorColor="Transparent">
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+
+                            <ViewCell.ContextActions>
+                                                                 
+                            </ViewCell.ContextActions>
+                            
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.3*"/>
+                                    <ColumnDefinition Width="0.7*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Label Text="{Binding Name}" TextColor="Black" Grid.Column="0" FontSize="Large"/>
+                                <Label Text="{Binding Description}" TextColor="Black" Grid.Column="1" FontSize="Medium"/>
+                            </Grid>
+                            
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            
+        
+        </StackLayout>
+    </ContentPage.Content>
+
+</ContentPage>

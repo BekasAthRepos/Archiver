@@ -1,0 +1,69 @@
+﻿using Archiver.Model;
+using Archiver.View;
+using Archiver.ViewModel;
+using System;
+using Xamarin.Forms;
+
+namespace Archiver
+{
+    public partial class MainPage : ContentPage
+    {
+        private readonly AlbumViewModel AlbumView; 
+        
+        public MainPage()
+        {
+            InitializeComponent();
+            AlbumView = new AlbumViewModel();
+            BindingContext = AlbumView;
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            AlbumView.OnAppearing();
+        }
+
+        private async void AddAlbumClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new AddAlbumPage());
+        }
+
+        private async void AlbumClicked(object sender, ItemTappedEventArgs args)
+        {
+            if(args.Item == null)
+                return;
+
+            await Navigation.PushAsync(new AlbumDetails(args.Item as Album));
+        }
+
+        private async void EditItemClicked(object sender, EventArgs args)
+        {
+            MenuItem mi = (MenuItem)sender;
+            Album album = mi.CommandParameter as Album;
+
+            await Navigation.PushAsync(new EditAlbumPage(album)); 
+        }
+
+        private async void DeleteItemClicked(object sender, EventArgs args)
+        {
+            MenuItem mi = (MenuItem)sender;
+            int id = (int)mi.CommandParameter;
+
+            if (await DisplayAlert("Warning!", "Delete Album?", "Yes", "No" ))
+            {
+                int d = await App.Database.DeleteAlbum(id);
+
+                if (d > 0)
+                {
+                    await DisplayAlert("Success", "", "ok");
+                }
+                else
+                {
+                    await DisplayAlert("Error", "", "ok");
+                }
+
+                await App.Current.MainPage.Navigation.PopAsync();
+            }
+        }
+    }
+}

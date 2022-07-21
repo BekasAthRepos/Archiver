@@ -1,0 +1,31 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using SQLite;
+
+namespace Archiver.Model
+{
+    public class Album
+    {
+        [PrimaryKey, AutoIncrement]
+        public int id { get; set; }
+        public string name { get; set; }
+        public string description { get; set; }
+        public DateTime inputDate { get; set; }
+        public DateTime editDate { get; set; }
+        public List<Item> items { get; set; }
+
+        public Album() { }
+
+        public Album(string name, string description, DateTime inputDate, DateTime editDate, List<Item> items)
+        {
+            this.name = name;
+            this.description = description;
+            this.inputDate = inputDate;
+            this.editDate = editDate;
+            this.items = items;
+        }
+
+
+    }
+}

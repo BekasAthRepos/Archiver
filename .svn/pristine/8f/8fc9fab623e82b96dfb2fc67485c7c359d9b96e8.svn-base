@@ -1,0 +1,22 @@
+﻿using SQLite;
+using System;
+using System.Collections.Generic;
+using System.Text;
+using Xamarin.Forms;
+
+namespace Archiver.Model
+{
+    public class Item
+    {
+        [PrimaryKey, AutoIncrement]
+        public int id { get; set; }
+        public int albumId {get; set;}
+        public string name {get; set;}
+        public string description {get; set;}
+        public double qty {get; set;}
+        public ImageSource picture { get; set; }
+        public DateTime inDate { get; set;}
+        public DateTime upDate { get; set; }
+
+    }
+}

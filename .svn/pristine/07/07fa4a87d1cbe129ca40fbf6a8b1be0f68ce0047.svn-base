@@ -1,0 +1,46 @@
+﻿using Archiver.Model;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Threading.Tasks;
+using Xamarin.Forms;
+
+namespace Archiver.ViewModel
+{
+    public class AlbumViewModel
+    {
+        private Album _album;
+        public ObservableCollection<Album> Albums { get; set; }
+        private Command LoadAlbumsCmd;
+
+        public Album Album
+        {
+            get { return _album; }
+            set
+            {
+                _album = value;
+            }
+        } 
+
+        public AlbumViewModel()
+        {
+            LoadAlbumsCmd = new Command(async () => await ExcLoadAlbumsCmd());
+            Albums = new ObservableCollection<Album>();
+        }
+
+        public async void OnAppearing()
+        {
+            await ExcLoadAlbumsCmd();
+        }
+
+        private async Task ExcLoadAlbumsCmd()
+        {
+            Albums.Clear();
+          
+            var albumList = await App.Database.GetAlbumsAsync();
+            foreach (var album in albumList)
+            {
+                Albums.Add(album);
+            }          
+        }
+    }
+}

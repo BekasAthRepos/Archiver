@@ -1,0 +1,31 @@
+﻿using Archiver.Model;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Text;
+
+namespace Archiver.ViewModel
+{
+    public class AlbumViewModel
+    {
+        private Album _album { get; set; }
+        public Album Album
+        {
+            get { return _album; }
+            set
+            {
+                _album = value;
+                //OnPropertyChanged();
+            }
+        }
+        public ObservableCollection<Album> Albums { get; set; }
+        
+        public AlbumViewModel()
+        {
+            Albums = new ObservableCollection<Album>();
+        }
+
+        
+
+    }
+}

@@ -1,0 +1,45 @@
+﻿using Archiver.Model;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Archiver.ViewModel
+{
+    public class AlbumViewModel
+    {
+        private Album _album;
+        public ObservableCollection<Album> Albums { get; set; }
+        public Album Album
+        {
+            get { return _album; }
+            set
+            {
+                _album = value;
+                //OnPropertyChanged();
+            }
+        }   
+        
+        public AlbumViewModel()
+        {
+            Albums = new ObservableCollection<Album>();
+            DateTime now = DateTime.Now;
+            Albums.Add(new Album ("Al01", "alb01", now, now, null ));
+        }
+
+        //γέμισμα της Albums
+        async Task LoadAlbumsCmd()
+        {
+            Albums.Clear();
+            var lalbums = await App.Database.GetAlbumsAsync();
+            foreach (var album in lalbums)
+            {
+                Albums.Add(album);
+            }
+        }
+
+        
+
+    }
+}

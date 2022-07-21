@@ -1,0 +1,79 @@
+﻿using Archiver.Model;
+using SQLite;
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Archiver.Service
+{
+    public class Database
+    {
+        private readonly SQLiteAsyncConnection _connection;
+
+        public Database(string dbPath)
+        {
+            _connection = new SQLiteAsyncConnection(dbPath);
+            DbInitialize();
+        }
+
+        public void DbInitialize()
+        {
+            _connection.CreateTableAsync<Album>();
+            _connection.CreateTableAsync<Item>();
+        }
+
+        // Album functions
+        public Task<List<Album>> GetAlbumsAsync()
+        {
+            return _connection.Table<Album>().ToListAsync();
+        }
+
+        public Task<int> InsertAlbum(Album album)
+        {
+            return _connection.InsertAsync(album);
+        }
+
+        public Task<Album> GetAlbum(int id)
+        {
+            return _connection.GetAsync<Album>(id);
+        }
+
+        public Task<int> UpdateAlbum(Album album)
+        {
+            return _connection.UpdateAsync(album);
+        }
+
+        public Task<int> DeleteAlbum(int id)
+        {
+            return _connection.DeleteAsync(id);
+        }
+
+        // Item functions
+        public Task<List<Item>> GetItemsAsync()
+        {
+            return _connection.Table<Item>().ToListAsync();
+        }
+
+        public Task<int> InsertItem(Item item)
+        {
+            return _connection.InsertAsync(item);
+        }
+
+        public Task<Item> GetItem(int id)
+        {
+            return _connection.GetAsync<Item>(id);
+        }
+
+        public Task<int> UpdateItem(Item item)
+        {
+            return _connection.UpdateAsync(item);
+        }
+
+        public Task<int> DeleteItem(int id)
+        {
+            return _connection.DeleteAsync(id);
+        }
+
+    }
+}
