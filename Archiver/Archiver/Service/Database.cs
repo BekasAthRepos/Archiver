@@ -9,21 +9,30 @@ namespace Archiver.Service
 {
     public class Database
     {
+        private const int LAST_VERSION = 1;
         private readonly SQLiteAsyncConnection _connection;
 
         public Database(string dbPath)
         {
             _connection = new SQLiteAsyncConnection(dbPath);
-            DbInitialize();
-        }
+            VersionUpdate();
+        } 
+        
 
-        public void DbInitialize()
+        // -- Database version control
+
+        private Task<int> GetDataBaseVersion()
         {
-            _connection.CreateTableAsync<Album>();
-            _connection.CreateTableAsync<Item>();
+            return _connection.ExecuteAsync("PRAGMA user_version");
         }
 
-        // Album functions _
+        public Task<int> SetDatabaseVersion(int version)
+        {
+            return _connection.ExecuteAsync("PRAGMA user_version = " + version);
+        }
+
+        // Album functions
+
         public Task<List<Album>>GetAlbumsAsync()
         {            
             return _connection.Table<Album>().ToListAsync();
@@ -55,7 +64,9 @@ namespace Archiver.Service
             return _connection.ExecuteScalarAsync<int>(qItemCount, id);         
         }
 
+
         // Item functions
+
         public Task<List<Item>> GetItemsAsync()
         {
             return _connection.Table<Item>().ToListAsync();
@@ -79,6 +90,28 @@ namespace Archiver.Service
         public Task<int> DeleteItem(int id)
         {
             return _connection.DeleteAsync(id);
+        }
+
+
+        // -- Database Versions
+
+        //Version Update
+        private async void VersionUpdate()
+        {
+            Version1();
+            
+            int userVersion = await GetDataBaseVersion();
+            if(userVersion < LAST_VERSION)
+            {
+                
+            }
+            
+        }
+
+        private void Version1()
+        {
+            _connection.CreateTableAsync<Album>();
+            _connection.CreateTableAsync<Item>();
         }
     }
 }
