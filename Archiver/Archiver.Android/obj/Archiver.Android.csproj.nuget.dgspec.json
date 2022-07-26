@@ -1,22 +1,26 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Development\\0.Projects\\0.C#\\Xamarin\\Archiver\\Archiver\\Archiver.Android\\Archiver.Android.csproj": {}
+    "X:\\_Thanasis\\_Thanasis\\Temp\\_Projects\\aaa\\Archiver\\Archiver.Android\\Archiver.Android.csproj": {}
   },
   "projects": {
-    "D:\\Development\\0.Projects\\0.C#\\Xamarin\\Archiver\\Archiver\\Archiver.Android\\Archiver.Android.csproj": {
+    "X:\\_Thanasis\\_Thanasis\\Temp\\_Projects\\aaa\\Archiver\\Archiver.Android\\Archiver.Android.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Development\\0.Projects\\0.C#\\Xamarin\\Archiver\\Archiver\\Archiver.Android\\Archiver.Android.csproj",
+        "projectUniqueName": "X:\\_Thanasis\\_Thanasis\\Temp\\_Projects\\aaa\\Archiver\\Archiver.Android\\Archiver.Android.csproj",
         "projectName": "Archiver.Android",
-        "projectPath": "D:\\Development\\0.Projects\\0.C#\\Xamarin\\Archiver\\Archiver\\Archiver.Android\\Archiver.Android.csproj",
-        "packagesPath": "C:\\Users\\bekas\\.nuget\\packages\\",
-        "outputPath": "D:\\Development\\0.Projects\\0.C#\\Xamarin\\Archiver\\Archiver\\Archiver.Android\\obj\\",
+        "projectPath": "X:\\_Thanasis\\_Thanasis\\Temp\\_Projects\\aaa\\Archiver\\Archiver.Android\\Archiver.Android.csproj",
+        "packagesPath": "C:\\Users\\UserX\\.nuget\\packages\\",
+        "outputPath": "X:\\_Thanasis\\_Thanasis\\Temp\\_Projects\\aaa\\Archiver\\Archiver.Android\\obj\\",
         "projectStyle": "PackageReference",
         "skipContentFileWrite": true,
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+        ],
         "configFilePaths": [
-          "C:\\Users\\bekas\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\UserX\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "monoandroid12.0"
@@ -28,8 +32,8 @@
         "frameworks": {
           "monoandroid12.0": {
             "projectReferences": {
-              "D:\\Development\\0.Projects\\0.C#\\Xamarin\\Archiver\\Archiver\\Archiver\\Archiver.csproj": {
-                "projectPath": "D:\\Development\\0.Projects\\0.C#\\Xamarin\\Archiver\\Archiver\\Archiver\\Archiver.csproj"
+              "X:\\_Thanasis\\_Thanasis\\Temp\\_Projects\\aaa\\Archiver\\Archiver\\Archiver.csproj": {
+                "projectPath": "X:\\_Thanasis\\_Thanasis\\Temp\\_Projects\\aaa\\Archiver\\Archiver\\Archiver.csproj"
               }
             }
           }
@@ -50,18 +54,22 @@
         }
       }
     },
-    "D:\\Development\\0.Projects\\0.C#\\Xamarin\\Archiver\\Archiver\\Archiver\\Archiver.csproj": {
+    "X:\\_Thanasis\\_Thanasis\\Temp\\_Projects\\aaa\\Archiver\\Archiver\\Archiver.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Development\\0.Projects\\0.C#\\Xamarin\\Archiver\\Archiver\\Archiver\\Archiver.csproj",
+        "projectUniqueName": "X:\\_Thanasis\\_Thanasis\\Temp\\_Projects\\aaa\\Archiver\\Archiver\\Archiver.csproj",
         "projectName": "Archiver",
-        "projectPath": "D:\\Development\\0.Projects\\0.C#\\Xamarin\\Archiver\\Archiver\\Archiver\\Archiver.csproj",
-        "packagesPath": "C:\\Users\\bekas\\.nuget\\packages\\",
-        "outputPath": "D:\\Development\\0.Projects\\0.C#\\Xamarin\\Archiver\\Archiver\\Archiver\\obj\\",
+        "projectPath": "X:\\_Thanasis\\_Thanasis\\Temp\\_Projects\\aaa\\Archiver\\Archiver\\Archiver.csproj",
+        "packagesPath": "C:\\Users\\UserX\\.nuget\\packages\\",
+        "outputPath": "X:\\_Thanasis\\_Thanasis\\Temp\\_Projects\\aaa\\Archiver\\Archiver\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+        ],
         "configFilePaths": [
-          "C:\\Users\\bekas\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\UserX\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netstandard2.0"
@@ -119,7 +127,7 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     }
