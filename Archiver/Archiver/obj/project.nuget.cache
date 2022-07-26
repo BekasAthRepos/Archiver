@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "TtrO7H3LFvvetusItbKFG00wNEiYte35CoQwAwlRl6nkD5r6Bvjp0QmbOW8VNXXcnHmgPlvx2nlxrnqC4lK3iA==",
+  "dgSpecHash": "k66A91YCxHLLpN1qhSgvoFR1D434Pr94e0nxUPhjBTQi3kw06WpnzaqC7xYdCfOpjvKrc9LlFyRj5r0LU0XERg==",
   "success": true,
-  "projectFilePath": "X:\\_Thanasis\\_Thanasis\\Temp\\_Projects\\zz\\Archiver\\Archiver\\Archiver.csproj",
+  "projectFilePath": "X:\\_Thanasis\\_Thanasis\\Temp\\_Projects\\zzz\\Archiver\\Archiver\\Archiver.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\UserX\\.nuget\\packages\\acr.userdialogs\\7.2.0.564\\acr.userdialogs.7.2.0.564.nupkg.sha512",
     "C:\\Users\\UserX\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
