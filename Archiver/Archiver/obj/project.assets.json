@@ -873,11 +873,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "X:\\_Thanasis\\_Thanasis\\Temp\\_Projects\\aaaa2\\Archiver\\Archiver\\Archiver.csproj",
+      "projectUniqueName": "X:\\_Thanasis\\_Thanasis\\Temp\\_Projects\\aaaa\\Archiver\\Archiver\\Archiver.csproj",
       "projectName": "Archiver",
-      "projectPath": "X:\\_Thanasis\\_Thanasis\\Temp\\_Projects\\aaaa2\\Archiver\\Archiver\\Archiver.csproj",
+      "projectPath": "X:\\_Thanasis\\_Thanasis\\Temp\\_Projects\\aaaa\\Archiver\\Archiver\\Archiver.csproj",
       "packagesPath": "C:\\Users\\UserX\\.nuget\\packages\\",
-      "outputPath": "X:\\_Thanasis\\_Thanasis\\Temp\\_Projects\\aaaa2\\Archiver\\Archiver\\obj\\",
+      "outputPath": "X:\\_Thanasis\\_Thanasis\\Temp\\_Projects\\aaaa\\Archiver\\Archiver\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"

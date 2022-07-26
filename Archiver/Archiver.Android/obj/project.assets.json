@@ -3483,11 +3483,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "X:\\_Thanasis\\_Thanasis\\Temp\\_Projects\\aaaa2\\Archiver\\Archiver.Android\\Archiver.Android.csproj",
+      "projectUniqueName": "X:\\_Thanasis\\_Thanasis\\Temp\\_Projects\\aaaa\\Archiver\\Archiver.Android\\Archiver.Android.csproj",
       "projectName": "Archiver.Android",
-      "projectPath": "X:\\_Thanasis\\_Thanasis\\Temp\\_Projects\\aaaa2\\Archiver\\Archiver.Android\\Archiver.Android.csproj",
+      "projectPath": "X:\\_Thanasis\\_Thanasis\\Temp\\_Projects\\aaaa\\Archiver\\Archiver.Android\\Archiver.Android.csproj",
       "packagesPath": "C:\\Users\\UserX\\.nuget\\packages\\",
-      "outputPath": "X:\\_Thanasis\\_Thanasis\\Temp\\_Projects\\aaaa2\\Archiver\\Archiver.Android\\obj\\",
+      "outputPath": "X:\\_Thanasis\\_Thanasis\\Temp\\_Projects\\aaaa\\Archiver\\Archiver.Android\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "fallbackFolders": [
@@ -3508,8 +3508,8 @@
       "frameworks": {
         "monoandroid12.0": {
           "projectReferences": {
-            "X:\\_Thanasis\\_Thanasis\\Temp\\_Projects\\aaaa2\\Archiver\\Archiver\\Archiver.csproj": {
-              "projectPath": "X:\\_Thanasis\\_Thanasis\\Temp\\_Projects\\aaaa2\\Archiver\\Archiver\\Archiver.csproj"
+            "X:\\_Thanasis\\_Thanasis\\Temp\\_Projects\\aaaa\\Archiver\\Archiver\\Archiver.csproj": {
+              "projectPath": "X:\\_Thanasis\\_Thanasis\\Temp\\_Projects\\aaaa\\Archiver\\Archiver\\Archiver.csproj"
             }
           }
         }
