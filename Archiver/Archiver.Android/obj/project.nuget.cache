@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "b/UJaeypDgLtX3ExFDsO8xPbUe1DZegYuF/ckW47P0Ez31SyFD73jSdF3MS3QPgpgXOHHvvMu+3EGAjU9ZYgtQ==",
+  "dgSpecHash": "5NRpmwatU9B7XiLxtubIPljms0qlHw8YxY0acPf/toQrcYBF8JYo15JJpBJnKqv8F8qvg251gWgAzBS7pFijKw==",
   "success": true,
-  "projectFilePath": "X:\\_Thanasis\\_Thanasis\\Temp\\_Projects\\aaaa\\Archiver\\Archiver.Android\\Archiver.Android.csproj",
+  "projectFilePath": "X:\\_Thanasis\\_Thanasis\\Temp\\_Projects\\zz\\Archiver\\Archiver.Android\\Archiver.Android.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\UserX\\.nuget\\packages\\acr.userdialogs\\7.2.0.564\\acr.userdialogs.7.2.0.564.nupkg.sha512",
     "C:\\Users\\UserX\\.nuget\\packages\\andhud\\1.4.3\\andhud.1.4.3.nupkg.sha512",
