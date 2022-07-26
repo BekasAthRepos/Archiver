@@ -23,7 +23,7 @@ namespace Archiver.Service
             _connection.CreateTableAsync<Item>();
         }
 
-        // Album functions 
+        // Album functions __
         public Task<List<Album>>GetAlbumsAsync()
         {            
             return _connection.Table<Album>().ToListAsync();
