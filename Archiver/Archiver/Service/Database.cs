@@ -93,7 +93,7 @@ namespace Archiver.Service
         }
 
 
-        // -- Database Versions
+        // - Database Versions
 
         //Version Update
         private async void VersionUpdate()
