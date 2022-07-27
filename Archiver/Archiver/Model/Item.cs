@@ -11,7 +11,9 @@ namespace Archiver.Model
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
         public int AlbumId {get; set;}
+        [MaxLength(50)]
         public string Name {get; set;}
+        [MaxLength(200)]
         public string Description {get; set;}
         public double Qty {get; set;}
         //public ImageSource Picture { get; set; }

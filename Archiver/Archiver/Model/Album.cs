@@ -9,7 +9,9 @@ namespace Archiver.Model
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
+        [MaxLength(50)]
         public string Name { get; set; }
+        [MaxLength(200)]
         public string Description { get; set; }
         //public DateTime InputDate { get; set; }
         //public DateTime EditDate { get; set; }
