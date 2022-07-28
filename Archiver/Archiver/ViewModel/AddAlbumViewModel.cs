@@ -15,27 +15,27 @@ namespace Archiver.ViewModel
             NewAlbum = new Album(); 
         }
 
-        private async void AddAlbum()
+        private void AddAlbum()
         {
             bool validInputData = true;
             if((string.IsNullOrWhiteSpace(NewAlbum.Name)))
             {
                 validInputData = false;
-                await App.Current.MainPage.DisplayAlert("Give a name...", "", "ok");
+                App.Current.MainPage.DisplayAlert("Give a name...", "", "ok");
             }
 
             if (validInputData)
             {
                 try
                 {
-                    await App.Database.InsertAlbum(NewAlbum);
+                    App.Database.InsertAlbum(NewAlbum);
                 }
                 catch (Exception e)
                 {
-                    await App.Current.MainPage.DisplayAlert("Error", e.ToString(), "Ok");
+                    App.Current.MainPage.DisplayAlert("Error", e.ToString(), "Ok");
                 }
                 
-                await App.Current.MainPage.Navigation.PopAsync();
+                App.Current.MainPage.Navigation.PopAsync();
             }
         }
 

@@ -36,7 +36,7 @@ namespace Archiver.ViewModel
         {
             Albums.Clear();
           
-            var albumList = await App.Database.GetAlbumsAsync();
+            var albumList = App.Database.GetAlbumsAsync();
             foreach (var album in albumList)
             {
                 Albums.Add(album);

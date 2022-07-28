@@ -18,15 +18,15 @@ namespace Archiver.ViewModel
             Album = album.Clone();
         }   
 
-        private async void GetItemQty()
+        private void GetItemQty()
         {
             try
             {
-                ItemQty = await App.Database.GetItemQty(Album.Id);
+                ItemQty = App.Database.GetItemQty(Album.Id);
             }
             catch (Exception e)
             {
-                await App.Current.MainPage.DisplayAlert("Error", e.ToString(), "Ok");
+                App.Current.MainPage.DisplayAlert("Error", e.ToString(), "Ok");
             }
         }
     }

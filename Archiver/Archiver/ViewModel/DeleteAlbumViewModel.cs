@@ -27,7 +27,7 @@ namespace Archiver.ViewModel
                 bool ans = await App.Current.MainPage.DisplayAlert("Warning!", "Delete album?", "Yes", "No");
                 if(ans)
                 {
-                    items = await App.Database.DeleteAlbum(_id);
+                    items = App.Database.DeleteAlbum(_id);
                     if (items > 0)
                     {
                         await App.Current.MainPage.DisplayAlert("Success", "Album was deleted", "Ok");

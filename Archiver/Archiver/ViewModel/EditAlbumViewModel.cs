@@ -21,7 +21,7 @@ namespace Archiver.ViewModel
         {
             try
             {
-                int rows = await App.Database.UpdateAlbum(Album);
+                int rows = App.Database.UpdateAlbum(Album);
                 if(rows > 0)
                 {
                     await App.Current.MainPage.DisplayAlert("Success", "Changes were saved", "Ok");
