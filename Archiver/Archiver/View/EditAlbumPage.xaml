@@ -11,8 +11,8 @@
     <ContentPage.Content>
         <StackLayout>
 
-            <Frame>
-                <Label Text="{Binding Album.Name}" FontSize="Large" FontAttributes="Bold"/>
+            <Frame class="HeaderFrame">
+                <Label class="HeaderTitle" Text="{Binding Album.Name}"/>
             </Frame>
 
             <Grid>

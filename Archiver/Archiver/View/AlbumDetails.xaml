@@ -9,36 +9,43 @@
     </ContentPage.BindingContext>
     
     <ContentPage.Content>
-        <StackLayout>
-            <Frame BackgroundColor="DeepSkyBlue">
-                <Grid>
+        <StackLayout Spacing="0">
+            <Frame class="HeaderFrame">
+               <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
 
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="0.2*"/>
-                        <ColumnDefinition Width="0.2*"/>
                     </Grid.ColumnDefinitions>
 
-                    <Label x:Name="txtAlbumName" Grid.Row="0" Grid.Column="0" FontSize="Title" 
-                           HorizontalOptions="StartAndExpand" Text="{Binding Album.Name}" TextColor="White"
-                           FontAttributes="Bold"/>
+                    <Label x:Name="txtAlbumName" class="HeaderTitle" Grid.Row="0" Grid.Column="0" Text="{Binding Album.Name}"/>
 
-                    <Label Grid.Row="0" Grid.Column="1" Text="Items:" TextColor="White" 
-                           VerticalOptions="EndAndExpand"/>
+                    <Button x:Name="btnAddItem" class="HeaderAddBtn" Grid.Row="0" Grid.Column="1" Text="+"/>
 
-                    <Label x:Name="txtItemQty" Grid.Row="0" Grid.Column="2" Text="{Binding ItemQty}" 
-                           TextColor="White" VerticalOptions="EndAndExpand"/>
-                
-                    <Label x:Name="txtDescription" Grid.Row="1" FontSize="Small" Grid.ColumnSpan="2" 
-                           Grid.Column="0" HorizontalOptions="StartAndExpand" Text="{Binding Album.Description}"
-                           TextColor="White"/>
-                    
-                    <Button x:Name="btnAddItem" Grid.Row="1" Grid.Column="2" Text="+" FontSize="Large" 
-                            BackgroundColor="Transparent" TextColor="white"/>
+                </Grid> 
+            </Frame>
+
+            <Frame class="SubHeaderFrame">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="0.2*"/>
+                        <ColumnDefinition Width="0.1*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label x:Name="txtDescription" class="SubFooterLabel" Grid.Row="0" 
+                           Grid.Column="0" Text="{Binding Album.Description}" Grid.ColumnSpan="2"/>
+
+                    <Label class="SubFooterLabel" Grid.Row="0" Grid.Column="1" Text="Items:"/>
+
+                    <Label x:Name="txtItemQty" class="SubFooterLabel" Grid.Row="0" Grid.Column="2" Text="{Binding ItemQty}"/>
 
                 </Grid>
             </Frame>

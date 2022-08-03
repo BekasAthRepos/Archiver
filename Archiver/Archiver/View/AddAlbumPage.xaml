@@ -10,7 +10,7 @@
     
     <ContentPage.Content>
         <StackLayout>
-            
+
             <Label Text="Add album" VerticalOptions="Start" HorizontalOptions="Center" 
                    FontSize="Large" FontAttributes="Bold" />
 
