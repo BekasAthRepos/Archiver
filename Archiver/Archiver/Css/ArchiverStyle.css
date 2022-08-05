@@ -8,12 +8,14 @@
 }
 
 .HeaderFrame {
+    border-color: white;
     background-color: #2484FF;
     padding: 20,10,20,10;
 }
 
 .SubHeaderFrame {
     background-color: #2484FF;
+    border-color: white;
     padding: 20,10,20,10;
 }
 
@@ -34,29 +36,43 @@
     border-radius: 15;
 }
 
-.SubFooterLabel{
+.SubFooterLabel {
     color: white;
-    font-size: 15;
-
+    font-size: 16;
 }
 
-.List{
-    position: relative;
+.contentTitleFrame{
+    background-color: transparent;
+    
 }
 
-.ListItem {
-    position: relative;
+.contentTitle {
+    font-size: 18;
+    color: gray;
+    font-style: bold;
+    text-align: center;
 }
 
-.ListItemTitle{
-    color: red;
+.List {
+    background-color: #DBDEFB;
+    border-color: white;
+}
+
+#mainListCell * {
+    background-color: white;
+    margin-bottom: 5;
+    margin-left: 3;
+    margin-right: 3;
+    height: 40;
+}
+
+.ListItemTitle {
+    color: #2484FF;
     font-size: 24;
     font-style: bold;
-    position: absolute;
 }
 
 .ListItemDescr {
-    color: red;
+    color: #2484FF;
     font-size: 16;
-    position: absolute;
 }

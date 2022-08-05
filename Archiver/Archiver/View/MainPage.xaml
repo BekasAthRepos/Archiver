@@ -24,6 +24,10 @@
                 </Grid>
             </Frame>
 
+            <Frame class="contentTitleFrame">
+                <Label class="contentTitle" Text="Albums"/>
+            </Frame>
+
             <ListView x:Name="lvAlbums" class="List"
                       ItemsSource="{Binding Albums}"
                       ItemTapped="AlbumClicked"
@@ -32,7 +36,7 @@
 
                 <ListView.ItemTemplate class ="ListItem">
                     <DataTemplate>
-                        <ViewCell>
+                        <ViewCell StyleId="mainListCell">
 
                             <ViewCell.ContextActions>
                                 <MenuItem Text="Edit" Clicked="EditItemClicked" CommandParameter="{Binding .}"/>
@@ -40,15 +44,15 @@
                                           CommandParameter="{Binding .}"/>
 
                             </ViewCell.ContextActions>
-                            
+
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="0.3*"/>
                                     <ColumnDefinition Width="0.7*"/>
                                 </Grid.ColumnDefinitions>
 
-                                <Label class="ListItemTitle" Grid.Column="0" Text="{Binding Name}"/>
-                                <Label class="ListItemDescr" Grid.Column="1" Text="{Binding Description}" />
+                                <Label class="ListItemTitle" Grid.Column="0" Text="{Binding Name}" VerticalTextAlignment="Center"/>
+                                <Label class="ListItemDescr" Grid.Column="1" Text="{Binding Description}" VerticalTextAlignment="Center"/>
                             </Grid>
                             
                         </ViewCell>

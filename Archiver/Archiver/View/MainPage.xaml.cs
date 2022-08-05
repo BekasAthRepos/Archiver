@@ -33,6 +33,8 @@ namespace Archiver
             if(args.Item == null)
                 return;
 
+            
+
             await Navigation.PushAsync(new AlbumDetails(args.Item as Album));
         }
 
