@@ -10,7 +10,18 @@
     
     <ContentPage.Content>
         <StackLayout Spacing="0">
-            <Frame class="HeaderFrame">
+            <Grid RowSpacing="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="90"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                </Grid.ColumnDefinitions>
+
+                <Frame Style="{StaticResource headerFrame}" Grid.Row="0">
                <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition/>
@@ -21,14 +32,13 @@
                         <ColumnDefinition Width="0.2*"/>
                     </Grid.ColumnDefinitions>
 
-                    <Label x:Name="txtAlbumName" class="HeaderTitle" Grid.Row="0" Grid.Column="0" Text="{Binding Album.Name}"/>
+                    <Label x:Name="txtAlbumName" Style="{StaticResource headerTitle}" Grid.Row="0" Grid.Column="0" Text="{Binding Album.Name}"/>
 
-                    <Button x:Name="btnAddItem" class="HeaderAddBtn" Grid.Row="0" Grid.Column="1" Text="+"/>
-
-                </Grid> 
+                        <Button x:Name="btnAddItem" Style="{StaticResource headerAddBtn}" Grid.Row="0" Grid.Column="1" Text="+"/>
+                    </Grid> 
             </Frame>
 
-            <Frame class="SubHeaderFrame">
+                <Frame Style="{StaticResource subHeaderFrame}" Grid.Row="1">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition/>
@@ -40,15 +50,53 @@
                         <ColumnDefinition Width="0.1*"/>
                     </Grid.ColumnDefinitions>
 
-                    <Label x:Name="txtDescription" class="SubFooterLabel" Grid.Row="0" 
+                    <Label x:Name="txtDescription" Style="{StaticResource subHeaderLabel}" Grid.Row="0" 
                            Grid.Column="0" Text="{Binding Album.Description}" Grid.ColumnSpan="2"/>
 
-                    <Label class="SubFooterLabel" Grid.Row="0" Grid.Column="1" Text="Items:"/>
+                    <Label Style="{StaticResource subHeaderLabel}" Grid.Row="0" Grid.Column="1" Text="Items:"/>
 
-                    <Label x:Name="txtItemQty" class="SubFooterLabel" Grid.Row="0" Grid.Column="2" Text="{Binding ItemQty}"/>
+                    <Label x:Name="txtItemQty" Style="{StaticResource subHeaderLabel}" Grid.Row="0" Grid.Column="2" Text="{Binding ItemQty}"/>
 
                 </Grid>
             </Frame>
+
+            <Frame class="contentTitleFrame" Grid.Row="2">
+                <Label class="contentTitle" Text="Items"/>
+            </Frame>
+
+            <ListView x:Name="lvitems" class="List"
+                      ItemsSource="{Binding Items}"
+                      ItemTapped="ItemClicked"
+                      HasUnevenRows="True"
+                      SeparatorColor="Transparent" Grid.Row="3">
+
+                <ListView.ItemTemplate class ="listItem">
+                    <DataTemplate>
+                        <ViewCell StyleId="mainListCell">
+
+                            <ViewCell.ContextActions>
+                                <MenuItem Text="Edit" Clicked="EditItemClicked" CommandParameter="{Binding .}"/>
+                                <MenuItem Text="Delete" Clicked="DeleteItemClicked" 
+                                              CommandParameter="{Binding .}"/>
+
+                            </ViewCell.ContextActions>
+
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.3*"/>
+                                    <ColumnDefinition Width="0.7*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Label class="listItemTitle" Grid.Column="0" Text="image..." VerticalTextAlignment="Center"/>
+                                <Label class="listItemDescr" Grid.Column="1" Text="{Binding Name}" VerticalTextAlignment="Center"/>
+                            </Grid>
+
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            </Grid>
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

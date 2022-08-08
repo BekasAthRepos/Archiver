@@ -3,6 +3,59 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Archiver.App">
     <Application.Resources>
-        <StyleSheet Source="/Css/ArchiverStyle.css" />
+        
+        <!-- <StyleSheet Source="/Css/ArchiverStyle.css" /> -->
+      
+        <ResourceDictionary>
+            
+            <!-- Navigation Page -->
+            <Style TargetType="NavigationPage">
+                <Setter Property="BackgroundColor" Value="#DBDEFB"/>
+            </Style>
+            
+            <!-- Header Frame -->
+            <Style x:Key="headerFrame" TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="#2484FF"/>
+                <Setter Property="Margin" Value="0,4,0,0"/>
+                <Setter Property="HeightRequest" Value="65"/>
+            </Style>
+
+            <!-- HeaderTitle -->
+            <Style x:Key="headerTitle" TargetType="Label">
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="FontSize" Value="32"/>
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+            </Style>
+            
+            <!-- headerAddBtn -->
+            <Style x:Key="headerAddBtn" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="Transparent"/>
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="FontSize" Value="24"/>
+                <Setter Property="BorderColor" Value="White"/>
+                <Setter Property="BorderWidth" Value="2"/>
+                <Setter Property="CornerRadius" Value="10"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="WidthRequest" Value="50"/>
+            </Style>
+
+            <!-- Subheader Frame -->
+            <Style x:Key="subHeaderFrame" TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="#2484FF"/>
+                <Setter Property="Padding" Value="20,10,20,10"/>
+            </Style>
+
+            <!-- subHeaderLabel -->
+            <Style x:Key="subHeaderLabel" TargetType="Label">
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="FontSize" Value="16"/>
+            </Style>
+
+
+
+        </ResourceDictionary>
+        
     </Application.Resources>
 </Application>

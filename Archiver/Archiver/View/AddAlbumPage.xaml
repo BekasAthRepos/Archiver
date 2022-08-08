@@ -11,18 +11,38 @@
     <ContentPage.Content>
         <StackLayout>
 
-            <Label Text="Add album" VerticalOptions="Start" HorizontalOptions="Center" 
-                   FontSize="Large" FontAttributes="Bold" />
+            <Frame class="addPageHeaderFrame">
+                <Label class="addPageTitle" Text="Add album" VerticalOptions="Start"/>
+            </Frame>
 
-            <Entry x:Name="inName" Placeholder="Name" HorizontalOptions="Start" 
-                   Text="{Binding NewAlbum.Name}" WidthRequest="200"/>
+            <Frame class="addPageDataFrame">
+                
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label class="addDataLabel" Grid.Row="0" Text="Name" VerticalOptions="End"/>
+
+                    <Entry x:Name="inName" Grid.Row="1" Placeholder="" HorizontalOptions="Start" 
+                        Text="{Binding NewAlbum.Name}" WidthRequest="200"/>
+
+                    <Label Grid.Row="2" class="addDataLabel" Text="Description" VerticalOptions="End"/>
+                    
+                    <Editor x:Name="inDescr" Grid.Row="3" Placeholder="Description" 
+                        Text="{Binding NewAlbum.Description}"/>
+                </Grid>
+
+            </Frame>
             
-            <Editor x:Name="inDescr" Placeholder="Description" 
-                    Text="{Binding NewAlbum.Description}"/>
-            
+
             <Button x:Name="btnAddAlbum" Text="Add Album" HorizontalOptions="Center" 
                     TextColor="White" BackgroundColor="Green" Command="{Binding AddAlbumCmd}"/>
-            
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
