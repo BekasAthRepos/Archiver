@@ -11,7 +11,7 @@ namespace Archiver.View
         public EditAlbumPage(Album album)
         {
             InitializeComponent();
-            BindingContext = new EditAlbumViewModel(album);
+            editAlbumViewModel.Album = album;            
         }
     }
 }

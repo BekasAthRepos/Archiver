@@ -9,10 +9,26 @@ namespace Archiver.View
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AlbumDetails : ContentPage
     {
+        private AlbumDetailsViewModel vmAlbDet;
         public AlbumDetails(Album album)
         {
             InitializeComponent();
-            BindingContext = new AlbumDetailsViewModel(album);
+            vmAlbDet = albumDetailsViewModel;          
+            vmAlbDet.Album = album;
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            vmAlbDet.OnAppearing();
+        }
+
+        private async void AddItemClicked(object sender, EventArgs e)
+        {
+            Button btn = sender as Button;
+            int albumId = (int) btn.CommandParameter;
+
+             await Navigation.PushAsync(new AddItemPage(albumId));
         }
 
         private async void ItemClicked(object sender, ItemTappedEventArgs args)
@@ -20,7 +36,7 @@ namespace Archiver.View
             if (args.Item == null)
                 return;
 
-            //await Navigation.PushAsync(new ItemDetails(args.Item as Item));
+            await Navigation.PushAsync(new ItemDetails(args.Item as Item));
         }
 
         private async void EditItemClicked(object sender, EventArgs args)

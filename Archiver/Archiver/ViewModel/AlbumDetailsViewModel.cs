@@ -1,28 +1,48 @@
 ﻿using Archiver.Model;
 using System;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace Archiver.ViewModel
 {
-    public class AlbumDetailsViewModel
+    public class AlbumDetailsViewModel: INotifyPropertyChanged
     {
-        public Album Album { get; set; }
+        private Album _album;
         public ObservableCollection<Item> Items { get; set; }
         public int ItemQty { get; set; }
         public ICommand GetItemQtyCmd => new Command(GetItemQty);
+        private Command LoadItemsCmd;
 
-        public AlbumDetailsViewModel() { }
-
-        public AlbumDetailsViewModel(Album album)
+        public event PropertyChangedEventHandler PropertyChanged;
+        public Album Album
         {
-            Album = album.Clone();
+            get { return _album; }
+            set
+            {
+                _album = value;
+                OnPropertyChanged("Album");
+            }
+        }
+
+        public AlbumDetailsViewModel() 
+        {       
             Items = new ObservableCollection<Item>();
-            Items.Add(new Item { Name = "Item1" });
-            Items.Add(new Item { Name = "Item2" });
-            Items.Add(new Item { Name = "Item3" });
-        }   
+            LoadItemsCmd = new Command(async () => await ExcLoadItemsCmd());
+        }
+
+        private void OnPropertyChanged(string propertyName)
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        public async void OnAppearing()
+        {
+            await ExcLoadItemsCmd();
+        }
 
         private void GetItemQty()
         {
@@ -34,6 +54,19 @@ namespace Archiver.ViewModel
             {
                 App.Current.MainPage.DisplayAlert("Error", e.ToString(), "Ok");
             }
+        }
+
+        private Task ExcLoadItemsCmd()
+        {
+            Items.Clear();
+
+            var itemList = App.Database.GetItems(Album.Id);
+            foreach (var item in itemList)
+            {
+                Items.Add(item);
+            }
+
+            return Task.CompletedTask;
         }
     }
 }

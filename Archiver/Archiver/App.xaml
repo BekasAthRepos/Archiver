@@ -3,26 +3,25 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Archiver.App">
     <Application.Resources>
-        
-        <!-- <StyleSheet Source="/Css/ArchiverStyle.css" /> -->
-      
+
         <ResourceDictionary>
-            
+
             <!-- Navigation Page -->
             <Style TargetType="NavigationPage">
-                <Setter Property="BackgroundColor" Value="#DBDEFB"/>
+                <Setter Property="BackgroundColor" Value="#EBEEFF"/>
             </Style>
             
             <!-- Header Frame -->
             <Style x:Key="headerFrame" TargetType="Frame">
-                <Setter Property="BackgroundColor" Value="#2484FF"/>
-                <Setter Property="Margin" Value="0,4,0,0"/>
-                <Setter Property="HeightRequest" Value="65"/>
+                <Setter Property="BackgroundColor" Value="White"/>
+                <Setter Property="Margin" Value="0,2,0,0"/>
+                <Setter Property="CornerRadius" Value="0"/>
+                <Setter Property="Margin" Value="5,0,5,0"/>
             </Style>
 
             <!-- HeaderTitle -->
             <Style x:Key="headerTitle" TargetType="Label">
-                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="TextColor" Value="Black"/>
                 <Setter Property="FontAttributes" Value="Bold"/>
                 <Setter Property="FontSize" Value="32"/>
                 <Setter Property="HorizontalTextAlignment" Value="Center"/>
@@ -31,29 +30,145 @@
             
             <!-- headerAddBtn -->
             <Style x:Key="headerAddBtn" TargetType="Button">
-                <Setter Property="BackgroundColor" Value="Transparent"/>
                 <Setter Property="TextColor" Value="White"/>
-                <Setter Property="FontSize" Value="24"/>
-                <Setter Property="BorderColor" Value="White"/>
-                <Setter Property="BorderWidth" Value="2"/>
-                <Setter Property="CornerRadius" Value="10"/>
-                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="BackgroundColor" Value="blue"/>
+                <Setter Property="FontSize" Value="25"/>
+                <Setter Property="CornerRadius" Value="40"/>
                 <Setter Property="WidthRequest" Value="50"/>
+                <Setter Property="HeightRequest" Value="50"/>
+                <Setter Property="VerticalOptions" Value="CenterAndExpand"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
             </Style>
 
             <!-- Subheader Frame -->
             <Style x:Key="subHeaderFrame" TargetType="Frame">
-                <Setter Property="BackgroundColor" Value="#2484FF"/>
+                <Setter Property="BackgroundColor" Value="White"/>
                 <Setter Property="Padding" Value="20,10,20,10"/>
+                <Setter Property="CornerRadius" Value="0"/>
+                <Setter Property="Margin" Value="5,0,5,0"/>
             </Style>
 
             <!-- subHeaderLabel -->
             <Style x:Key="subHeaderLabel" TargetType="Label">
-                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="TextColor" Value="Blue"/>
                 <Setter Property="FontSize" Value="16"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
             </Style>
 
+            <!-- contentTitleFrame -->
+            <Style x:Key="contentTitleFrame" TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="Transparent"/>
+            </Style>
 
+            <!-- contentTitle -->
+            <Style x:Key="contentTitle" TargetType="Label">
+                <Setter Property="FontSize" Value="20"/>
+                <Setter Property="TextColor" Value="#474747 "/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+            </Style>
+
+            <!-- list -->
+            <Style x:Key="list" TargetType="ListView">
+                <Setter Property="BackgroundColor" Value="#EBEEFF"/>
+                <Setter Property="HasUnevenRows" Value="True"/>
+                <Setter Property="SeparatorVisibility" Value="None"/>
+            </Style>
+
+            <!-- mainListCell -->
+            <Style x:Key="mainListCell" TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="White"/>
+                <Setter Property="CornerRadius" Value="10"/>
+                <Setter Property="Margin" Value="15,5,15,5"/>
+            </Style>
+
+            <!-- listItemTitle -->
+            <Style x:Key="listItemTitle" TargetType="Label">
+                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="FontSize" Value="24"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+            </Style>
+
+            <!-- listItemDescr -->
+            <Style x:Key="listItemDescr" TargetType="Label">
+                <Setter Property="TextColor" Value="Blue"/>
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+            </Style>
+
+            <!-- addPageHeaderFrame -->
+            <Style x:Key="addPageHeaderFrame" TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="White"/>
+                <Setter Property="CornerRadius" Value="10"/>
+                <Setter Property="Margin" Value="5,6,5,0"/>
+            </Style>
+
+            <!-- addPageTitle -->
+            <Style x:Key="addPageTitle" TargetType="Label">
+                <Setter Property="FontSize" Value="20"/>
+                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+            </Style>
+
+            <!-- addEditDataFrame -->
+            <Style x:Key="addEditPageDataFrame" TargetType="Frame">
+                <Setter Property="BorderColor" Value="dimgray"/>
+                <Setter Property="CornerRadius" Value="10"/>
+                <Setter Property="Margin" Value="15,5,15,5"/>
+            </Style>
+            
+            <!-- dataLabel -->
+            <Style x:Key="dataLabel" TargetType="Label">
+                <Setter Property="VerticalOptions" Value="End"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+            </Style>
+
+            <!-- dataEntry -->
+            <Style x:Key="dataEntry" TargetType="Entry">
+                <Setter Property="HorizontalOptions" Value="Start"/>
+                <Setter Property="WidthRequest" Value="200"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+            </Style>
+
+            <!-- dataEditor -->
+            <Style x:Key="dataEditor" TargetType="Editor">
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+            </Style>
+            
+            <!-- addSaveButton -->
+            <Style x:Key="addSaveButton" TargetType="Button">
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="CornerRadius" Value="15"/>
+                <Setter Property="BorderColor" Value="White"/>
+                <Setter Property="BorderWidth" Value="2"/>
+                <Setter Property="BackgroundColor" Value="Green"/>
+            </Style>
+            
+            <!-- mainGrid -->
+            <Style x:Key="mainGrid" TargetType="Grid">
+                <Setter Property="RowSpacing" Value="0"/>
+            </Style>
+            
+            <!-- itemDetailsImageFrame -->
+            <Style x:Key="itemDetailsImageFrame" TargetType="Frame">
+                <Setter Property="BorderColor" Value="dimgray"/>
+                <Setter Property="CornerRadius" Value="10"/>
+                <Setter Property="Margin" Value="15,5,15,5"/>
+                <Setter Property="HeightRequest" Value="150"/>
+            </Style>
+
+            <!-- itemDetailsDataFrame -->
+            <Style x:Key="itemDetailsDataFrame" TargetType="Frame">
+                <Setter Property="BorderColor" Value="dimgray"/>
+                <Setter Property="CornerRadius" Value="10"/>
+                <Setter Property="Margin" Value="15,5,15,5"/>
+                <Setter Property="HeightRequest" Value="150"/>
+            </Style>
 
         </ResourceDictionary>
         

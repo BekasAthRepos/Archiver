@@ -6,61 +6,69 @@
              x:Class="Archiver.MainPage">
 
     <ContentPage.Content >
-        <StackLayout>
-            <Frame Style="{StaticResource headerFrame}">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
+               
+            <Grid Style="{StaticResource mainGrid}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="90"/>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
 
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="0.4*"/>
-                    </Grid.ColumnDefinitions>
+                <Grid.ColumnDefinitions>
+                </Grid.ColumnDefinitions>
+                
+                <Frame Style="{StaticResource headerFrame}" Grid.Row="0">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
 
-                    <Label Style="{StaticResource headerTitle}" Grid.Column="0" Text="Archiver"/>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="0.4*"/>
+                        </Grid.ColumnDefinitions>
 
-                    <Button Style="{StaticResource headerAddBtn}" Grid.Column="1" Text ="+" Clicked="AddAlbumClicked" />
-                </Grid>
-            </Frame>
+                        <Label Style="{StaticResource headerTitle}" Grid.Column="0" Text="Archiver"/>
 
-            <Frame class="contentTitleFrame">
-                <Label class="contentTitle" Text="Albums"/>
-            </Frame>
+                        <Button Style="{StaticResource headerAddBtn}" Grid.Column="1" Text ="+" Clicked="AddAlbumClicked" />
+                    </Grid>
+                </Frame>
 
-            <ListView x:Name="lvAlbums" class="List"
-                      ItemsSource="{Binding Albums}"
-                      ItemTapped="AlbumClicked"
-                      HasUnevenRows="True"
-                      SeparatorColor="Transparent">
+                <Frame Style="{StaticResource contentTitleFrame}" Grid.Row="1">
+                    <Label Style="{StaticResource contentTitle}" Text="Albums"/>
+                </Frame>
 
-                <ListView.ItemTemplate class ="listItem">
-                    <DataTemplate>
-                        <ViewCell StyleId="mainListCell">
+                <ListView x:Name="lvAlbums" Style="{StaticResource list}" ItemsSource="{Binding Albums}" ItemTapped="AlbumClicked"
+                          Grid.Row="2">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                           
+                                <ViewCell.ContextActions>
+                                    <MenuItem Text="Edit" Clicked="EditItemClicked" CommandParameter="{Binding .}"/>
+                                    <MenuItem Text="Delete" Clicked="DeleteItemClicked" CommandParameter="{Binding .}"/>
+                                </ViewCell.ContextActions>
 
-                            <ViewCell.ContextActions>
-                                <MenuItem Text="Edit" Clicked="EditItemClicked" CommandParameter="{Binding .}"/>
-                                <MenuItem Text="Delete" Clicked="DeleteItemClicked" 
-                                          CommandParameter="{Binding .}"/>
+                                <Frame Style="{StaticResource mainListCell}">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="0.3*"/>
+                                            <ColumnDefinition Width="0.7*"/>
+                                        </Grid.ColumnDefinitions>
 
-                            </ViewCell.ContextActions>
-
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="0.3*"/>
-                                    <ColumnDefinition Width="0.7*"/>
-                                </Grid.ColumnDefinitions>
-
-                                <Label class="listItemTitle" Grid.Column="0" Text="{Binding Name}" VerticalTextAlignment="Center"/>
-                                <Label class="listItemDescr" Grid.Column="1" Text="{Binding Description}" VerticalTextAlignment="Center"/>
-                            </Grid>
+                                        <Label Style="{StaticResource listItemTitle}" Grid.Column="0" Text="{Binding Name}"/>
+                                        <Label Style="{StaticResource listItemDescr}" Grid.Column="1" Text="{Binding Description}"/>
+                                    </Grid>
+                                </Frame>
                             
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>         
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+
         
-        </StackLayout>
+        
     </ContentPage.Content>
 
 </ContentPage>

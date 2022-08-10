@@ -1,26 +1,38 @@
 ﻿using Archiver.Model;
 using System;
+using System.ComponentModel;
 using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace Archiver.ViewModel
 {
-    public class EditAlbumViewModel
+    public class EditAlbumViewModel: INotifyPropertyChanged
     {
-        public Album Album { get; }
+        private Album _album;
+        public event PropertyChangedEventHandler PropertyChanged;
+        public Album Album 
+        {   
+            get { return _album; }   
+            set 
+            {
+                _album = value;
+                OnPropertyChanged("Album");
+            }
+        }
         public ICommand SaveClickedCmd => new Command(SaveClicked);
 
         public EditAlbumViewModel() { }
 
-        public EditAlbumViewModel(Album album)
+        private void OnPropertyChanged(string propertyName)
         {
-            Album = album;
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         private async void SaveClicked()
         {
             try
             {
+                Album.UpdateAlbum();
                 int rows = App.Database.UpdateAlbum(Album);
                 if(rows > 0)
                 {

@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ViewModel="clr-namespace:Archiver.ViewModel;assembly=Archiver"
+             x:Class="Archiver.View.ItemDetails">
+
+    <ContentPage.BindingContext>
+        <ViewModel:ItemDetailsViewModel x:Name="itemDetailsViewModel"/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+
+        <Grid RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="90"/>
+                <RowDefinition Height="400"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+            </Grid.ColumnDefinitions>
+
+            <Frame Style="{StaticResource headerFrame}" Grid.Row="0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label x:Name="txtAlbumName" Style="{StaticResource headerTitle}" Grid.Row="0" Grid.Column="0" Text="{Binding Item.Name}"/>
+
+                </Grid>
+            </Frame>
+
+            <Frame Style="{StaticResource itemDetailsImageFrame}" Grid.Row="1">
+                
+            </Frame>
+
+            <Frame Style="{StaticResource itemDetailsDataFrame}" Grid.Row="2">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="0.2*"/>
+                        <ColumnDefinition Width="0.1*"/>
+                    </Grid.ColumnDefinitions>
+
+                </Grid>
+            </Frame>
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

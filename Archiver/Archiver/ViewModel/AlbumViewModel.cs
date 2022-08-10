@@ -7,24 +7,14 @@ using Xamarin.Forms;
 namespace Archiver.ViewModel
 {
     public class AlbumViewModel
-    {
-        private Album _album;
+    { 
         public ObservableCollection<Album> Albums { get; set; }
         private Command LoadAlbumsCmd;
 
-        public Album Album
-        {
-            get { return _album; }
-            set
-            {
-                _album = value;
-            }
-        } 
-
         public AlbumViewModel()
-        {
-            LoadAlbumsCmd = new Command(async () => await ExcLoadAlbumsCmd());
+        {   
             Albums = new ObservableCollection<Album>();
+            LoadAlbumsCmd = new Command(async () => await ExcLoadAlbumsCmd());          
         }
 
         public async void OnAppearing()
@@ -32,15 +22,17 @@ namespace Archiver.ViewModel
             await ExcLoadAlbumsCmd();
         }
 
-        private async Task ExcLoadAlbumsCmd()
+        private Task ExcLoadAlbumsCmd()
         {
             Albums.Clear();
           
-            var albumList = App.Database.GetAlbumsAsync();
+            var albumList = App.Database.GetAlbums();
             foreach (var album in albumList)
             {
                 Albums.Add(album);
-            }          
+            }
+
+            return Task.CompletedTask;
         }
     }
 }

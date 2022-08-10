@@ -18,6 +18,7 @@ namespace Archiver.ViewModel
         private void AddAlbum()
         {
             bool validInputData = true;
+
             if((string.IsNullOrWhiteSpace(NewAlbum.Name)))
             {
                 validInputData = false;

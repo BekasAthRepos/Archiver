@@ -33,7 +33,7 @@ namespace Archiver.Service
 
         // Album functions
 
-        public List<Album>GetAlbumsAsync()
+        public List<Album>GetAlbums()
         {            
             return _connection.Table<Album>().ToList();
         }
@@ -64,12 +64,20 @@ namespace Archiver.Service
             return _connection.ExecuteScalar<int>(qItemCount, id);         
         }
 
+        public int UpdateAlbumDate(int albumId)
+        {
+            string query = "update Album set UpdateDate = ? where Id = ?";
+            string date = DateTime.Now.ToString("dd/mm/yyyy HH:mm");
+            return _connection.ExecuteScalar<int>(query, date, albumId);
+        }
+
 
         // Item functions
 
-        public List<Item> GetItemsAsync()
+        public List<Item> GetItems(int albumId)
         {
-            return _connection.Table<Item>().ToList();
+            string query = "select * from Item where AlbumId = ?";
+            return _connection.Query<Item>(query, albumId);
         }
 
         public int InsertItem(Item item)

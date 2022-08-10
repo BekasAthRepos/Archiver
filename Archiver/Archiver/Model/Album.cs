@@ -13,26 +13,18 @@ namespace Archiver.Model
         public string Name { get; set; }
         [MaxLength(200)]
         public string Description { get; set; }
-        //public DateTime InputDate { get; set; }
-        //public DateTime EditDate { get; set; }
-        //public List<Item> Items { get; set; }
+        public string InputDate { get; set; }
+        public string UpdateDate { get; set; }
 
-        public Album() { }
-
-        public Album(int id, string name, string description)
+        public Album() 
         {
-            //, DateTime inputDate, DateTime editDate, List<Item> items
-            Id = id;
-            Name = name;
-            Description = description;
-            //this.InputDate = inputDate;
-            //this.EditDate = editDate;
-            //this.Items = items;
+            InputDate = DateTime.Now.ToString("dd/mm/yyyy HH:mm");
+            UpdateDate = InputDate;
         }
 
-        public Album Clone()
+        public void UpdateAlbum()
         {
-            return MemberwiseClone() as Album;
+            UpdateDate = DateTime.Now.ToString("dd/mm/yyyy HH:mm");
         }
     }
 }
