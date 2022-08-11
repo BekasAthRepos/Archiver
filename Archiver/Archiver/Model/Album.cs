@@ -13,18 +13,18 @@ namespace Archiver.Model
         public string Name { get; set; }
         [MaxLength(200)]
         public string Description { get; set; }
-        public string InputDate { get; set; }
-        public string UpdateDate { get; set; }
+        public DateTime InputDate { get; set; }
+        public DateTime UpdateDate { get; set; }
 
         public Album() 
         {
-            InputDate = DateTime.Now.ToString("dd/mm/yyyy HH:mm");
+            InputDate = DateTime.Now;
             UpdateDate = InputDate;
         }
 
         public void UpdateAlbum()
         {
-            UpdateDate = DateTime.Now.ToString("dd/mm/yyyy HH:mm");
+            UpdateDate = DateTime.Now;
         }
     }
 }

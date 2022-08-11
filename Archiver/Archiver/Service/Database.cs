@@ -64,11 +64,11 @@ namespace Archiver.Service
             return _connection.ExecuteScalar<int>(qItemCount, id);         
         }
 
-        public int UpdateAlbumDate(int albumId)
+        public int UpdateAlbumDate(int albumId, DateTime date)
         {
-            string query = "update Album set UpdateDate = ? where Id = ?";
-            string date = DateTime.Now.ToString("dd/mm/yyyy HH:mm");
-            return _connection.ExecuteScalar<int>(query, date, albumId);
+            string query = "update Album set UpdateDate = ? where Id = ?;";
+            int rows = _connection.Execute(query, date, albumId);
+            return rows;
         }
 
 
@@ -97,7 +97,7 @@ namespace Archiver.Service
 
         public int DeleteItem(int id)
         {
-            return _connection.Delete(id);
+            return _connection.Delete<Item>(id);
         }
 
 

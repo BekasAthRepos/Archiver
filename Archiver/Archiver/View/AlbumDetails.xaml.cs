@@ -44,7 +44,7 @@ namespace Archiver.View
             MenuItem mi = (MenuItem)sender;
             Item item = mi.CommandParameter as Item;
 
-            //await Navigation.PushAsync(new EditItemPage(item));
+            await Navigation.PushAsync(new EditItemPage(item));
         }
 
         private async void DeleteItemClicked(object sender, EventArgs args)
@@ -52,11 +52,11 @@ namespace Archiver.View
             MenuItem mi = (MenuItem)sender;
             Item item = mi.CommandParameter as Item;
 
-            DeleteAlbumViewModel dVm = new DeleteAlbumViewModel(item.Id);
+            DeleteItemViewModel dVm = new DeleteItemViewModel(item.Id, item.AlbumId);
 
-            int d = await dVm.DeleteAlbum();
-            //if (d > 0)
-              //  vmAlbum.Albums.Remove(Item);
+            int d = await dVm.DeleteItem();
+            if (d > 0)
+               vmAlbDet.Items.Remove(item);
         }
     }
 }

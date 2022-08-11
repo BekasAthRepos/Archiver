@@ -1,4 +1,5 @@
 ﻿using Archiver.Model;
+using Archiver.View;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -42,12 +43,14 @@ namespace Archiver.ViewModel
             {
                 try
                 {
-                    int rows = App.Database.UpdateAlbumDate(NewItem.AlbumId);
+                    DateTime date = DateTime.Now;
+                    int rows = App.Database.UpdateAlbumDate(NewItem.AlbumId, date);
                     rows += App.Database.InsertItem(NewItem);
 
                     if(rows == 2)
                     {
                         App.Current.MainPage.DisplayAlert("Success", "Item has been added.", "Ok");
+                        MessagingCenter.Send<Object, DateTime>(this, "AlbumChanged", date);
                     }
                 }
                 catch (Exception e)

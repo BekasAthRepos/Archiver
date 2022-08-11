@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ViewModel="clr-namespace:Archiver.ViewModel;assembly=Archiver"
+             x:Class="Archiver.View.EditItemPage">
+    
+    <ContentPage.BindingContext>
+        <ViewModel:EditItemViewModel x:Name="editItemViewModel"/>
+    </ContentPage.BindingContext>
+    
+    <ContentPage.Content>
+        <StackLayout>
+            
+            <Frame Style="{StaticResource headerFrame}" >
+                <Label Style="{StaticResource headerTitle}" Text="{Binding Item.Name}"/>
+            </Frame>
+
+            <Frame Style="{StaticResource addEditPageDataFrame}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                    </Grid.ColumnDefinitions>
+
+
+                    <Label Style="{StaticResource dataLabel}" Grid.Row="0" Text="Name: " />
+
+                    <Entry Style="{StaticResource dataEntry}"  Text="{Binding Item.Name}" Grid.Row="1"/>
+
+                    <Label Style="{StaticResource dataLabel}" Grid.Row="2" Text="Description: " />
+
+                    <Entry Style="{StaticResource dataEditor}" Text="{Binding Item.Description}" Grid.Row="3"/>
+
+                </Grid>
+            </Frame>
+
+            <Button Style="{StaticResource addSaveButton}" Text="Save" Command="{Binding SaveClickedCmd}"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

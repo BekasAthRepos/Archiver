@@ -25,5 +25,10 @@ namespace Archiver.Model
             InputDate = DateTime.Now;
             UpdateDate = InputDate;
         }
+
+        public void UpdateItem()
+        {
+            UpdateDate = DateTime.Now;
+        }
     }
 }

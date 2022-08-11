@@ -23,14 +23,19 @@ namespace Archiver.ViewModel
             set
             {
                 _album = value;
-                OnPropertyChanged("Album");
+                OnPropertyChanged(nameof(Album));
             }
         }
 
         public AlbumDetailsViewModel() 
-        {       
+        {   
             Items = new ObservableCollection<Item>();
             LoadItemsCmd = new Command(async () => await ExcLoadItemsCmd());
+            MessagingCenter.Subscribe<Object, DateTime>(this, "AlbumChanged", (o, date) =>
+            {
+                Album.UpdateDate = date;
+                OnPropertyChanged(nameof(Album));
+            });
         }
 
         private void OnPropertyChanged(string propertyName)

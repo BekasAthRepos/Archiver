@@ -12,8 +12,6 @@ namespace Archiver.ViewModel
     {
         private int _id;
 
-        public DeleteAlbumViewModel() { }
-
         public DeleteAlbumViewModel(int id)
         {
             _id = id;     
@@ -21,14 +19,14 @@ namespace Archiver.ViewModel
 
         public async Task<int> DeleteAlbum()
         {
-            int items = 0;
+            int recs = 0;
             try
             {
                 bool ans = await App.Current.MainPage.DisplayAlert("Warning!", "Delete album?", "Yes", "No");
                 if(ans)
                 {
-                    items = App.Database.DeleteAlbum(_id);
-                    if (items > 0)
+                    recs = App.Database.DeleteAlbum(_id);
+                    if (recs > 0)
                     {
                         await App.Current.MainPage.DisplayAlert("Success", "Album was deleted", "Ok");
                     }
@@ -40,7 +38,7 @@ namespace Archiver.ViewModel
                 await App.Current.MainPage.DisplayAlert("Error", e.ToString(), "Ok");
             } 
             
-            return items;
+            return recs;
         }
     }
 }
