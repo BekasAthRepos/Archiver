@@ -1,6 +1,7 @@
 ﻿using Archiver.Model;
 using System;
 using System.Windows.Input;
+using Xamarin.CommunityToolkit.Extensions;
 using Xamarin.Forms;
 
 namespace Archiver.ViewModel
@@ -29,7 +30,9 @@ namespace Archiver.ViewModel
             {
                 try
                 {
-                    App.Database.InsertAlbum(NewAlbum);
+                    int rows = App.Database.InsertAlbum(NewAlbum);
+                    if (rows > 0)
+                        App.Current.MainPage.DisplayToastAsync("Success. Album has been added.", 1500);
                 }
                 catch (Exception e)
                 {

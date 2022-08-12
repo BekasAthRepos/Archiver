@@ -58,12 +58,6 @@ namespace Archiver.Service
             return _connection.Delete<Album>(id);
         }
 
-        public int GetItemQty(int id)
-        {
-            string qItemCount = "select count(*) from Item where AlbumId = ?";
-            return _connection.ExecuteScalar<int>(qItemCount, id);         
-        }
-
         public int UpdateAlbumDate(int albumId, DateTime date)
         {
             string query = "update Album set UpdateDate = ? where Id = ?;";

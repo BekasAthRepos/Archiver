@@ -2,6 +2,7 @@
 using System;
 using System.ComponentModel;
 using System.Windows.Input;
+using Xamarin.CommunityToolkit.Extensions;
 using Xamarin.Forms;
 
 namespace Archiver.ViewModel
@@ -36,7 +37,7 @@ namespace Archiver.ViewModel
                 int rows = App.Database.UpdateAlbum(Album);
                 if(rows > 0)
                 {
-                    await App.Current.MainPage.DisplayAlert("Success", "Changes were saved", "Ok");
+                    await App.Current.MainPage.DisplayToastAsync("Success. Changes have been saved", 1500);
                 }
             }
             catch(Exception e)

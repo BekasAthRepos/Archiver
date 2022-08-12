@@ -9,39 +9,37 @@
     </ContentPage.BindingContext>
     
     <ContentPage.Content>
-        <StackLayout>
+        <ScrollView>
+            <StackLayout>
 
-            <Frame Style="{StaticResource addPageHeaderFrame}">
-                <Label Style="{StaticResource addPageTitle}" Text="Add album"/>
-            </Frame>
+                <Frame Style="{StaticResource addPageHeaderFrame}">
+                    <Label Style="{StaticResource addPageTitle}" Text="Add album"/>
+                </Frame>
 
-            <Frame Style="{StaticResource addEditPageDataFrame}">
+                <Frame Style="{StaticResource addEditPageDataFrame}">
                 
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
 
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions> 
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
 
-                    <Label Style="{StaticResource dataLabel}" Grid.Row="0" Text="Name" />
+                        <Entry x:Name="inName" Style="{StaticResource dataEntry}" Grid.Row="0" Placeholder="Name"
+                            Text="{Binding NewAlbum.Name}" />
 
-                    <Entry x:Name="inName" Style="{StaticResource dataEntry}" Grid.Row="1" Placeholder=""
-                        Text="{Binding NewAlbum.Name}" />
+                        <Editor x:Name="inDescr" Style="{StaticResource dataEditor}" Grid.Row="1" Placeholder="Description" 
+                            Text="{Binding NewAlbum.Description}"/>
+                    </Grid>
 
-                    <Label Style="{StaticResource dataLabel}" Grid.Row="2" Text="Description" />
-
-                    <Editor x:Name="inDescr" Style="{StaticResource dataEditor}" Grid.Row="3" Placeholder="Description" 
-                        Text="{Binding NewAlbum.Description}"/>
-                </Grid>
-
-            </Frame>
+                </Frame>
             
 
-            <Button x:Name="btnAddAlbum" Style="{StaticResource addSaveButton}" Text="Add Album" Command="{Binding AddAlbumCmd}"/>
+                <Button x:Name="btnAddAlbum" Style="{StaticResource addSaveButton}" Text="Add Album" Command="{Binding AddAlbumCmd}"/>
 
-        </StackLayout>
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

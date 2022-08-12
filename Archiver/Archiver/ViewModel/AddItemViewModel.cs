@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Input;
+using Xamarin.CommunityToolkit.Extensions;
 using Xamarin.Forms;
 
 namespace Archiver.ViewModel
@@ -49,7 +50,7 @@ namespace Archiver.ViewModel
 
                     if(rows == 2)
                     {
-                        App.Current.MainPage.DisplayAlert("Success", "Item has been added.", "Ok");
+                        App.Current.MainPage.DisplayToastAsync("Success. Item has been added.", 1500);
                         MessagingCenter.Send<Object, DateTime>(this, "AlbumChanged", date);
                     }
                 }

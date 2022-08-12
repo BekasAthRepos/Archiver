@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
 using System.Windows.Input;
+using Xamarin.CommunityToolkit.Extensions;
 using Xamarin.Forms;
 
 namespace Archiver.ViewModel
 {
-    public class EditItemViewModel
+    public class EditItemViewModel : INotifyPropertyChanged
     {
         private Item _item;
         public event PropertyChangedEventHandler PropertyChanged;
@@ -19,7 +20,6 @@ namespace Archiver.ViewModel
             {
                 _item = value;
                 OnPropertyChanged(nameof(Item));
-                //OnPropertyChanged("Album");
             }
         }
         public ICommand SaveClickedCmd => new Command(SaveClicked);
@@ -35,12 +35,14 @@ namespace Archiver.ViewModel
         {
             try
             {
+                DateTime date = DateTime.Now;
                 _item.UpdateItem();
-                //update album updatetime...
                 int rows = App.Database.UpdateItem(Item);
-                if (rows > 0)
+                rows += App.Database.UpdateAlbumDate(_item.AlbumId, date);
+                if (rows >= 2)
                 {
-                    await App.Current.MainPage.DisplayAlert("Success", "Changes were saved", "Ok");
+                    await App.Current.MainPage.DisplayToastAsync("Success. Changes have been saved", 1500);
+                    MessagingCenter.Send<Object, DateTime>(this, "AlbumChanged", date);
                 }
             }
             catch (Exception e)

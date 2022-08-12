@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.CommunityToolkit.Extensions;
 using Xamarin.Forms;
 
 namespace Archiver.ViewModel
@@ -32,8 +33,9 @@ namespace Archiver.ViewModel
                     recs += App.Database.UpdateAlbumDate(_albumId, date);
                     if (recs > 0)
                     {
-                        await App.Current.MainPage.DisplayAlert("Success", "Item was deleted", "Ok");
+                        await App.Current.MainPage.DisplayToastAsync("Success. Item has been deleted", 1500);
                         MessagingCenter.Send<Object, DateTime>(this, "AlbumChanged", date);
+                        MessagingCenter.Send<Object>(this, "ItemDeleted");
                     }
                 }
             }

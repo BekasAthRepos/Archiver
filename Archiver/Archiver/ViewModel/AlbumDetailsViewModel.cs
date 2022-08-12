@@ -11,12 +11,6 @@ namespace Archiver.ViewModel
     public class AlbumDetailsViewModel: INotifyPropertyChanged
     {
         private Album _album;
-        public ObservableCollection<Item> Items { get; set; }
-        public int ItemQty { get; set; }
-        public ICommand GetItemQtyCmd => new Command(GetItemQty);
-        private Command LoadItemsCmd;
-
-        public event PropertyChangedEventHandler PropertyChanged;
         public Album Album
         {
             get { return _album; }
@@ -26,6 +20,20 @@ namespace Archiver.ViewModel
                 OnPropertyChanged(nameof(Album));
             }
         }
+        public ObservableCollection<Item> Items { get; set; }
+        private int _itemQty;
+        public int ItemQty 
+        {
+            get { return _itemQty; }
+            set
+            {
+                _itemQty = value;
+                OnPropertyChanged(nameof(ItemQty));
+            } 
+        }
+        private Command LoadItemsCmd;
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public AlbumDetailsViewModel() 
         {   
@@ -35,6 +43,12 @@ namespace Archiver.ViewModel
             {
                 Album.UpdateDate = date;
                 OnPropertyChanged(nameof(Album));
+            });
+
+            MessagingCenter.Subscribe<Object>(this, "ItemDeleted", (o) =>
+            {
+                ItemQty--;
+                OnPropertyChanged(nameof(ItemQty));
             });
         }
 
@@ -47,18 +61,12 @@ namespace Archiver.ViewModel
         public async void OnAppearing()
         {
             await ExcLoadItemsCmd();
+            ItemQty = GetItemQty();
         }
 
-        private void GetItemQty()
+        private int GetItemQty()
         {
-            try
-            {
-                ItemQty = App.Database.GetItemQty(Album.Id);
-            }
-            catch (Exception e)
-            {
-                App.Current.MainPage.DisplayAlert("Error", e.ToString(), "Ok");
-            }
+            return Items.Count;
         }
 
         private Task ExcLoadItemsCmd()

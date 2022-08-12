@@ -21,16 +21,25 @@
                     </Grid.RowDefinitions>
 
                     <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="0.4*"/>
                     </Grid.ColumnDefinitions>
 
 
-                    <Label Style="{StaticResource dataLabel}" Grid.Row="0" Text="Name: " />
+                    <Label Style="{StaticResource dataLabel}" Grid.Row="0" Grid.Column="0" Text="Name: " />
 
-                    <Entry Style="{StaticResource dataEntry}"  Text="{Binding Item.Name}" Grid.Row="1"/>
+                    <Label Style="{StaticResource dataLabel}" Grid.Row="0" Grid.Column="1" Text="Qty: " 
+                           HorizontalTextAlignment="Start"/>
 
-                    <Label Style="{StaticResource dataLabel}" Grid.Row="2" Text="Description: " />
+                    <Entry Style="{StaticResource dataEntry}"  Text="{Binding Item.Name}" Grid.Row="1" Grid.Column="0"/>
 
-                    <Entry Style="{StaticResource dataEditor}" Text="{Binding Item.Description}" Grid.Row="3"/>
+                    <Entry Style="{StaticResource dataEntry}" Text="{Binding Item.Qty}" Grid.Row="1" Grid.Column="1" Keyboard="Numeric"/>
+
+                    <Label Style="{StaticResource dataLabel}" Grid.Row="2" Text="Description: " Grid.ColumnSpan="2" 
+                           Grid.Column="0"/>
+
+                    <Entry Style="{StaticResource dataEditor}" Text="{Binding Item.Description}" Grid.Row="3" Grid.Column="0"
+                           Grid.ColumnSpan="2"/>
 
                 </Grid>
             </Frame>

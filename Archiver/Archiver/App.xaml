@@ -15,7 +15,7 @@
             <Style x:Key="headerFrame" TargetType="Frame">
                 <Setter Property="BackgroundColor" Value="White"/>
                 <Setter Property="Margin" Value="0,2,0,0"/>
-                <Setter Property="CornerRadius" Value="0"/>
+                <Setter Property="CornerRadius" Value="5"/>
                 <Setter Property="Margin" Value="5,0,5,0"/>
             </Style>
 
@@ -98,6 +98,15 @@
                 <Setter Property="FontAttributes" Value="Bold"/>
             </Style>
 
+            <!-- listItemQty -->
+            <Style x:Key="listItemQty" TargetType="Label">
+                <Setter Property="TextColor" Value="DimGray"/>
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+                <Setter Property="HorizontalTextAlignment" Value="End"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+            </Style>
+
             <!-- addPageHeaderFrame -->
             <Style x:Key="addPageHeaderFrame" TargetType="Frame">
                 <Setter Property="BackgroundColor" Value="White"/>
@@ -119,7 +128,27 @@
                 <Setter Property="CornerRadius" Value="10"/>
                 <Setter Property="Margin" Value="15,5,15,5"/>
             </Style>
-            
+
+            <!-- addItemImageButton -->
+            <Style x:Key="addItemImageButton" TargetType="ImageButton">
+                <Setter Property="BorderColor" Value="Blue"/>
+                <Setter Property="BorderWidth" Value="3"/>
+                <Setter Property="CornerRadius" Value="10"/>
+                <Setter Property="BackgroundColor" Value="#EBEEFF"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>
+                <Setter Property="WidthRequest" Value="100"/>
+                <Setter Property="HeightRequest" Value="50"/>
+                <Setter Property="Padding" Value="10"/>
+            </Style>
+
+            <!-- imageIcon -->
+            <Style x:Key="imageIcon" TargetType="Image">
+                <Setter Property="BackgroundColor" Value="White"/>
+                <Setter Property="WidthRequest" Value="180"/>
+                <Setter Property="Margin" Value="20"/>
+            </Style>
+
             <!-- dataLabel -->
             <Style x:Key="dataLabel" TargetType="Label">
                 <Setter Property="VerticalOptions" Value="End"/>
@@ -153,7 +182,14 @@
             <Style x:Key="mainGrid" TargetType="Grid">
                 <Setter Property="RowSpacing" Value="0"/>
             </Style>
-            
+
+            <!-- itemDetailstTitleQty -->
+            <Style x:Key="itemDetailstTitleQty" TargetType="Label">
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="TextColor" Value="DimGray"/>
+            </Style>
+
             <!-- itemDetailsImageFrame -->
             <Style x:Key="itemDetailsImageFrame" TargetType="Frame">
                 <Setter Property="BorderColor" Value="dimgray"/>
@@ -167,7 +203,11 @@
                 <Setter Property="BorderColor" Value="dimgray"/>
                 <Setter Property="CornerRadius" Value="10"/>
                 <Setter Property="Margin" Value="15,5,15,5"/>
-                <Setter Property="HeightRequest" Value="150"/>
+            </Style>
+
+            <!-- itemDetailsDataLabel -->
+            <Style x:Key="itemDetailsDataLabel" TargetType="Label">
+                <Setter Property="TextColor" Value="Black"/>
             </Style>
 
         </ResourceDictionary>

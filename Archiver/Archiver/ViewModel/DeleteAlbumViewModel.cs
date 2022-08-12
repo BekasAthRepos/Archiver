@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Xamarin.CommunityToolkit.Extensions;
 using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration;
 
 namespace Archiver.ViewModel
 {
@@ -28,7 +30,7 @@ namespace Archiver.ViewModel
                     recs = App.Database.DeleteAlbum(_id);
                     if (recs > 0)
                     {
-                        await App.Current.MainPage.DisplayAlert("Success", "Album was deleted", "Ok");
+                        await App.Current.MainPage.DisplayToastAsync("Success. Album has been deleted", 1500);
                     }
                 }
                 

@@ -13,7 +13,7 @@
         <Grid RowSpacing="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="90"/>
-                <RowDefinition Height="90"/>
+                <RowDefinition Height="auto"/>
                 <RowDefinition Height="70"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
@@ -41,7 +41,7 @@
             <Frame Style="{StaticResource subHeaderFrame}" Grid.Row="1">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition/>
+                        <RowDefinition Height="auto"/>
                     </Grid.RowDefinitions>
 
                     <Grid.ColumnDefinitions>
@@ -87,11 +87,13 @@
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="0.3*"/>
-                                        <ColumnDefinition Width="0.7*"/>
+                                        <ColumnDefinition Width="0.5*"/>
+                                        <ColumnDefinition Width="0.2*"/>
                                     </Grid.ColumnDefinitions>
 
                                     <Label Style="{StaticResource listItemTitle}" Grid.Column="0" Text="image..." />
                                     <Label Style="{StaticResource listItemDescr}" Grid.Column="1" Text="{Binding Name}" />
+                                    <Label Style="{StaticResource listItemQty}" Grid.Column="2" Text="{Binding Qty}"/>
                                 </Grid>
                             </Frame>
 
