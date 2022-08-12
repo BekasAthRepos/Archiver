@@ -26,9 +26,12 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
 
-                        <Image Style="{StaticResource imageIcon}" Source="image.png" Grid.Row="0" Grid.ColumnSpan="2"/>
-                        <ImageButton Style="{StaticResource addItemImageButton}" Grid.Row="1" Grid.Column="0" Source="camera.png"/>
-                        <ImageButton Style="{StaticResource addItemImageButton}" Grid.Row="1" Grid.Column="1" Source="upload.png"/>
+                        <Image x:Name="imgMain" Style="{StaticResource imageIcon}" Source="image.png" Grid.Row="0" Grid.ColumnSpan="2"/>
+                        
+                        <ImageButton Style="{StaticResource addItemImageButton}" Grid.Row="1" Grid.Column="0" Source="camera.png"
+                                     Clicked="OnCameraCliked"/>
+                        <ImageButton Style="{StaticResource addItemImageButton}" Grid.Row="1" Grid.Column="1" Source="upload.png"
+                                     Clicked="OnUploadCliked"/>
                     </Grid>
                 </Frame>
 
@@ -36,18 +39,22 @@
 
                     <Grid>
                         <Grid.RowDefinitions>
-                            <RowDefinition/>
                         </Grid.RowDefinitions>
 
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="0.4*"/>
                         </Grid.ColumnDefinitions>
 
-                        <Entry x:Name="inName" Style="{StaticResource dataEntry}" Grid.Row="0" Placeholder="Name"
-                            Text="{Binding NewItem.Name}" />
 
-                        <Editor x:Name="inDescr" Style="{StaticResource dataEditor}" Grid.Row="1" Placeholder="Description" 
-                            Text="{Binding NewItem.Description}"/>
+                        <Entry Style="{StaticResource dataEntry}"  Text="{Binding NewItem.Name}" Grid.Row="0" Grid.Column="0"
+                               Placeholder="Name"/>
+
+                        <Entry Style="{StaticResource dataEntry}" Text="{Binding NewItem.Qty}" Grid.Row="0" Grid.Column="1" 
+                               Placeholder="Qty" Keyboard="Numeric"/>
+
+                        <Entry Style="{StaticResource dataEditor}" Text="{Binding NewItem.Description}" Grid.Row="1" Grid.Column="0"
+                           Grid.ColumnSpan="2" Placeholder="Description"/>
                     </Grid>
 
                 </Frame>

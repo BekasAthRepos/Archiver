@@ -30,7 +30,7 @@
 
                         <Label Style="{StaticResource headerTitle}" Grid.Column="0" Text="Archiver"/>
 
-                        <Button Style="{StaticResource headerAddBtn}" Grid.Column="1" Text ="+" Clicked="AddAlbumClicked" />
+                        <ImageButton Style="{StaticResource headerAddImage}" Grid.Column="1" Source ="add.png" Clicked="AddAlbumClicked" />
                     </Grid>
                 </Frame>
 

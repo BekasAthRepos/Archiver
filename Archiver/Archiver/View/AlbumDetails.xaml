@@ -34,7 +34,8 @@
 
                     <Label x:Name="txtAlbumName" Style="{StaticResource headerTitle}" Grid.Row="0" Grid.Column="0" Text="{Binding Album.Name}"/>
 
-                    <Button x:Name="btnAddItem" Style="{StaticResource headerAddBtn}" Grid.Row="0" Grid.Column="1" Text="+" Clicked="AddItemClicked" CommandParameter="{Binding Album.Id}"/>
+                    <ImageButton x:Name="btnAddItem" Style="{StaticResource headerAddImage}" Grid.Row="0" Grid.Column="1" Source ="add.png" Clicked="AddItemClicked"
+                                 CommandParameter="{Binding Album.Id}"/>
                 </Grid> 
             </Frame>
 

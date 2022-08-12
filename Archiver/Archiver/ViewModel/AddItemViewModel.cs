@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows.Input;
 using Xamarin.CommunityToolkit.Extensions;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace Archiver.ViewModel
@@ -13,6 +14,7 @@ namespace Archiver.ViewModel
     {
         public Item NewItem { get; set; }
         public ICommand AddItemCmd => new Command(AddItem);
+        public ICommand UploadImageCmd => new Command(UploadImage);
 
         public AddItemViewModel() 
         {
@@ -48,7 +50,7 @@ namespace Archiver.ViewModel
                     int rows = App.Database.UpdateAlbumDate(NewItem.AlbumId, date);
                     rows += App.Database.InsertItem(NewItem);
 
-                    if(rows == 2)
+                    if (rows == 2)
                     {
                         App.Current.MainPage.DisplayToastAsync("Success. Item has been added.", 1500);
                         MessagingCenter.Send<Object, DateTime>(this, "AlbumChanged", date);
@@ -61,6 +63,11 @@ namespace Archiver.ViewModel
 
                 App.Current.MainPage.Navigation.PopAsync();
             }
+        }
+
+        private void UploadImage()
+        {
+            
         }
     }
 }

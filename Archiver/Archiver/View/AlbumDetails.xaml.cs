@@ -25,7 +25,7 @@ namespace Archiver.View
 
         private async void AddItemClicked(object sender, EventArgs e)
         {
-            Button btn = sender as Button;
+            ImageButton btn = sender as ImageButton;
             int albumId = (int) btn.CommandParameter;
 
              await Navigation.PushAsync(new AddItemPage(albumId));

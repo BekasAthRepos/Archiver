@@ -30,7 +30,7 @@
                         <Entry x:Name="inName" Style="{StaticResource dataEntry}" Grid.Row="0" Placeholder="Name"
                             Text="{Binding NewAlbum.Name}" />
 
-                        <Editor x:Name="inDescr" Style="{StaticResource dataEditor}" Grid.Row="1" Placeholder="Description" 
+                        <Entry x:Name="inDescr" Style="{StaticResource dataEditor}" Grid.Row="1" Placeholder="Description" 
                             Text="{Binding NewAlbum.Description}"/>
                     </Grid>
 

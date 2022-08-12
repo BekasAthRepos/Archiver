@@ -27,16 +27,11 @@
                 <Setter Property="HorizontalTextAlignment" Value="Center"/>
                 <Setter Property="VerticalTextAlignment" Value="Center"/>
             </Style>
-            
-            <!-- headerAddBtn -->
-            <Style x:Key="headerAddBtn" TargetType="Button">
-                <Setter Property="TextColor" Value="White"/>
-                <Setter Property="BackgroundColor" Value="blue"/>
-                <Setter Property="FontSize" Value="25"/>
-                <Setter Property="CornerRadius" Value="40"/>
-                <Setter Property="WidthRequest" Value="50"/>
-                <Setter Property="HeightRequest" Value="50"/>
-                <Setter Property="VerticalOptions" Value="CenterAndExpand"/>
+
+            <!-- headerAddImage -->
+            <Style x:Key="headerAddImage" TargetType="ImageButton">
+                <Setter Property="WidthRequest" Value="40"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
                 <Setter Property="HorizontalOptions" Value="Center"/>
             </Style>
 
@@ -44,7 +39,7 @@
             <Style x:Key="subHeaderFrame" TargetType="Frame">
                 <Setter Property="BackgroundColor" Value="White"/>
                 <Setter Property="Padding" Value="20,10,20,10"/>
-                <Setter Property="CornerRadius" Value="0"/>
+                <Setter Property="CornerRadius" Value="5"/>
                 <Setter Property="Margin" Value="5,0,5,0"/>
             </Style>
 

@@ -31,9 +31,7 @@ namespace Archiver
         private async void AlbumClicked(object sender, ItemTappedEventArgs args)
         {
             if(args.Item == null)
-                return;
-
-            
+                return;          
 
             await Navigation.PushAsync(new AlbumDetails(args.Item as Album));
         }
