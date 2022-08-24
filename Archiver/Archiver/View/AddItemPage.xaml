@@ -26,12 +26,12 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
 
-                        <Image x:Name="imgMain" Style="{StaticResource imageIcon}" Source="image.png" Grid.Row="0" Grid.ColumnSpan="2"/>
+                        <Image x:Name="imgMain" Style="{StaticResource imageIcon}" Source="{Binding ImgSrc}" Grid.Row="0" Grid.ColumnSpan="2"/>
                         
                         <ImageButton Style="{StaticResource addItemImageButton}" Grid.Row="1" Grid.Column="0" Source="camera.png"
-                                     Clicked="OnCameraCliked"/>
+                                     Command="{Binding TakePhotoCmd}"/>
                         <ImageButton Style="{StaticResource addItemImageButton}" Grid.Row="1" Grid.Column="1" Source="upload.png"
-                                     Clicked="OnUploadCliked"/>
+                                     Command="{Binding UploadImageCmd}"/>
                     </Grid>
                 </Frame>
 
