@@ -16,7 +16,7 @@ namespace Archiver.Model
         [MaxLength(400)]
         public string Description {get; set;}
         public double Qty {get; set;}
-        //public ImageSource Picture { get; set; }
+        public string imgPath { get; set; } 
         public DateTime InputDate { get; set;}
         public DateTime UpdateDate { get; set; }
 

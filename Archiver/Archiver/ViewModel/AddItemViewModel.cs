@@ -3,6 +3,7 @@ using Archiver.View;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Text;
 using System.Windows.Input;
 using Xamarin.CommunityToolkit.Extensions;
@@ -13,7 +14,8 @@ namespace Archiver.ViewModel
 {
     public class AddItemViewModel : INotifyPropertyChanged
     {
-        private ImageSource _imgSrc; 
+        private ImageSource _imgSrc;
+        private string imgPath;
         public Item NewItem { get; set; }
         public ICommand AddItemCmd => new Command(AddItem);
         public ICommand UploadImageCmd => new Command(UploadImage);
@@ -96,6 +98,7 @@ namespace Archiver.ViewModel
             {
                 var stream = await result.OpenReadAsync();
                 ImgSrc = ImageSource.FromStream(() => stream);
+                imgPath = Path.Combine(FileSystem.AppDataDirectory, result.FileName);
             }         
         }
 
