@@ -15,7 +15,7 @@ namespace Archiver.ViewModel
     public class AddItemViewModel : INotifyPropertyChanged
     {
         private ImageSource _imgSrc;
-        private string imgPath;
+        private string _imgPath;
         public Item NewItem { get; set; }
         public ICommand AddItemCmd => new Command(AddItem);
         public ICommand UploadImageCmd => new Command(UploadImage);
@@ -98,7 +98,7 @@ namespace Archiver.ViewModel
             {
                 var stream = await result.OpenReadAsync();
                 ImgSrc = ImageSource.FromStream(() => stream);
-                imgPath = Path.Combine(FileSystem.AppDataDirectory, result.FileName);
+                //_imgPath = Path.Combine(FileSystem.AppDataDirectory, result.FileName);
             }         
         }
 
@@ -110,6 +110,12 @@ namespace Archiver.ViewModel
             {
                 var camera = await result.OpenReadAsync();
                 ImgSrc = ImageSource.FromStream(() => camera);
+
+                var newImage = Path.Combine(FileSystem.AppDataDirectory, result.FileName);
+                using (var stream = await result.OpenReadAsync())
+                using (var newStream = File.OpenWrite(newImage))
+                    await stream.CopyToAsync(newStream);
+                _imgPath = newImage;
             }
         }
     }
