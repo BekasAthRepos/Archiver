@@ -17,7 +17,7 @@ namespace Archiver.ViewModel
             set 
             {
                 _album = value;
-                OnPropertyChanged("Album");
+                OnPropertyChanged(nameof(Album));
             }
         }
         public ICommand SaveClickedCmd => new Command(SaveClicked);

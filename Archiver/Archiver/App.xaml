@@ -85,12 +85,25 @@
                 <Setter Property="VerticalTextAlignment" Value="Center"/>
             </Style>
 
+            <!-- listItemImage -->
+            <Style x:Key="listItemImage" TargetType="Image">
+                
+            </Style>
+
+            <!-- listItemImageFrame -->
+            <Style x:Key="listItemImageFrame" TargetType="Frame">
+                <Setter Property="HeightRequest" Value="80"/>
+                <Setter Property="Padding" Value="0"/>
+                <Setter Property="Margin" Value="0,0,5,0"/>
+                <Setter Property="BorderColor" Value="Transparent"/>
+            </Style>
+
+
             <!-- listItemDescr -->
             <Style x:Key="listItemDescr" TargetType="Label">
                 <Setter Property="TextColor" Value="Black"/>
                 <Setter Property="FontSize" Value="18"/>
                 <Setter Property="VerticalTextAlignment" Value="Center"/>
-                
             </Style>
 
             <!-- listItemQty -->

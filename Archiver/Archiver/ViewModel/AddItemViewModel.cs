@@ -9,13 +9,14 @@ using System.Windows.Input;
 using Xamarin.CommunityToolkit.Extensions;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using System.Resources;
+using System.Reflection;
 
 namespace Archiver.ViewModel
 {
     public class AddItemViewModel : INotifyPropertyChanged
     {
         private ImageSource _imgSrc;
-        private string _imgPath;
         public Item NewItem { get; set; }
         public ICommand AddItemCmd => new Command(AddItem);
         public ICommand UploadImageCmd => new Command(UploadImage);
@@ -34,8 +35,12 @@ namespace Archiver.ViewModel
 
         public AddItemViewModel() 
         {
+            ResourceManager rm = new ResourceManager("Archiver.Resources.Strings", this.GetType().Assembly);
+            string str = rm.GetString("addItemDefaultImage");
+
             NewItem = new Item();
-            ImgSrc = "image.png";
+            ImgSrc = "additemImage.png";
+            NewItem.ImgPath = Path.GetFullPath(rm.GetString("addItemDefaultImage"));
         }
 
         private void OnPropertyChanged(string propertyName)
@@ -98,12 +103,12 @@ namespace Archiver.ViewModel
             {
                 var stream = await result.OpenReadAsync();
                 ImgSrc = ImageSource.FromStream(() => stream);
-                //_imgPath = Path.Combine(FileSystem.AppDataDirectory, result.FileName);
+                NewItem.ImgPath = result.FullPath;
             }         
         }
 
         private async void TakePhoto()
-        {
+        { 
             var result = await MediaPicker.CapturePhotoAsync();
 
             if (result != null)
@@ -112,10 +117,10 @@ namespace Archiver.ViewModel
                 ImgSrc = ImageSource.FromStream(() => camera);
 
                 var newImage = Path.Combine(FileSystem.AppDataDirectory, result.FileName);
-                using (var stream = await result.OpenReadAsync())
-                using (var newStream = File.OpenWrite(newImage))
+                var stream = await result.OpenReadAsync();
+                var newStream = File.OpenWrite(newImage);
                     await stream.CopyToAsync(newStream);
-                _imgPath = newImage;
+                NewItem.ImgPath = Path.GetFullPath(newImage);
             }
         }
     }

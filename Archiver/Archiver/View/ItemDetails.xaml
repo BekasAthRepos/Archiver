@@ -47,7 +47,7 @@
                 </Frame>
 
                 <Frame Style="{StaticResource itemDetailsImageFrame}" Grid.Row="1">
-
+                    <Image Source="{Binding Item.ImgPath}"/>
                 </Frame>
 
                 <Frame Style="{StaticResource itemDetailsDataFrame}" Grid.Row="2">

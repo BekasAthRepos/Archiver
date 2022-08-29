@@ -18,6 +18,25 @@
             <Frame Style="{StaticResource addEditPageDataFrame}">
                 <Grid>
                     <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Image x:Name="imgMain" Style="{StaticResource imageIcon}" Source="{Binding Item.ImgPath}" Grid.Row="0" Grid.ColumnSpan="2"/>
+
+                    <ImageButton Style="{StaticResource addItemImageButton}" Grid.Row="1" Grid.Column="0" Source="camera.png"
+                                     Command="{Binding TakePhotoCmd}"/>
+                    <ImageButton Style="{StaticResource addItemImageButton}" Grid.Row="1" Grid.Column="1" Source="upload.png"
+                                     Command="{Binding UploadImageCmd}"/>
+                </Grid>
+            </Frame>
+
+            <Frame Style="{StaticResource addEditPageDataFrame}">
+                <Grid>
+                    <Grid.RowDefinitions>
                     </Grid.RowDefinitions>
 
                     <Grid.ColumnDefinitions>

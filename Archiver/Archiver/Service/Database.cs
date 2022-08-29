@@ -9,7 +9,7 @@ namespace Archiver.Service
 {
     public class Database
     {
-        private const int LAST_VERSION = 4;
+        private const int LAST_VERSION = 2;
         private readonly SQLiteConnection _connection;
 
         public Database(string dbPath)
@@ -109,6 +109,11 @@ namespace Archiver.Service
                     BuildVersion1();
                     userVersion = GetDBVersion();
                 }
+                if (userVersion == 1)
+                {
+                    BuildVersion2();
+                    userVersion = GetDBVersion();
+                }
             }
         }
         
@@ -120,6 +125,23 @@ namespace Archiver.Service
                 _connection.CreateTable<Album>();
                 _connection.CreateTable<Item>();
                 SetDBVersion(1);
+            }
+            catch
+            {
+            }
+        }
+
+        // Version 2 - 1.0.1
+        private void BuildVersion2()
+        {
+            try
+            {
+                _connection.CreateTable<Item>();
+                SetDBVersion(2);
+                //string sql = "alter table Item add ImgPath varchar";
+                //int affRows = _connection.ExecuteScalar<int>(sql);
+                //if (affRows > 0)
+                //    SetDBVersion(2);
             }
             catch
             {
