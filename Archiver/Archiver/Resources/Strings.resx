@@ -121,4 +121,14 @@
     <value>defaultItemImage.png</value>
     <comment>Η default εικόνα για το item</comment>
   </data>
+  <data name="references" xml:space="preserve">
+    <value>https://www.flaticon.com/free-icons/add - Add icons created by dmitri13 - Flaticon
+https://www.flaticon.com/free-icons/picture Picture icons created by Freepik - Flaticon
+https://www.flaticon.com/free-icons/camera Camera icons created by Freepik - Flaticon
+https://www.flaticon.com/free-icons/info Info icons created by Plastic Donut -Flaticon
+https://www.flaticon.com/free-icons/album lbum icons created by Nikita Golubev - Flaticon
+https://www.flaticon.com/free-icons/question-mark - Question mark icons created by Plastic Donut - Flaticon
+https://www.flaticon.com/free-icons/share - Share icons created by mavadee - Flaticon
+https://www.flaticon.com/free-icons/delete - Delete icons created by Alfredo Hernandez - Flaticon</value>
+  </data>
 </root>

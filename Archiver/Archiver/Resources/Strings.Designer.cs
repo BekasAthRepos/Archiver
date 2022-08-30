@@ -68,5 +68,19 @@ namespace Archiver.Resources {
                 return ResourceManager.GetString("addItemDefaultImage", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to https://www.flaticon.com/free-icons/add - Add icons created by dmitri13 - Flaticon
+        ///https://www.flaticon.com/free-icons/picture Picture icons created by Freepik - Flaticon
+        ///https://www.flaticon.com/free-icons/camera Camera icons created by Freepik - Flaticon
+        ///https://www.flaticon.com/free-icons/info Info icons created by Plastic Donut -Flaticon
+        ///https://www.flaticon.com/free-icons/album lbum icons created by Nikita Golubev - Flaticon
+        ///https://www.flaticon.com/free-icons/question-mark - Question mark icons c [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string references {
+            get {
+                return ResourceManager.GetString("references", resourceCulture);
+            }
+        }
     }
 }
