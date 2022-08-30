@@ -25,13 +25,16 @@
                     </Grid.RowDefinitions>
 
                     <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.3*"/>
                         <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="0.4*"/>
+                        <ColumnDefinition Width="0.3*"/>
                     </Grid.ColumnDefinitions>
 
-                    <Label Style="{StaticResource headerTitle}" Grid.Column="0" Text="Archiver"/>
+                    <ImageButton Style="{StaticResource headerLogo}" Grid.Column="0" Source="logo.png" />
 
-                    <ImageButton Style="{StaticResource headerAddImage}" Grid.Column="1" Source ="add.png" Clicked="AddAlbumClicked" />
+                    <Label Style="{StaticResource headerTitle}" Grid.Column="1" Text="Archiver"/>
+
+                    <ImageButton Style="{StaticResource headerAddImage}" Grid.Column="2" Source ="add.png" Clicked="AddAlbumClicked" />
                 </Grid>
             </Frame>
 
@@ -69,8 +72,10 @@
 
             <Frame Style="{StaticResource FooterFrame}" Grid.Row="3">
                 <Grid>
-                    <ImageButton Style="{StaticResource QuestionImageButton}" Grid.Row ="0" Grid.Column="0" Source="question.png" />
-                    <ImageButton Style="{StaticResource InfoImageButton}" Grid.Row ="0" Grid.Column="1" Source="info.png" />
+                    <ImageButton x:Name="HelpBtn" Style="{StaticResource HelpImageButton}" Grid.Row ="0" Grid.Column="0" 
+                                 Source="question.png" Clicked="OnHelpClicked"/>
+                    <ImageButton x:Name="InfoBtn" Style="{StaticResource InfoImageButton}" Grid.Row ="0" Grid.Column="1" 
+                                 Source="info.png" Clicked="OnInfoClicked"/>
                 </Grid>
             </Frame>
         </Grid>

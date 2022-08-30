@@ -55,5 +55,15 @@ namespace Archiver
             if (d > 0)
                 vmAlbum.Albums.Remove(album);
         }
+
+        private async void OnHelpClicked(object sender, EventArgs args)
+        {
+            await Navigation.PushAsync(new HelpPage());
+        }
+
+        private async void OnInfoClicked(object sender, EventArgs args)
+        {
+            await Navigation.PushAsync(new InfoPage());
+        }
     }
 }

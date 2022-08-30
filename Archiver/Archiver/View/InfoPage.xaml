@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Archiver.View.InfoPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+
+                </Grid.ColumnDefinitions>
+
+                <Image Grid.Row="0" Source="logo.png" WidthRequest="150" Margin="0,80,0,0"/>
+
+                <Label Grid.Row="1" HorizontalOptions="Center" Text="Archiver" TextColor="Black" 
+                       FontSize="50" FontAttributes="Bold"/>
+
+                <Label Grid.Row="2" HorizontalOptions="Center" Text="Contact Info" TextColor="DimGray" 
+                       FontSize="14" FontAttributes="Bold" Margin="0,80,0,0"/>
+
+                <Label Grid.Row="3" HorizontalOptions="Center" Text="bekasath@gmail.com" TextColor="Blue" 
+                       FontSize="16" FontAttributes="Bold"/>
+
+                <Label Grid.Row="4" HorizontalOptions="Center" Text="Bekas Athanasios" TextColor="Blue" 
+                       FontSize="24" FontAttributes="Bold"/>
+
+                <Label Grid.Row="5" HorizontalOptions="Center" Text="Software Developer" TextColor="Black" 
+                       FontSize="16" FontAttributes="Bold"/>
+            </Grid>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

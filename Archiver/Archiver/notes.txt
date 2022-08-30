@@ -1,0 +1,16 @@
+﻿
+
+--- to do ---
+	- more images on item
+
+
+Resources copyright
+
+	- add: https://www.flaticon.com/free-icons/add - Add icons created by dmitri13 - Flaticon
+	- defaultItemimage: https://www.flaticon.com/free-icons/picture Picture icons created by Freepik - Flaticon
+	- camera: https://www.flaticon.com/free-icons/camera Camera icons created by Freepik - Flaticon
+	- info: https://www.flaticon.com/free-icons/info Info icons created by Plastic Donut - Flaticon
+	- logo: https://www.flaticon.com/free-icons/album lbum icons created by Nikita Golubev - Flaticon</a>
+	- question: https://www.flaticon.com/free-icons/question-mark - Question mark icons created by Plastic Donut - Flaticon
+	- upload: https://www.flaticon.com/free-icons/share - Share icons created by mavadee - Flaticon
+	- x_button: https://www.flaticon.com/free-icons/delete - Delete icons created by Alfredo Hernandez - Flaticon

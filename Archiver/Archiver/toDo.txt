@@ -1,6 +1,0 @@
-﻿
-
---- to do ---
- 
-	- Correct orientation on item image uploading
-	- more images on item

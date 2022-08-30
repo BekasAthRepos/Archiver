@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace Archiver.ViewModel
@@ -9,12 +10,10 @@ namespace Archiver.ViewModel
     public class AlbumViewModel
     { 
         public ObservableCollection<Album> Albums { get; set; }
-        private Command LoadAlbumsCmd;
 
         public AlbumViewModel()
         {   
-            Albums = new ObservableCollection<Album>();
-            LoadAlbumsCmd = new Command(async () => await ExcLoadAlbumsCmd());          
+            Albums = new ObservableCollection<Album>();         
         }
 
         public async void OnAppearing()

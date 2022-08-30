@@ -25,6 +25,14 @@
                 <Setter Property="BackgroundColor" Value="Transparent"/>
             </Style>
 
+            <!-- headerLogo -->
+            <Style x:Key="headerLogo" TargetType="ImageButton">
+                <Setter Property="WidthRequest" Value="60"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="BackgroundColor" Value="Transparent"/>
+            </Style>
+
             <!-- HeaderTitle -->
             <Style x:Key="headerTitle" TargetType="Label">
                 <Setter Property="TextColor" Value="Black"/>
@@ -240,8 +248,8 @@
                 <Setter Property="BackgroundColor" Value="Transparent"/>
             </Style>
 
-            <!-- QuestionImageButton -->
-            <Style x:Key="QuestionImageButton" TargetType="ImageButton">
+            <!-- HelpImageButton -->
+            <Style x:Key="HelpImageButton" TargetType="ImageButton">
                 <Setter Property="VerticalOptions" Value="Center"/>
                 <Setter Property="HorizontalOptions" Value="Start"/>
                 <Setter Property="WidthRequest" Value="50"/>

@@ -61,7 +61,7 @@ namespace Archiver.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to additemImage.png.
+        ///   Looks up a localized string similar to defaultItemImage.png.
         /// </summary>
         internal static string addItemDefaultImage {
             get {
