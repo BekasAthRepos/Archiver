@@ -14,3 +14,6 @@ Resources copyright
 	- question: https://www.flaticon.com/free-icons/question-mark - Question mark icons created by Plastic Donut - Flaticon
 	- upload: https://www.flaticon.com/free-icons/share - Share icons created by mavadee - Flaticon
 	- x_button: https://www.flaticon.com/free-icons/delete - Delete icons created by Alfredo Hernandez - Flaticon
+
+
+	https://arxiv.org/ftp/arxiv/papers/1005/1005.0169.pdf
