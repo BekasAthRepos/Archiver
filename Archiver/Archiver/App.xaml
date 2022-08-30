@@ -11,12 +11,18 @@
                 <Setter Property="BackgroundColor" Value="#EBEEFF"/>
             </Style>
             
-            <!-- Header Frame -->
+            <!-- HeaderFrame -->
             <Style x:Key="headerFrame" TargetType="Frame">
                 <Setter Property="BackgroundColor" Value="White"/>
                 <Setter Property="Margin" Value="0,2,0,0"/>
                 <Setter Property="CornerRadius" Value="5"/>
                 <Setter Property="Margin" Value="5,0,5,0"/>
+            </Style>
+
+            <!-- FooterFrame -->
+            <Style x:Key="FooterFrame" TargetType="Frame">
+                <Setter Property="Padding" Value="0,0,0,0"/>
+                <Setter Property="BackgroundColor" Value="Transparent"/>
             </Style>
 
             <!-- HeaderTitle -->
@@ -68,6 +74,7 @@
                 <Setter Property="BackgroundColor" Value="#EBEEFF"/>
                 <Setter Property="HasUnevenRows" Value="True"/>
                 <Setter Property="SeparatorVisibility" Value="None"/>
+                <Setter Property="SeparatorColor" Value="Transparent" />
             </Style>
 
             <!-- mainListCell -->
@@ -130,11 +137,18 @@
                 <Setter Property="HorizontalTextAlignment" Value="Center"/>
             </Style>
 
-            <!-- addEditDataFrame -->
+            <!-- addEditPageDataFrame -->
             <Style x:Key="addEditPageDataFrame" TargetType="Frame">
                 <Setter Property="BorderColor" Value="dimgray"/>
                 <Setter Property="CornerRadius" Value="10"/>
                 <Setter Property="Margin" Value="15,5,15,5"/>
+            </Style>
+
+            <!-- addItemCancelImageButton -->
+            <Style x:Key="addItemCancelImageButton" TargetType="ImageButton">
+                <Setter Property="VerticalOptions" Value="Start"/>
+                <Setter Property="HorizontalOptions" Value="End"/>
+                <Setter Property="WidthRequest" Value="25"/>
             </Style>
 
             <!-- addItemImageButton -->
@@ -216,6 +230,22 @@
             <!-- itemDetailsDataLabel -->
             <Style x:Key="itemDetailsDataLabel" TargetType="Label">
                 <Setter Property="TextColor" Value="Black"/>
+            </Style>
+
+            <!-- InfoImageButton -->
+            <Style x:Key="InfoImageButton" TargetType="ImageButton">
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="HorizontalOptions" Value="End"/>
+                <Setter Property="WidthRequest" Value="50"/>
+                <Setter Property="BackgroundColor" Value="Transparent"/>
+            </Style>
+
+            <!-- QuestionImageButton -->
+            <Style x:Key="QuestionImageButton" TargetType="ImageButton">
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="HorizontalOptions" Value="Start"/>
+                <Setter Property="WidthRequest" Value="50"/>
+                <Setter Property="BackgroundColor" Value="Transparent"/>
             </Style>
 
         </ResourceDictionary>

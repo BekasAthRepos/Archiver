@@ -1,4 +1,5 @@
 ﻿using Archiver.Service;
+using Archiver.View;
 using System;
 using System.IO;
 using Xamarin.Forms;
@@ -26,7 +27,7 @@ namespace Archiver
         public App()
         {
             InitializeComponent();
-            MainPage = new NavigationPage(new MainPage());
+            MainPage = new NavigationPage(new WelcomePage());
         }
 
         protected override void OnStart()

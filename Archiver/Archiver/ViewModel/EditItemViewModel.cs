@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
+using System.Resources;
 using System.Text;
 using System.Windows.Input;
 using Xamarin.CommunityToolkit.Extensions;
@@ -15,6 +16,9 @@ namespace Archiver.ViewModel
     {
         private Item _item;
         private ImageSource _imgSrc;
+        private ResourceManager rm;
+
+        public ICommand CancelImageCmd => new Command(CancelImage);
         public ICommand UploadImageCmd => new Command(UploadImage);
         public ICommand TakePhotoCmd => new Command(TakePhoto);
         public event PropertyChangedEventHandler PropertyChanged;
@@ -29,21 +33,11 @@ namespace Archiver.ViewModel
             }
         }
 
-        public ImageSource ImgSrc
-        {
-            get { return _imgSrc; }
-            set
-            {
-                _imgSrc = value;
-                OnPropertyChanged(nameof(ImgSrc));
-            }
-        }
-
         public ICommand SaveClickedCmd => new Command(SaveClicked);
 
         public EditItemViewModel() 
         {
-            //ImgSrc = Item.ImgPath;
+            rm = new ResourceManager("Archiver.Resources.Strings", this.GetType().Assembly);
         }
 
         private void OnPropertyChanged(string propertyName)
@@ -73,6 +67,12 @@ namespace Archiver.ViewModel
             await App.Current.MainPage.Navigation.PopAsync();
         }
 
+        private void CancelImage()
+        {
+            Item.ImgPath = rm.GetString("addItemDefaultImage");
+            OnPropertyChanged(nameof(Item));
+        }
+
         private async void UploadImage()
         {
             var result = await MediaPicker.PickPhotoAsync(new MediaPickerOptions
@@ -83,7 +83,7 @@ namespace Archiver.ViewModel
             if (result != null)
             {
                 var stream = await result.OpenReadAsync();
-                ImgSrc = ImageSource.FromStream(() => stream);
+                _imgSrc = ImageSource.FromStream(() => stream);
                 Item.ImgPath = result.FullPath;
                 OnPropertyChanged(nameof(Item));
             }
@@ -96,7 +96,7 @@ namespace Archiver.ViewModel
             if (result != null)
             {
                 var camera = await result.OpenReadAsync();
-                ImgSrc = ImageSource.FromStream(() => camera);
+                _imgSrc = ImageSource.FromStream(() => camera);
 
                 var newImage = Path.Combine(FileSystem.AppDataDirectory, result.FileName);
                 var stream = await result.OpenReadAsync();

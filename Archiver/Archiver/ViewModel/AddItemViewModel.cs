@@ -17,11 +17,15 @@ namespace Archiver.ViewModel
     public class AddItemViewModel : INotifyPropertyChanged
     {
         private ImageSource _imgSrc;
+        private ResourceManager rm;
+
         public Item NewItem { get; set; }
         public ICommand AddItemCmd => new Command(AddItem);
+        public ICommand CancelImageCmd => new Command(CancelImage);
         public ICommand UploadImageCmd => new Command(UploadImage);
         public ICommand TakePhotoCmd => new Command(TakePhoto);
         public event PropertyChangedEventHandler PropertyChanged;
+        
 
         public ImageSource ImgSrc
         {
@@ -35,12 +39,12 @@ namespace Archiver.ViewModel
 
         public AddItemViewModel() 
         {
-            ResourceManager rm = new ResourceManager("Archiver.Resources.Strings", this.GetType().Assembly);
-            string str = rm.GetString("addItemDefaultImage");
+            rm = new ResourceManager("Archiver.Resources.Strings", this.GetType().Assembly);
+            string img = rm.GetString("addItemDefaultImage");
 
             NewItem = new Item();
-            ImgSrc = "additemImage.png";
-            NewItem.ImgPath = Path.GetFullPath(rm.GetString("addItemDefaultImage"));
+            ImgSrc = img;
+            NewItem.ImgPath = Path.GetFullPath(img);
         }
 
         private void OnPropertyChanged(string propertyName)
@@ -90,6 +94,12 @@ namespace Archiver.ViewModel
 
                 App.Current.MainPage.Navigation.PopAsync();
             }
+        }
+
+        private void CancelImage()
+        {
+            ImgSrc = rm.GetString("addItemDefaultImage");
+            NewItem.ImgPath = rm.GetString("addItemDefaultImage");
         }
 
         private async void UploadImage()

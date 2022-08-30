@@ -6,69 +6,75 @@
              x:Class="Archiver.MainPage">
 
     <ContentPage.Content >
-               
-            <Grid Style="{StaticResource mainGrid}">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="90"/>
-                    <RowDefinition Height="70"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
 
-                <Grid.ColumnDefinitions>
-                </Grid.ColumnDefinitions>
-                
-                <Frame Style="{StaticResource headerFrame}" Grid.Row="0">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition/>
-                        </Grid.RowDefinitions>
+        <Grid Style="{StaticResource mainGrid}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="90"/>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
 
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="0.4*"/>
-                        </Grid.ColumnDefinitions>
+            <Grid.ColumnDefinitions>
+            </Grid.ColumnDefinitions>
 
-                        <Label Style="{StaticResource headerTitle}" Grid.Column="0" Text="Archiver"/>
+            <Frame Style="{StaticResource headerFrame}" Grid.Row="0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
 
-                        <ImageButton Style="{StaticResource headerAddImage}" Grid.Column="1" Source ="add.png" Clicked="AddAlbumClicked" />
-                    </Grid>
-                </Frame>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="0.4*"/>
+                    </Grid.ColumnDefinitions>
 
-                <Frame Style="{StaticResource contentTitleFrame}" Grid.Row="1">
-                    <Label Style="{StaticResource contentTitle}" Text="Albums"/>
-                </Frame>
+                    <Label Style="{StaticResource headerTitle}" Grid.Column="0" Text="Archiver"/>
 
-                <ListView x:Name="lvAlbums" Style="{StaticResource list}" ItemsSource="{Binding Albums}" ItemTapped="AlbumClicked"
+                    <ImageButton Style="{StaticResource headerAddImage}" Grid.Column="1" Source ="add.png" Clicked="AddAlbumClicked" />
+                </Grid>
+            </Frame>
+
+            <Frame Style="{StaticResource contentTitleFrame}" Grid.Row="1">
+                <Label Style="{StaticResource contentTitle}" Text="Albums"/>
+            </Frame>
+
+            <ListView x:Name="lvAlbums" Style="{StaticResource list}" ItemsSource="{Binding Albums}" ItemTapped="AlbumClicked"
                           Grid.Row="2">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                           
-                                <ViewCell.ContextActions>
-                                    <MenuItem Text="Edit" Clicked="EditItemClicked" CommandParameter="{Binding .}"/>
-                                    <MenuItem Text="Delete" Clicked="DeleteItemClicked" CommandParameter="{Binding .}"/>
-                                </ViewCell.ContextActions>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
 
-                                <Frame Style="{StaticResource mainListCell}">
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="0.3*"/>
-                                            <ColumnDefinition Width="0.7*"/>
-                                        </Grid.ColumnDefinitions>
+                            <ViewCell.ContextActions>
+                                <MenuItem Text="Edit" Clicked="EditItemClicked" CommandParameter="{Binding .}"/>
+                                <MenuItem Text="Delete" Clicked="DeleteItemClicked" CommandParameter="{Binding .}"/>
+                            </ViewCell.ContextActions>
 
-                                        <Label Style="{StaticResource listItemTitle}" Grid.Column="0" Text="{Binding Name}"/>
-                                        <Label Style="{StaticResource listItemDescr}" Grid.Column="1" Text="{Binding Description}"/>
-                                    </Grid>
-                                </Frame>
-                            
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-            </Grid>
+                            <Frame Style="{StaticResource mainListCell}">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="0.3*"/>
+                                        <ColumnDefinition Width="0.7*"/>
+                                    </Grid.ColumnDefinitions>
 
-        
-        
+                                    <Label Style="{StaticResource listItemTitle}" Grid.Column="0" Text="{Binding Name}"/>
+                                    <Label Style="{StaticResource listItemDescr}" Grid.Column="1" Text="{Binding Description}"/>
+                                </Grid>
+                            </Frame>
+
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <Frame Style="{StaticResource FooterFrame}" Grid.Row="3">
+                <Grid>
+                    <ImageButton Style="{StaticResource QuestionImageButton}" Grid.Row ="0" Grid.Column="0" Source="question.png" />
+                    <ImageButton Style="{StaticResource InfoImageButton}" Grid.Row ="0" Grid.Column="1" Source="info.png" />
+                </Grid>
+            </Frame>
+        </Grid>
+
     </ContentPage.Content>
 
 </ContentPage>

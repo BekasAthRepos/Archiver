@@ -1,6 +1,6 @@
 ﻿
 
---- Εκκρεμότητες ---
+--- to do ---
  
-	- Αλλαγή εικόνας στο editItem
-	- Επιπλέον εικόνες στο item
+	- Correct orientation on item image uploading
+	- more images on item

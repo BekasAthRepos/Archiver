@@ -27,7 +27,9 @@
                         </Grid.ColumnDefinitions>
 
                         <Image x:Name="imgMain" Style="{StaticResource imageIcon}" Source="{Binding ImgSrc}" Grid.Row="0" Grid.ColumnSpan="2"/>
-                        
+                        <ImageButton Style="{StaticResource addItemCancelImageButton}" Grid.Row="0" Grid.Column="1"  Source="x_button.png"
+                                     Command="{Binding CancelImageCmd}"/>
+
                         <ImageButton Style="{StaticResource addItemImageButton}" Grid.Row="1" Grid.Column="0" Source="camera.png"
                                      Command="{Binding TakePhotoCmd}"/>
                         <ImageButton Style="{StaticResource addItemImageButton}" Grid.Row="1" Grid.Column="1" Source="upload.png"

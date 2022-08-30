@@ -9,61 +9,73 @@
     </ContentPage.BindingContext>
     
     <ContentPage.Content>
-        <StackLayout>
-            
-            <Frame Style="{StaticResource headerFrame}" >
-                <Label Style="{StaticResource headerTitle}" Text="{Binding Item.Name}"/>
-            </Frame>
+        <ScrollView>
+            <StackLayout>
 
-            <Frame Style="{StaticResource addEditPageDataFrame}">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="auto"/>
-                    </Grid.RowDefinitions>
+                <Frame Style="{StaticResource headerFrame}" >
+                    <Label Style="{StaticResource headerTitle}" Text="{Binding Item.Name}"/>
+                </Frame>
 
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
+                <Frame Style="{StaticResource addEditPageDataFrame}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="60"/>
+                        </Grid.RowDefinitions>
 
-                    <Image x:Name="imgMain" Style="{StaticResource imageIcon}" Source="{Binding Item.ImgPath}" Grid.Row="0" Grid.ColumnSpan="2"/>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
 
-                    <ImageButton Style="{StaticResource addItemImageButton}" Grid.Row="1" Grid.Column="0" Source="camera.png"
-                                     Command="{Binding TakePhotoCmd}"/>
-                    <ImageButton Style="{StaticResource addItemImageButton}" Grid.Row="1" Grid.Column="1" Source="upload.png"
-                                     Command="{Binding UploadImageCmd}"/>
-                </Grid>
-            </Frame>
+                        <Image x:Name="imgMain" Style="{StaticResource imageIcon}" Source="{Binding Item.ImgPath}" Grid.Row="0" Grid.ColumnSpan="2"/>
+                        <ImageButton Style="{StaticResource addItemCancelImageButton}" Grid.Row="0" Grid.Column="1"  Source="x_button.png"
+                                         Command="{Binding CancelImageCmd}"/>
 
-            <Frame Style="{StaticResource addEditPageDataFrame}">
-                <Grid>
-                    <Grid.RowDefinitions>
-                    </Grid.RowDefinitions>
-
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="0.4*"/>
-                    </Grid.ColumnDefinitions>
+                        <ImageButton Style="{StaticResource addItemImageButton}" Grid.Row="1" Grid.Column="0" Source="camera.png"
+                                         Command="{Binding TakePhotoCmd}"/>
+                        <ImageButton Style="{StaticResource addItemImageButton}" Grid.Row="1" Grid.Column="1" Source="upload.png"
+                                         Command="{Binding UploadImageCmd}"/>
+                    </Grid>
+                </Frame>
 
 
-                    <Label Style="{StaticResource dataLabel}" Grid.Row="0" Grid.Column="0" Text="Name: " />
+                <Frame Style="{StaticResource addEditPageDataFrame}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
 
-                    <Label Style="{StaticResource dataLabel}" Grid.Row="0" Grid.Column="1" Text="Qty: " 
-                           HorizontalTextAlignment="Start"/>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="0.4*"/>
+                        </Grid.ColumnDefinitions>
 
-                    <Entry Style="{StaticResource dataEntry}"  Text="{Binding Item.Name}" Grid.Row="1" Grid.Column="0"/>
 
-                    <Entry Style="{StaticResource dataEntry}" Text="{Binding Item.Qty}" Grid.Row="1" Grid.Column="1" Keyboard="Numeric"/>
+                        <Label Style="{StaticResource dataLabel}" Grid.Row="0" Grid.Column="0" Text="Name: " />
 
-                    <Label Style="{StaticResource dataLabel}" Grid.Row="2" Text="Description: " Grid.ColumnSpan="2" 
-                           Grid.Column="0"/>
+                        <Label Style="{StaticResource dataLabel}" Grid.Row="0" Grid.Column="1" Text="Qty: " 
+                                   HorizontalTextAlignment="Start"/>
 
-                    <Entry Style="{StaticResource dataEditor}" Text="{Binding Item.Description}" Grid.Row="3" Grid.Column="0"
-                           Grid.ColumnSpan="2"/>
+                        <Entry Style="{StaticResource dataEntry}"  Text="{Binding Item.Name}" Grid.Row="1" Grid.Column="0"/>
 
-                </Grid>
-            </Frame>
+                        <Entry Style="{StaticResource dataEntry}" Text="{Binding Item.Qty}" Grid.Row="1" Grid.Column="1" Keyboard="Numeric"/>
 
-            <Button Style="{StaticResource addSaveButton}" Text="Save" Command="{Binding SaveClickedCmd}"/>
-        </StackLayout>
+                        <Label Style="{StaticResource dataLabel}" Grid.Row="2" Text="Description: " Grid.ColumnSpan="2" 
+                                   Grid.Column="0"/>
+
+                        <Editor Style="{StaticResource dataEditor}" Text="{Binding Item.Description}" Grid.Row="3" Grid.Column="0"
+                                   Grid.ColumnSpan="2"/>
+
+                    </Grid>
+                </Frame>
+
+
+                <Button Style="{StaticResource addSaveButton}" Text="Save" Command="{Binding SaveClickedCmd}"/>
+
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
