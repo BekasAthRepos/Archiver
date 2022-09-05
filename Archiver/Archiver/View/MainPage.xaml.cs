@@ -2,6 +2,8 @@
 using Archiver.View;
 using Archiver.ViewModel;
 using System;
+using System.Collections.ObjectModel;
+using System.Linq;
 using Xamarin.Forms;
 
 namespace Archiver
@@ -9,12 +11,14 @@ namespace Archiver
     public partial class MainPage : ContentPage
     {
         private readonly AlbumViewModel vmAlbum; 
+        private readonly ObservableCollection<Album> albums;
         
         public MainPage()
         {
             InitializeComponent();
             vmAlbum = new AlbumViewModel();
             BindingContext = vmAlbum;
+            albums = lvAlbums.ItemsSource as ObservableCollection<Album>; 
         }
 
         protected override void OnAppearing()
@@ -64,6 +68,19 @@ namespace Archiver
         private async void OnInfoClicked(object sender, EventArgs args)
         {
             await Navigation.PushAsync(new InfoPage());
+        }
+
+        private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (e.NewTextValue != null && e.NewTextValue != "")
+            {         
+                var newList = albums.Where(a => a.Name.StartsWith(e.NewTextValue, StringComparison.InvariantCultureIgnoreCase));
+                lvAlbums.ItemsSource = newList;
+            }
+            else
+            {
+                lvAlbums.ItemsSource = albums;
+            }
         }
     }
 }

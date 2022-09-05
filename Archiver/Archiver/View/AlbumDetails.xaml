@@ -15,6 +15,7 @@
                 <RowDefinition Height="90"/>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="70"/>
+                <RowDefinition Height="50"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
@@ -74,7 +75,9 @@
                 <Label Style="{StaticResource contentTitle}" Text="Items"/>
             </Frame>
 
-            <ListView x:Name="lvitems" Style="{StaticResource list}" ItemsSource="{Binding Items}" ItemTapped="ItemClicked" Grid.Row="3">
+            <SearchBar Grid.Row="3" Placeholder="Search item..." TextChanged="SearchBar_TextChanged"/>
+
+            <ListView x:Name="lvitems" Style="{StaticResource list}" ItemsSource="{Binding Items}" ItemTapped="ItemClicked" Grid.Row="4">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>

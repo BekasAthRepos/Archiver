@@ -11,6 +11,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="90"/>
                 <RowDefinition Height="70"/>
+                <RowDefinition Height="50"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="50"/>
             </Grid.RowDefinitions>
@@ -42,8 +43,10 @@
                 <Label Style="{StaticResource contentTitle}" Text="Albums"/>
             </Frame>
 
+            <SearchBar Grid.Row="2" Placeholder="Search album..." TextChanged="SearchBar_TextChanged"/>
+
             <ListView x:Name="lvAlbums" Style="{StaticResource list}" ItemsSource="{Binding Albums}" ItemTapped="AlbumClicked"
-                          Grid.Row="2">
+                          Grid.Row="3">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -70,7 +73,7 @@
                 </ListView.ItemTemplate>
             </ListView>
 
-            <Frame Style="{StaticResource FooterFrame}" Grid.Row="3">
+            <Frame Style="{StaticResource FooterFrame}" Grid.Row="4">
                 <Grid>
                     <ImageButton x:Name="HelpBtn" Style="{StaticResource HelpImageButton}" Grid.Row ="0" Grid.Column="0" 
                                  Source="question.png" Clicked="OnHelpClicked"/>

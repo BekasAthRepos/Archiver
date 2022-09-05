@@ -14,7 +14,6 @@ namespace Archiver.View
         public HelpPage()
         {
             InitializeComponent();
-            web.Source = 
         }
     }
 }

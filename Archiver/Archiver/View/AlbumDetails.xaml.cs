@@ -1,6 +1,8 @@
 ﻿using Archiver.Model;
 using Archiver.ViewModel;
 using System;
+using System.Collections.ObjectModel;
+using System.Linq;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -10,11 +12,14 @@ namespace Archiver.View
     public partial class AlbumDetails : ContentPage
     {
         private AlbumDetailsViewModel vmAlbDet;
+        private readonly ObservableCollection<Item> items;
+
         public AlbumDetails(Album album)
         {
             InitializeComponent();
             vmAlbDet = albumDetailsViewModel;          
             vmAlbDet.Album = album;
+            items = lvitems.ItemsSource as ObservableCollection<Item>;
         }
 
         protected override void OnAppearing()
@@ -57,6 +62,19 @@ namespace Archiver.View
             int d = await dVm.DeleteItem();
             if (d > 0)
                vmAlbDet.Items.Remove(item);
+        }
+
+        private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (e.NewTextValue != null && e.NewTextValue != "")
+            {
+                var newList = items.Where(a => a.Name.StartsWith(e.NewTextValue, StringComparison.InvariantCultureIgnoreCase));
+                lvitems.ItemsSource = newList;
+            }
+            else
+            {
+                lvitems.ItemsSource = items;
+            }
         }
     }
 }
