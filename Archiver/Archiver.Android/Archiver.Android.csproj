@@ -123,28 +123,25 @@
     <AndroidAsset Include="Assets\HtmlDoc.html" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\add_album.png" />
+    <AndroidAsset Include="Assets\date_cahnge.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\add_item.png" />
+    <AndroidAsset Include="Assets\home_page.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\album_local_menu.png" />
+    <AndroidAsset Include="Assets\item_list.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ArchiverEntityRelationshipDiagram.jpg" />
+    <AndroidAsset Include="Assets\item_local_menu.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\date_cahnge.png" />
+    <AndroidAsset Include="Assets\add_album.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\home_page.png" />
+    <AndroidAsset Include="Assets\add_item.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\item_list.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\item_local_menu.png" />
+    <AndroidAsset Include="Assets\album_local_menu.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ProjectExtensions>
