@@ -14,6 +14,7 @@ namespace Archiver.View
         public HelpPage()
         {
             InitializeComponent();
+            web.Source = "file:///android_asset/HtmlDoc.html";
         }
     }
 }

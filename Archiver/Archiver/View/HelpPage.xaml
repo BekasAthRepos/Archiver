@@ -4,7 +4,7 @@
              x:Class="Archiver.View.HelpPage">
     <ContentPage.Content>
         <StackLayout>
-            <WebView x:Name="web"/>
+            <WebView x:Name="web" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
