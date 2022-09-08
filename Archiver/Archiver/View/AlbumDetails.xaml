@@ -75,7 +75,7 @@
                 <Label Style="{StaticResource contentTitle}" Text="Items"/>
             </Frame>
 
-            <SearchBar Grid.Row="3" Placeholder="Search item..." TextChanged="SearchBar_TextChanged"/>
+            <SearchBar Style="{StaticResource SearchBar}" Grid.Row="3" Placeholder="Search item..." TextChanged="SearchBar_TextChanged"/>
 
             <ListView x:Name="lvitems" Style="{StaticResource list}" ItemsSource="{Binding Items}" ItemTapped="ItemClicked" Grid.Row="4">
                 <ListView.ItemTemplate>

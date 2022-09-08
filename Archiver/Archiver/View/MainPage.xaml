@@ -43,7 +43,7 @@
                 <Label Style="{StaticResource contentTitle}" Text="Albums"/>
             </Frame>
 
-            <SearchBar Grid.Row="2" Placeholder="Search album..." TextChanged="SearchBar_TextChanged"/>
+            <SearchBar Style="{StaticResource SearchBar}" Grid.Row="2" Placeholder="Search album..." TextChanged="SearchBar_TextChanged"/>
 
             <ListView x:Name="lvAlbums" Style="{StaticResource list}" ItemsSource="{Binding Albums}" ItemTapped="AlbumClicked"
                           Grid.Row="3">
@@ -75,9 +75,19 @@
 
             <Frame Style="{StaticResource FooterFrame}" Grid.Row="4">
                 <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    
                     <ImageButton x:Name="HelpBtn" Style="{StaticResource HelpImageButton}" Grid.Row ="0" Grid.Column="0" 
                                  Source="question.png" Clicked="OnHelpClicked"/>
-                    <ImageButton x:Name="InfoBtn" Style="{StaticResource InfoImageButton}" Grid.Row ="0" Grid.Column="1" 
+                    <Image Style="{StaticResource CopyRightImage}" Source="copyright.png" Grid.Row ="0" Grid.Column="1"/>
+                    <Label Style="{StaticResource CopyRightText}" Grid.Row ="0" Grid.Column="2" 
+                           Text="2022 Bekas Athanasios. All rights reserved"/>
+                    <ImageButton x:Name="InfoBtn" Style="{StaticResource InfoImageButton}" Grid.Row ="0" Grid.Column="3" 
                                  Source="info.png" Clicked="OnInfoClicked"/>
                 </Grid>
             </Frame>

@@ -11,6 +11,10 @@ using Xamarin.Essentials;
 using Xamarin.Forms;
 using System.Resources;
 using System.Reflection;
+using Plugin.Media.Abstractions;
+using Plugin.Media;
+using static SQLite.SQLite3;
+using static Xamarin.Essentials.Permissions;
 
 namespace Archiver.ViewModel
 {
@@ -103,7 +107,7 @@ namespace Archiver.ViewModel
         }
 
         private async void UploadImage()
-        {
+        {   /*
             var result = await MediaPicker.PickPhotoAsync(new MediaPickerOptions
             {
                 Title = "Select a picture"
@@ -114,11 +118,21 @@ namespace Archiver.ViewModel
                 var stream = await result.OpenReadAsync();
                 ImgSrc = ImageSource.FromStream(() => stream);
                 NewItem.ImgPath = result.FullPath;
-            }         
+            } */
+
+
+            var result = await CrossMedia.Current.PickPhotoAsync(new PickMediaOptions { });
+
+            if (result != null)
+            {
+                _imgSrc = ImageSource.FromStream(() => result.GetStream());
+                NewItem.ImgPath = result.Path;
+
+            }
         }
 
         private async void TakePhoto()
-        { 
+        { /*
             var result = await MediaPicker.CapturePhotoAsync();
 
             if (result != null)
@@ -131,7 +145,34 @@ namespace Archiver.ViewModel
                 var newStream = File.OpenWrite(newImage);
                     await stream.CopyToAsync(newStream);
                 NewItem.ImgPath = Path.GetFullPath(newImage);
-            }
+            } */
+
+
+            var cameraMediaOptions = new StoreCameraMediaOptions
+            {
+                DefaultCamera = CameraDevice.Rear,
+
+                // Set the value to true if you want to save the photo to your public storage.
+                SaveToAlbum = false,
+
+                // Give the name of the folder you want to save to
+                //Directory = null,
+
+                // Give a photo name of your choice,
+                // or set it to null if you want to use the default naming convention
+                //Name = null,
+
+                // Set the compression quality
+                // 0 = Maximum compression but worse quality
+                // 100 = Minimum compression but best quality
+                CompressionQuality = 100
+            };
+            MediaFile result = await CrossMedia.Current.TakePhotoAsync(cameraMediaOptions);
+            if (result == null) return;
+            ImgSrc = ImageSource.FromStream(() => result.GetStream());
+
+            var newImage = Path.Combine(FileSystem.AppDataDirectory, result.Path);
+            NewItem.ImgPath = Path.GetFullPath(newImage);
         }
     }
 }

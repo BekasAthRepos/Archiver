@@ -77,6 +77,14 @@
                 <Setter Property="HorizontalTextAlignment" Value="Center"/>
             </Style>
 
+            <!-- SearchBar -->
+            <Style x:Key="SearchBar" TargetType="SearchBar">
+                <Setter Property="BackgroundColor" Value="#EBEEFF"/>
+                <Setter Property="PlaceholderColor" Value="Blue"/>
+                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="CancelButtonColor" Value="Black"/>
+            </Style>
+            
             <!-- list -->
             <Style x:Key="list" TargetType="ListView">
                 <Setter Property="BackgroundColor" Value="#EBEEFF"/>
@@ -255,6 +263,24 @@
                 <Setter Property="WidthRequest" Value="50"/>
                 <Setter Property="BackgroundColor" Value="Transparent"/>
             </Style>
+            
+            <!-- CopyRightImage -->
+            <Style x:Key="CopyRightImage" TargetType="Image">
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="HorizontalOptions" Value="End"/>
+                <Setter Property="WidthRequest" Value="15"/>
+                <Setter Property="BackgroundColor" Value="Transparent"/>
+            </Style>
+
+            <!-- CopyRightText -->
+            <Style x:Key="CopyRightText" TargetType="Label">
+                <Setter Property="VerticalOptions" Value="CenterAndExpand"/>
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="FontSize" Value="13"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+            </Style>
+
 
         </ResourceDictionary>
         

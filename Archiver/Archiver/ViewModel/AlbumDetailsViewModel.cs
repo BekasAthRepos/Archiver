@@ -31,14 +31,12 @@ namespace Archiver.ViewModel
                 OnPropertyChanged(nameof(ItemQty));
             } 
         }
-        private Command LoadItemsCmd;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
         public AlbumDetailsViewModel() 
         {   
             Items = new ObservableCollection<Item>();
-            LoadItemsCmd = new Command(async () => await ExcLoadItemsCmd());
             MessagingCenter.Subscribe<Object, DateTime>(this, "AlbumChanged", (o, date) =>
             {
                 Album.UpdateDate = date;
