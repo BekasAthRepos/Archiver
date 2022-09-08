@@ -127,7 +127,7 @@ namespace Archiver.ViewModel
             {
                 _imgSrc = ImageSource.FromStream(() => result.GetStream());
                 NewItem.ImgPath = result.Path;
-
+                OnPropertyChanged(nameof(ImgSrc));
             }
         }
 
@@ -173,6 +173,7 @@ namespace Archiver.ViewModel
 
             var newImage = Path.Combine(FileSystem.AppDataDirectory, result.Path);
             NewItem.ImgPath = Path.GetFullPath(newImage);
+            OnPropertyChanged(nameof(ImgSrc));
         }
     }
 }
