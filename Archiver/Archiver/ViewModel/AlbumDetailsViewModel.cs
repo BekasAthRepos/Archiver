@@ -67,17 +67,15 @@ namespace Archiver.ViewModel
             return Items.Count;
         }
 
-        private Task ExcLoadItemsCmd()
+        private async Task ExcLoadItemsCmd()
         {
             Items.Clear();
 
-            var itemList = App.Database.GetItems(Album.Id);
+            var itemList = await App.Database.GetItemsAsync(Album.Id);
             foreach (var item in itemList)
             {
                 Items.Add(item);
             }
-
-            return Task.CompletedTask;
         }
     }
 }

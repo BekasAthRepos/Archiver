@@ -1,4 +1,5 @@
 ﻿using Archiver.Model;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Threading.Tasks;
@@ -21,17 +22,16 @@ namespace Archiver.ViewModel
             await ExcLoadAlbumsCmd();
         }
 
-        private Task ExcLoadAlbumsCmd()
+        private async Task ExcLoadAlbumsCmd()
         {
             Albums.Clear();
           
-            var albumList = App.Database.GetAlbums();
+            var albumList = await App.Database.GetAlbumsAsync();
+
             foreach (var album in albumList)
             {
                 Albums.Add(album);
             }
-
-            return Task.CompletedTask;
         }
     }
 }

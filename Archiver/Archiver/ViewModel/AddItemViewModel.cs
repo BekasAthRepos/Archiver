@@ -61,20 +61,20 @@ namespace Archiver.ViewModel
             NewItem.AlbumId = albumId;
         }
 
-        private void AddItem()
+        private async void AddItem()
         {
             bool validInputData = true;
 
             if(NewItem.AlbumId <= 0)
             {
                 validInputData = false;
-                App.Current.MainPage.DisplayAlert("Error with Album Id", "", "ok");
+                await App.Current.MainPage.DisplayAlert("Error with Album Id", "", "ok");
             }
 
             if ((string.IsNullOrWhiteSpace(NewItem.Name)))
             {
                 validInputData = false;
-                App.Current.MainPage.DisplayAlert("Give a name...", "", "ok");
+                await App.Current.MainPage.DisplayAlert("Give a name...", "", "ok");
             }
 
             if (validInputData)
@@ -82,21 +82,21 @@ namespace Archiver.ViewModel
                 try
                 {
                     DateTime date = DateTime.Now;
-                    int rows = App.Database.UpdateAlbumDate(NewItem.AlbumId, date);
-                    rows += App.Database.InsertItem(NewItem);
+                    int rows = await App.Database.UpdateAlbumDateAsync(NewItem.AlbumId, date);
+                    rows += await App.Database.InsertItemAsync(NewItem);
 
                     if (rows == 2)
                     {
-                        App.Current.MainPage.DisplayToastAsync("Success. Item has been added.", 1500);
+                        await App.Current.MainPage.DisplayToastAsync("Success. Item has been added.", 1500);
                         MessagingCenter.Send<Object, DateTime>(this, "AlbumChanged", date);
                     }
                 }
                 catch (Exception e)
                 {
-                    App.Current.MainPage.DisplayAlert("Error", e.ToString(), "Ok");
+                    await App.Current.MainPage.DisplayAlert("Error", e.ToString(), "Ok");
                 }
 
-                App.Current.MainPage.Navigation.PopAsync();
+                await App.Current.MainPage.Navigation.PopAsync();
             }
         }
 

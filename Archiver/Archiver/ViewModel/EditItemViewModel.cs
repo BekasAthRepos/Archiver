@@ -53,8 +53,8 @@ namespace Archiver.ViewModel
             {
                 DateTime date = DateTime.Now;
                 _item.UpdateItem();
-                int rows = App.Database.UpdateItem(Item);
-                rows += App.Database.UpdateAlbumDate(_item.AlbumId, date);
+                int rows = await App.Database.UpdateItemAsync(Item);
+                rows += await App.Database.UpdateAlbumDateAsync(_item.AlbumId, date);
                 if (rows >= 2)
                 {
                     await App.Current.MainPage.DisplayToastAsync("Success. Changes have been saved", 1500);

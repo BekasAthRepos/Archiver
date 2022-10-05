@@ -10,109 +10,108 @@ namespace Archiver.Service
     public class Database
     {
         private const int LAST_VERSION = 2;
-        private readonly SQLiteConnection _connection;
+        private readonly SQLiteAsyncConnection _connection;
 
         public Database(string dbPath)
         {
-            _connection = new SQLiteConnection(dbPath);
+            _connection = new SQLiteAsyncConnection(dbPath);
             VersionUpdate();
         }
 
 
         // -- System functions
 
-        private int GetDBVersion()
+        private Task<int> GetDBVersionAsync()
         {
-            return _connection.ExecuteScalar<int>("PRAGMA user_version");
+            return _connection.ExecuteScalarAsync<int>("PRAGMA user_version");
         }
 
-        private int SetDBVersion(int version)
+        private Task<int> SetDBVersionAsync(int version)
         {
-            return _connection.ExecuteScalar<int>("PRAGMA user_version = " + version);
+            return _connection.ExecuteScalarAsync<int>("PRAGMA user_version = " + version);
         }
 
         // Album functions
 
-        public List<Album>GetAlbums()
+        public Task<List<Album>> GetAlbumsAsync()
         {            
-            return _connection.Table<Album>().ToList();
+            return _connection.Table<Album>().ToListAsync();
         }
 
-        public int InsertAlbum(Album album)
+        public Task<int> InsertAlbumAsync(Album album)
         {
-            return _connection.Insert(album);
+            return _connection.InsertAsync(album);
         }
 
-        public Album GetAlbum(int id)
+        public Task<Album> GetAlbumAsync(int id)
         {
-            return _connection.Get<Album>(id);
+            return _connection.Table<Album>().Where(i => i.Id == id).FirstOrDefaultAsync();
         }
 
-        public int UpdateAlbum(Album album)
+        public Task<int> UpdateAlbumAsync(Album album)
         {
-            return _connection.Update(album);
+            return _connection.UpdateAsync(album);
         }
 
-        public int DeleteAlbum(int id)
+        public Task<int> DeleteAlbumAsync(int id)
         {
-            return _connection.Delete<Album>(id);
+            return _connection.DeleteAsync<Album>(id);
         }
 
-        public int UpdateAlbumDate(int albumId, DateTime date)
+        public Task<int> UpdateAlbumDateAsync(int albumId, DateTime date)
         {
             string query = "update Album set UpdateDate = ? where Id = ?;";
-            int rows = _connection.Execute(query, date, albumId);
-            return rows;
+            return _connection.ExecuteAsync(query, date, albumId);
         }
 
 
         // Item functions
 
-        public List<Item> GetItems(int albumId)
+        public Task<List<Item>> GetItemsAsync(int albumId)
         {
             string query = "select * from Item where AlbumId = ?";
-            return _connection.Query<Item>(query, albumId);
+            return _connection.QueryAsync<Item>(query, albumId);
         }
 
-        public int InsertItem(Item item)
+        public Task<int> InsertItemAsync(Item item)
         {
-            return _connection.Insert(item);
+            return _connection.InsertAsync(item);
         }
 
-        public Item GetItem(int id)
+        public Task<Item> GetItemAsync(int id)
         {
-            return _connection.Get<Item>(id);
+            return _connection.Table<Item>().Where(i => i.Id == id).FirstOrDefaultAsync();
         }
 
-        public int UpdateItem(Item item)
+        public Task<int> UpdateItemAsync(Item item)
         {
-            return _connection.Update(item);
+            return _connection.UpdateAsync(item);
         }
 
-        public int DeleteItem(int id)
+        public Task<int> DeleteItemAsync(int id)
         {
-            return _connection.Delete<Item>(id);
+            return _connection.DeleteAsync<Item>(id);
         }
 
 
         // -- Database Versioning
 
         //Version Update
-        private void VersionUpdate()
+        private async void VersionUpdate()
         { 
-            int userVersion = GetDBVersion();
+            int userVersion = await GetDBVersionAsync();
 
             if (userVersion < LAST_VERSION)
             {
                 if (userVersion == 0)
                 {
                     BuildVersion1();
-                    userVersion = GetDBVersion();
+                    userVersion = await GetDBVersionAsync();
                 }
                 if (userVersion == 1)
                 {
                     BuildVersion2();
-                    userVersion = GetDBVersion();
+                    userVersion = await GetDBVersionAsync();
                 }
             }
         }
@@ -122,9 +121,9 @@ namespace Archiver.Service
         {
             try 
             {
-                _connection.CreateTable<Album>();
-                _connection.CreateTable<Item>();
-                SetDBVersion(1);
+                _connection.CreateTableAsync<Album>();
+                _connection.CreateTableAsync<Item>();
+                SetDBVersionAsync(1);
             }
             catch
             {
@@ -136,8 +135,8 @@ namespace Archiver.Service
         {
             try
             {
-                _connection.CreateTable<Item>();
-                SetDBVersion(2);
+                _connection.CreateTableAsync<Item>();
+                SetDBVersionAsync(2);
                 //string sql = "alter table Item add ImgPath varchar";
                 //int affRows = _connection.ExecuteScalar<int>(sql);
                 //if (affRows > 0)

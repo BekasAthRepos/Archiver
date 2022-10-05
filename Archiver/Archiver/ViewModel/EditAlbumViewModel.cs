@@ -34,7 +34,7 @@ namespace Archiver.ViewModel
             try
             {
                 Album.UpdateAlbum();
-                int rows = App.Database.UpdateAlbum(Album);
+                int rows = await App.Database.UpdateAlbumAsync(Album);
                 if(rows > 0)
                 {
                     await App.Current.MainPage.DisplayToastAsync("Success. Changes have been saved", 1500);

@@ -29,8 +29,8 @@ namespace Archiver.ViewModel
                 if (ans)
                 {
                     DateTime date = DateTime.Now;
-                    recs = App.Database.DeleteItem(_ItemId);
-                    recs += App.Database.UpdateAlbumDate(_albumId, date);
+                    recs = await App.Database.DeleteItemAsync(_ItemId);
+                    recs += await App.Database.UpdateAlbumDateAsync(_albumId, date);
                     if (recs > 0)
                     {
                         await App.Current.MainPage.DisplayToastAsync("Success. Item has been deleted", 1500);
