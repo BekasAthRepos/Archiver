@@ -280,6 +280,44 @@
                 <Setter Property="FontSize" Value="13"/>
                 <Setter Property="FontAttributes" Value="Bold"/>
             </Style>
+            
+            <!-- LockPageMainLabel -->
+            <Style x:Key="LockPageMainLabel" TargetType="Label">
+                <Setter Property="VerticalOptions" Value="CenterAndExpand"/>
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>
+                <Setter Property="TextColor" Value="Blue"/>
+                <Setter Property="FontSize" Value="25"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+            </Style>
+
+            <!-- LockPageEntry -->
+            <Style x:Key="LockPageEntry" TargetType="Entry">
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="WidthRequest" Value="200"/>
+                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="FontSize" Value="13"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+            </Style>
+
+            <!-- LockPageButton -->
+            <Style x:Key="LockPageButton" TargetType="Button">
+                <Setter Property="VerticalOptions" Value="CenterAndExpand"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="BackgroundColor" Value="Green"/>
+                <Setter Property="FontSize" Value="15"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+            </Style>
+            
+            <!-- LockPageFooterLabel -->
+            <Style x:Key="LockPageFooterLabel" TargetType="Label">
+                <Setter Property="VerticalOptions" Value="CenterAndExpand"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="FontSize" Value="13"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+            </Style>
 
 
         </ResourceDictionary>

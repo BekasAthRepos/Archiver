@@ -18,7 +18,7 @@ namespace Archiver
             InitializeComponent();
             vmAlbum = new AlbumViewModel();
             BindingContext = vmAlbum;
-            albums = lvAlbums.ItemsSource as ObservableCollection<Album>; 
+            albums = lvAlbums.ItemsSource as ObservableCollection<Album>;
         }
 
         protected override void OnAppearing()

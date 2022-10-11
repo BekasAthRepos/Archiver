@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Archiver.View.LockPage"
+             BackgroundColor="#EBEEFF">
+    <ContentPage.Content>
+        <StackLayout>
+            <Grid Margin="0,150,0,0">
+                <Grid.RowDefinitions>
+                    
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    
+                </Grid.ColumnDefinitions>
+
+                <Label Text="Password" Style="{StaticResource LockPageMainLabel}" Grid.Row="0"/>
+
+                <Entry x:Name="txtPass" Style="{StaticResource LockPageEntry}"  Grid.Row="1"/>
+
+                <Button x:Name="btnLogIn" Text="Log In" Style="{StaticResource LockPageButton}" Grid.Row="2" Clicked="LogInClicked"/>
+
+                <Label Text="Problem? Please contact: bekasath@gmail.com" Style="{StaticResource LockPageFooterLabel}"
+                       Grid.Row="3"/>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

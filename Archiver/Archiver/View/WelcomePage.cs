@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Archiver.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -38,7 +39,22 @@ namespace Archiver.View
 
             await welcomeImg.ScaleTo(0.8, 1000, Easing.Linear);
             await welcomeImg.ScaleTo(3, 1000, Easing.Linear);
-            Application.Current.MainPage = new NavigationPage(new MainPage());
+
+            // check if app is locked
+            Sys_ini isLocked = await App.Database.GetIniValueAsync("LOCKED");
+
+            if (isLocked != null)
+            {
+                if (isLocked.Value.Equals("TRUE"))
+                    Application.Current.MainPage = new NavigationPage(new LockPage());
+                else
+                    Application.Current.MainPage = new NavigationPage(new MainPage());
+            }
+            else
+            {
+                await App.Current.MainPage.DisplayAlert("Error", "something went wrong...", "OK");
+            }
+            
         }
     }
 }

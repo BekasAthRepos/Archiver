@@ -9,7 +9,7 @@ namespace Archiver.Service
 {
     public class Database
     {
-        private const int LAST_VERSION = 2;
+        private const int LAST_VERSION = 3;
         private readonly SQLiteAsyncConnection _connection;
 
         public Database(string dbPath)
@@ -23,7 +23,7 @@ namespace Archiver.Service
 
         private Task<int> GetDBVersionAsync()
         {
-            return _connection.ExecuteScalarAsync<int>("PRAGMA user_version");
+            return _connection.ExecuteScalarAsync<int>("PRAGMA user_version");  
         }
 
         private Task<int> SetDBVersionAsync(int version)
@@ -93,13 +93,25 @@ namespace Archiver.Service
             return _connection.DeleteAsync<Item>(id);
         }
 
+        // Sys_ini methods
+        public Task<Sys_ini> GetIniValueAsync(string entry)
+        {
+            return _connection.Table<Sys_ini>().Where(e => e.Entry == entry).FirstOrDefaultAsync();
+        }
+        
+        public Task<int> SetIniValueAsync(Sys_ini rec)
+        {
+            string query = "update Sys_ini set Value = ? where Entry = ?;";
+            return _connection.ExecuteAsync(query, rec.Value, rec.Entry);
+        }
+
 
         // -- Database Versioning
 
         //Version Update
         private async void VersionUpdate()
         { 
-            int userVersion = await GetDBVersionAsync();
+            int userVersion = await GetDBVersionAsync();;
 
             if (userVersion < LAST_VERSION)
             {
@@ -113,17 +125,22 @@ namespace Archiver.Service
                     BuildVersion2();
                     userVersion = await GetDBVersionAsync();
                 }
+                if(userVersion == 2)
+                {
+                    BuildVersion3();
+                    userVersion = await GetDBVersionAsync();
+                }
             }
         }
         
         // Version 1 - 1.0.0
-        private void BuildVersion1() 
+        private async void BuildVersion1() 
         {
             try 
             {
-                _connection.CreateTableAsync<Album>();
-                _connection.CreateTableAsync<Item>();
-                SetDBVersionAsync(1);
+                await _connection.CreateTableAsync<Album>();
+                await _connection.CreateTableAsync<Item>();
+                await SetDBVersionAsync(1);
             }
             catch
             {
@@ -131,19 +148,37 @@ namespace Archiver.Service
         }
 
         // Version 2 - 1.0.1
-        private void BuildVersion2()
+        private async void BuildVersion2()
         {
             try
             {
-                _connection.CreateTableAsync<Item>();
-                SetDBVersionAsync(2);
-                //string sql = "alter table Item add ImgPath varchar";
-                //int affRows = _connection.ExecuteScalar<int>(sql);
-                //if (affRows > 0)
-                //    SetDBVersion(2);
+                await _connection.CreateTableAsync<Item>();
+                await SetDBVersionAsync(2);
             }
             catch
             {
+            }
+        }
+
+        // Version 3 - 1.0.2
+        private async void BuildVersion3()
+        {
+            try
+            {
+                await _connection.CreateTableAsync<Sys_ini>();
+
+                //string query = "insert into Sys_ini (Entry, Value) values ('LOCKED2', 'TRUE');";
+                Sys_ini entry = new Sys_ini("LOCKED", "TRUE");
+                var rows = await _connection.InsertAsync(entry);
+
+                if (rows > 0)
+                {
+                    await SetDBVersionAsync(3);
+                }                            
+            }
+            catch(Exception e)
+            {
+                string m = e.Message;
             }
         }
     }
