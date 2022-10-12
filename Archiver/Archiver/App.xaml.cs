@@ -32,7 +32,7 @@ namespace Archiver
             MainPage = new NavigationPage(new WelcomePage());
         }
 
-        protected async override void OnStart()
+        protected override void OnStart()
         {
         }
 
