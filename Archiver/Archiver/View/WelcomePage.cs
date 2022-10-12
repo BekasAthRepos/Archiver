@@ -42,7 +42,7 @@ namespace Archiver.View
 
             // check if app is locked
             Sys_ini isLocked = await App.Database.GetIniValueAsync("LOCKED");
-
+            
             if (isLocked != null)
             {
                 if (isLocked.Value.Equals("TRUE"))

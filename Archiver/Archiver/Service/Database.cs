@@ -1,4 +1,5 @@
 ﻿using Archiver.Model;
+using IoC;
 using SQLite;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,7 @@ namespace Archiver.Service
         public Database(string dbPath)
         {
             _connection = new SQLiteAsyncConnection(dbPath);
-            VersionUpdate();
+            Task.Run(async () => { await VersionUpdate(); }).Wait();
         }
 
 
@@ -109,7 +110,7 @@ namespace Archiver.Service
         // -- Database Versioning
 
         //Version Update
-        private async void VersionUpdate()
+        public async Task VersionUpdate()
         { 
             int userVersion = await GetDBVersionAsync();;
 
@@ -117,24 +118,25 @@ namespace Archiver.Service
             {
                 if (userVersion == 0)
                 {
-                    BuildVersion1();
+                    await BuildVersion1();
                     userVersion = await GetDBVersionAsync();
                 }
                 if (userVersion == 1)
                 {
-                    BuildVersion2();
+                    await BuildVersion2();
                     userVersion = await GetDBVersionAsync();
                 }
                 if(userVersion == 2)
                 {
-                    BuildVersion3();
+                    await BuildVersion3();
                     userVersion = await GetDBVersionAsync();
                 }
             }
+
         }
         
         // Version 1 - 1.0.0
-        private async void BuildVersion1() 
+        private async Task BuildVersion1() 
         {
             try 
             {
@@ -148,7 +150,7 @@ namespace Archiver.Service
         }
 
         // Version 2 - 1.0.1
-        private async void BuildVersion2()
+        private async Task BuildVersion2()
         {
             try
             {
@@ -161,13 +163,12 @@ namespace Archiver.Service
         }
 
         // Version 3 - 1.0.2
-        private async void BuildVersion3()
+        private async Task BuildVersion3()
         {
             try
             {
                 await _connection.CreateTableAsync<Sys_ini>();
 
-                //string query = "insert into Sys_ini (Entry, Value) values ('LOCKED2', 'TRUE');";
                 Sys_ini entry = new Sys_ini("LOCKED", "TRUE");
                 var rows = await _connection.InsertAsync(entry);
 

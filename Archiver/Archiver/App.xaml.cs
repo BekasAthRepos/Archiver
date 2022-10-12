@@ -2,6 +2,7 @@
 using Archiver.View;
 using System;
 using System.IO;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -20,6 +21,7 @@ namespace Archiver
                                      GetFolderPath(Environment.SpecialFolder
                                      .LocalApplicationData), "archiver.db3"));
                 }
+                
                 return connection;
             }
         }
@@ -30,7 +32,7 @@ namespace Archiver
             MainPage = new NavigationPage(new WelcomePage());
         }
 
-        protected override void OnStart()
+        protected async override void OnStart()
         {
         }
 
