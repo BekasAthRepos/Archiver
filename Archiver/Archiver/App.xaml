@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Archiver.App">
     <Application.Resources>
-
         <ResourceDictionary>
 
             <!-- Navigation Page -->
@@ -77,6 +76,21 @@
                 <Setter Property="HorizontalTextAlignment" Value="Center"/>
             </Style>
 
+            <!-- synchLbl -->
+            <Style x:Key="synchLbl" TargetType="Label">
+                <Setter Property="FontSize" Value="15"/>
+                <Setter Property="TextColor" Value="#474747"/>
+                <Setter Property="HorizontalTextAlignment" Value="End"/>
+            </Style>
+
+
+            <!-- synchSwt -->
+            <Style x:Key="synchSwt" TargetType="Switch">
+                <Setter Property="OnColor" Value="Blue"/>
+                <Setter Property="ThumbColor" Value="Blue"/>
+            </Style>
+
+
             <!-- SearchBar -->
             <Style x:Key="SearchBar" TargetType="SearchBar">
                 <Setter Property="BackgroundColor" Value="#EBEEFF"/>
@@ -120,7 +134,6 @@
                 <Setter Property="Margin" Value="0,0,5,0"/>
                 <Setter Property="BorderColor" Value="Transparent"/>
             </Style>
-
 
             <!-- listItemDescr -->
             <Style x:Key="listItemDescr" TargetType="Label">

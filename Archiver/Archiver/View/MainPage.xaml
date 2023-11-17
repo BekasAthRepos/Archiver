@@ -9,11 +9,11 @@
 
         <Grid Style="{StaticResource mainGrid}">
             <Grid.RowDefinitions>
-                <RowDefinition Height="90"/>
-                <RowDefinition Height="70"/>
-                <RowDefinition Height="50"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="50"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
             <Grid.ColumnDefinitions>
@@ -40,7 +40,21 @@
             </Frame>
 
             <Frame Style="{StaticResource contentTitleFrame}" Grid.Row="1">
-                <Label Style="{StaticResource contentTitle}" Text="Albums"/>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Grid.Row="0" Grid.ColumnSpan="2" Style="{StaticResource contentTitle}" Text="Albums"/>
+                    <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource synchLbl}" Text="Sync with Desktop"/>
+                    <Switch x:Name="Sync" Grid.Row="1" Grid.Column="1" Style="{StaticResource synchSwt}" IsToggled="{Binding IsSync}" 
+                            Toggled="Switch_Toggled"/>
+                </Grid>
             </Frame>
 
             <SearchBar Style="{StaticResource SearchBar}" Grid.Row="2" Placeholder="Search album..." TextChanged="SearchBar_TextChanged"/>

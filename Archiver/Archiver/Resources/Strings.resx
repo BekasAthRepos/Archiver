@@ -121,6 +121,36 @@
     <value>defaultItemImage.png</value>
     <comment>Η default εικόνα για το item</comment>
   </data>
+  <data name="APIBaseUrl" xml:space="preserve">
+    <value>http://192.168.0.28:5152</value>
+  </data>
+  <data name="CreateAlbum" xml:space="preserve">
+    <value>/Album/newAlbum</value>
+  </data>
+  <data name="CreateItem" xml:space="preserve">
+    <value>/Item/newItem</value>
+  </data>
+  <data name="DeleteAlbum" xml:space="preserve">
+    <value>/Album/delete</value>
+  </data>
+  <data name="DeleteItem" xml:space="preserve">
+    <value>/Item/delete</value>
+  </data>
+  <data name="GetAlbumById" xml:space="preserve">
+    <value>/Album/get</value>
+  </data>
+  <data name="GetAllAlbumItems" xml:space="preserve">
+    <value>/Item/getAll</value>
+  </data>
+  <data name="GetAllAlbums" xml:space="preserve">
+    <value>/Album/getAll</value>
+  </data>
+  <data name="GetAllItems" xml:space="preserve">
+    <value>/Item/getAll</value>
+  </data>
+  <data name="GetItemById" xml:space="preserve">
+    <value>/Item/get</value>
+  </data>
   <data name="references" xml:space="preserve">
     <value>https://www.flaticon.com/free-icons/add - Add icons created by dmitri13 - Flaticon
 https://www.flaticon.com/free-icons/picture Picture icons created by Freepik - Flaticon
@@ -131,5 +161,11 @@ https://www.flaticon.com/free-icons/question-mark - Question mark icons created 
 https://www.flaticon.com/free-icons/share - Share icons created by mavadee - Flaticon
 https://www.flaticon.com/free-icons/delete - Delete icons created by Alfredo Hernandez - Flaticon 
 https://www.flaticon.com/free-icons/copyright - Copyright icons created by Prosymbols Premium - Flaticon</value>
+  </data>
+  <data name="UpdateAlbum" xml:space="preserve">
+    <value>/Album/update</value>
+  </data>
+  <data name="UpdateItem" xml:space="preserve">
+    <value>/Item/update</value>
   </data>
 </root>

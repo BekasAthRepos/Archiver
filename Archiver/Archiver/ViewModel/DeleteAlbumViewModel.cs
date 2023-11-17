@@ -1,6 +1,9 @@
 ﻿using Archiver.Model;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Net.Http;
+using System.Resources;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -13,10 +16,14 @@ namespace Archiver.ViewModel
     public class DeleteAlbumViewModel
     {
         private int _id;
+        private bool _isSync;
+        private ResourceManager _res;
 
-        public DeleteAlbumViewModel(int id)
+        public DeleteAlbumViewModel(int id, bool IsSync)
         {
             _id = id;     
+            _isSync = IsSync;
+            _res = new ResourceManager("Archiver.Resources.Strings", typeof(DeleteAlbumViewModel).Assembly);
         }
 
         public async Task<int> DeleteAlbum()
@@ -27,13 +34,27 @@ namespace Archiver.ViewModel
                 bool ans = await App.Current.MainPage.DisplayAlert("Warning!", "Delete album?", "Yes", "No");
                 if(ans)
                 {
-                    recs = await App.Database.DeleteAlbumAsync(_id);
-                    if (recs > 0)
+                    if(!_isSync)
                     {
-                        await App.Current.MainPage.DisplayToastAsync("Success. Album has been deleted", 1500);
+                        recs = await App.Database.DeleteAlbumAsync(_id);
+
+                        if (recs > 0)
+                        {
+                            await App.Current.MainPage.DisplayToastAsync("Success. Album has been deleted", 1500);
+                        }
+                    }
+                    else
+                    {
+                        var client = new HttpClient();
+                        string endpoint = _res.GetString("APIBaseUrl").ToString() + _res.GetString("UpdateAlbum").ToString();
+                        string url = endpoint + $"?id={_id}";
+                        HttpResponseMessage response = await client.DeleteAsync(url);
+                        if (response.IsSuccessStatusCode)
+                            await App.Current.MainPage.DisplayToastAsync("Success. Album has been removed from Desktop.", 1500);
+                        else
+                            await App.Current.MainPage.DisplayAlert("Error", response.ToString(), "Ok");
                     }
                 }
-                
             }
             catch(Exception e)
             {

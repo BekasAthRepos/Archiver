@@ -3,11 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:ViewModel="clr-namespace:Archiver.ViewModel;assembly=Archiver"
              x:Class="Archiver.View.EditAlbumPage">
-
-    <ContentPage.BindingContext>
-        <ViewModel:EditAlbumViewModel x:Name="editAlbumViewModel"/>
-    </ContentPage.BindingContext>
-
     <ContentPage.Content>
         <StackLayout>
 

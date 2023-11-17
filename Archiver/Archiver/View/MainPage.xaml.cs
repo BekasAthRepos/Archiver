@@ -4,6 +4,7 @@ using Archiver.ViewModel;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using Xamarin.CommunityToolkit.Extensions;
 using Xamarin.Forms;
 
 namespace Archiver
@@ -29,7 +30,7 @@ namespace Archiver
 
         private async void AddAlbumClicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new AddAlbumPage());
+            await Navigation.PushAsync(new AddAlbumPage(Sync.IsToggled));
         }
 
         private async void AlbumClicked(object sender, ItemTappedEventArgs args)
@@ -45,7 +46,7 @@ namespace Archiver
             MenuItem mi = (MenuItem)sender;
             Album album = mi.CommandParameter as Album;
 
-            await Navigation.PushAsync(new EditAlbumPage(album)); 
+            await Navigation.PushAsync(new EditAlbumPage(album, Sync.IsToggled)); 
         }
 
         private async void DeleteItemClicked(object sender, EventArgs args)
@@ -53,7 +54,7 @@ namespace Archiver
             MenuItem mi = (MenuItem)sender;
             Album album = mi.CommandParameter as Album;
 
-            DeleteAlbumViewModel dVm = new DeleteAlbumViewModel(album.Id);
+            DeleteAlbumViewModel dVm = new DeleteAlbumViewModel(album.Id, Sync.IsToggled);
 
             int d = await dVm.DeleteAlbum();
             if (d > 0)
@@ -81,6 +82,11 @@ namespace Archiver
             {
                 lvAlbums.ItemsSource = albums;
             }
+        }
+
+        private void Switch_Toggled(object sender, ToggledEventArgs e)
+        {
+            vmAlbum.OnAppearing();
         }
     }
 }

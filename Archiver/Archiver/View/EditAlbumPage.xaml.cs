@@ -8,10 +8,12 @@ namespace Archiver.View
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class EditAlbumPage : ContentPage
     {
-        public EditAlbumPage(Album album)
+        private EditAlbumViewModel viewModel;
+        public EditAlbumPage(Album album, bool IsSync)
         {
+            viewModel = new EditAlbumViewModel(album, IsSync);
+            BindingContext = viewModel;
             InitializeComponent();
-            editAlbumViewModel.Album = album;            
         }
     }
 }

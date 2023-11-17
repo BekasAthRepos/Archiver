@@ -70,6 +70,96 @@ namespace Archiver.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to http://192.168.0.28:5152.
+        /// </summary>
+        internal static string APIBaseUrl {
+            get {
+                return ResourceManager.GetString("APIBaseUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to /Album/newAlbum.
+        /// </summary>
+        internal static string CreateAlbum {
+            get {
+                return ResourceManager.GetString("CreateAlbum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to /Item/newItem.
+        /// </summary>
+        internal static string CreateItem {
+            get {
+                return ResourceManager.GetString("CreateItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to /Album/delete.
+        /// </summary>
+        internal static string DeleteAlbum {
+            get {
+                return ResourceManager.GetString("DeleteAlbum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to /Item/delete.
+        /// </summary>
+        internal static string DeleteItem {
+            get {
+                return ResourceManager.GetString("DeleteItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to /Album/get.
+        /// </summary>
+        internal static string GetAlbumById {
+            get {
+                return ResourceManager.GetString("GetAlbumById", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to /Item/getAll.
+        /// </summary>
+        internal static string GetAllAlbumItems {
+            get {
+                return ResourceManager.GetString("GetAllAlbumItems", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to /Album/getAll.
+        /// </summary>
+        internal static string GetAllAlbums {
+            get {
+                return ResourceManager.GetString("GetAllAlbums", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to /Item/getAll.
+        /// </summary>
+        internal static string GetAllItems {
+            get {
+                return ResourceManager.GetString("GetAllItems", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to /Item/get.
+        /// </summary>
+        internal static string GetItemById {
+            get {
+                return ResourceManager.GetString("GetItemById", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to https://www.flaticon.com/free-icons/add - Add icons created by dmitri13 - Flaticon
         ///https://www.flaticon.com/free-icons/picture Picture icons created by Freepik - Flaticon
         ///https://www.flaticon.com/free-icons/camera Camera icons created by Freepik - Flaticon
@@ -80,6 +170,24 @@ namespace Archiver.Resources {
         internal static string references {
             get {
                 return ResourceManager.GetString("references", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to /Album/update.
+        /// </summary>
+        internal static string UpdateAlbum {
+            get {
+                return ResourceManager.GetString("UpdateAlbum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to /Item/update.
+        /// </summary>
+        internal static string UpdateItem {
+            get {
+                return ResourceManager.GetString("UpdateItem", resourceCulture);
             }
         }
     }

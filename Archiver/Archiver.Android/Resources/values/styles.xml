@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <resources>
-  
+
 
   <style name="MainTheme" parent="MainTheme.Base">
     <!-- As of Xamarin.Forms 4.6 the theme has moved into the Forms binary -->
@@ -9,8 +9,8 @@
 
     <!-- Set theme colors from https://aka.ms/material-colors -->
     <!-- colorPrimary is used for the default action bar background -->
-    
-    <item name="colorPrimary">#EBEEFF</item>
+
+    <item name="android:colorPrimary">#EBEEFF</item>
     
     <!-- colorPrimaryDark is used for the status bar -->
     <!--<item name="colorPrimaryDark">#EA340D</item>-->
