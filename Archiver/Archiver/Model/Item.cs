@@ -1,4 +1,5 @@
-﻿using SQLite;
+﻿using Newtonsoft.Json;
+using SQLite;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -16,7 +17,9 @@ namespace Archiver.Model
         [MaxLength(400)]
         public string Description {get; set;}
         public double Qty {get; set;}
-        public string ImgPath { get; set; } 
+        public string ImgPath { get; set; }
+        [Ignore]
+        public Image Image { get; set;}
         public DateTime InputDate { get; set;}
         public DateTime UpdateDate { get; set; }
 

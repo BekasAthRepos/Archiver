@@ -4,10 +4,6 @@
              xmlns:ViewModel="clr-namespace:Archiver.ViewModel;assembly=Archiver"
              x:Class="Archiver.View.AlbumDetails">
 
-    <ContentPage.BindingContext>
-        <ViewModel:AlbumDetailsViewModel x:Name="albumDetailsViewModel"/> 
-    </ContentPage.BindingContext>
-
     <ContentPage.Content>
 
         <Grid RowSpacing="0">
@@ -96,7 +92,7 @@
                                     </Grid.ColumnDefinitions>
 
                                     <Frame Style="{StaticResource listItemImageFrame}"  Grid.Column="0">
-                                        <Image Style="{StaticResource listItemImage}" Source="{Binding ImgPath}" />
+                                        <Image Style="{StaticResource listItemImage}" Source="{Binding Image, Converter={StaticResource ByteArrayToImageConverter}}" />
                                     </Frame>
                                     
                                     <Label Style="{StaticResource listItemDescr}" Grid.Column="1" Text="{Binding Name}" />

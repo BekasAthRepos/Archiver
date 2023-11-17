@@ -13,13 +13,14 @@ namespace Archiver.View
     {
         private AlbumDetailsViewModel vmAlbDet;
         private readonly ObservableCollection<Item> items;
+        private readonly bool _isSync;
 
-        public AlbumDetails(Album album)
+        public AlbumDetails(Album album, bool isSync)
         {
+            _isSync = isSync;
+            vmAlbDet = new AlbumDetailsViewModel(album, _isSync);         
+            BindingContext = vmAlbDet;
             InitializeComponent();
-            vmAlbDet = albumDetailsViewModel;          
-            vmAlbDet.Album = album;
-            items = lvitems.ItemsSource as ObservableCollection<Item>;
         }
 
         protected override void OnAppearing()

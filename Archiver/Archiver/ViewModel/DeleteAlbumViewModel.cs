@@ -46,7 +46,7 @@ namespace Archiver.ViewModel
                     else
                     {
                         var client = new HttpClient();
-                        string endpoint = _res.GetString("APIBaseUrl").ToString() + _res.GetString("UpdateAlbum").ToString();
+                        string endpoint = _res.GetString("APIBaseUrl").ToString() + _res.GetString("DeleteAlbum").ToString();
                         string url = endpoint + $"?id={_id}";
                         HttpResponseMessage response = await client.DeleteAsync(url);
                         if (response.IsSuccessStatusCode)

@@ -38,7 +38,7 @@ namespace Archiver
             if(args.Item == null)
                 return;          
 
-            await Navigation.PushAsync(new AlbumDetails(args.Item as Album));
+            await Navigation.PushAsync(new AlbumDetails(args.Item as Album, Sync.IsToggled));
         }
 
         private async void EditItemClicked(object sender, EventArgs args)
@@ -55,10 +55,8 @@ namespace Archiver
             Album album = mi.CommandParameter as Album;
 
             DeleteAlbumViewModel dVm = new DeleteAlbumViewModel(album.Id, Sync.IsToggled);
-
-            int d = await dVm.DeleteAlbum();
-            if (d > 0)
-                vmAlbum.Albums.Remove(album);
+            await dVm.DeleteAlbum();
+            vmAlbum.OnAppearing();
         }
 
         private async void OnHelpClicked(object sender, EventArgs args)

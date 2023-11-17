@@ -14,18 +14,19 @@ namespace Archiver
         {
             get
             {
-                if (connection == null)
-                {
-                    connection = new Database(Path.Combine(Environment.
-                                     GetFolderPath(Environment.SpecialFolder
-                                     .LocalApplicationData), "archiver.db3"));
-                }
-                return connection;
+                if (connection != null)
+                    return connection;
+                else
+                    return null;
+
             }
         }
 
         public App()
         {
+            connection = new Database(Path.Combine(Environment.
+                         GetFolderPath(Environment.SpecialFolder
+                         .LocalApplicationData), "archiver.db3"));
             InitializeComponent();
             MainPage = new NavigationPage(new WelcomePage());
         }
