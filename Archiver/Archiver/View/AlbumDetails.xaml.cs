@@ -28,7 +28,7 @@ namespace Archiver.View
             ImageButton btn = sender as ImageButton;
             int albumId = (int) btn.CommandParameter;
 
-            await Navigation.PushAsync(new AddItemPage(albumId, _isSync));
+            await Navigation.PushAsync(new AddItemPage(albumId, _isSync, vmAlbDet.Items));
         }
 
         private async void ItemClicked(object sender, ItemTappedEventArgs args)
@@ -44,7 +44,7 @@ namespace Archiver.View
             MenuItem mi = (MenuItem)sender;
             Item item = mi.CommandParameter as Item;
 
-            await Navigation.PushAsync(new EditItemPage(item));
+            await Navigation.PushAsync(new EditItemPage(item, _isSync));
         }
 
         private async void DeleteItemClicked(object sender, EventArgs args)
@@ -52,7 +52,7 @@ namespace Archiver.View
             MenuItem mi = (MenuItem)sender;
             Item item = mi.CommandParameter as Item;
 
-            DeleteItemViewModel dVm = new DeleteItemViewModel(item.Id, item.AlbumId);
+            DeleteItemViewModel dVm = new DeleteItemViewModel(item.Id, item.AlbumId, _isSync);
 
             int d = await dVm.DeleteItem();
             if (d > 0)

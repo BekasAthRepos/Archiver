@@ -15,6 +15,9 @@ using Plugin.Media.Abstractions;
 using Plugin.Media;
 using static SQLite.SQLite3;
 using static Xamarin.Essentials.Permissions;
+using Newtonsoft.Json;
+using System.Net.Http;
+using System.Collections.ObjectModel;
 
 namespace Archiver.ViewModel
 {
@@ -24,6 +27,7 @@ namespace Archiver.ViewModel
         private ResourceManager rm;
         private bool _isSync;
         private bool _isImgDef;
+        private ObservableCollection<Item> _itemList;
 
         public Item NewItem { get; set; }
         public ICommand AddItemCmd => new Command(AddItem);
@@ -43,11 +47,12 @@ namespace Archiver.ViewModel
             }
         }
 
-        public AddItemViewModel(int albumId, bool isSync) 
+        public AddItemViewModel(int albumId, bool isSync, ObservableCollection<Item> itemList) 
         {
             rm = new ResourceManager("Archiver.Resources.Strings", this.GetType().Assembly);
             string img = rm.GetString("addItemDefaultImage");
 
+            _itemList = itemList;
             NewItem = new Item();
             NewItem.AlbumId = albumId;
             _isSync = isSync;
@@ -97,12 +102,24 @@ namespace Archiver.ViewModel
                     }
                     else
                     {
-                        if(_isImgDef)
+                        if(!_isImgDef)
                         {
-                            NewItem.ImageB64 = Convert.ToBase64String(ImgSrc); jhgf
+                            byte[] ImgByte = File.ReadAllBytes(NewItem.ImgPath);
+                            NewItem.ImageB64 = Convert.ToBase64String(ImgByte);
+                            NewItem.ImageSource = NewItem.ImgPath;
                         }
-                            
-                            
+                        var client = new HttpClient();
+                        string jsonData = JsonConvert.SerializeObject(NewItem);
+                        StringContent contnet = new StringContent(jsonData, Encoding.UTF8, "application/json");
+                        string endpoint = rm.GetString("APIBaseUrl").ToString() + rm.GetString("CreateItem").ToString();
+                        HttpResponseMessage response = await client.PostAsync(endpoint, contnet);
+                        if (response.IsSuccessStatusCode)
+                        {
+                            _itemList.Add(NewItem);
+                            await App.Current.MainPage.DisplayToastAsync("Success. Item has been uploaded.", 1500);
+                        }
+                        else
+                            await App.Current.MainPage.DisplayAlert("Error", response.ToString(), "Ok");
 
                     }
                 }

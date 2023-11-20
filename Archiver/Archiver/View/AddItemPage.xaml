@@ -45,13 +45,13 @@
                         </Grid.ColumnDefinitions>
 
 
-                        <Entry Style="{StaticResource dataEntry}"  Text="{Binding Name}" Grid.Row="0" Grid.Column="0"
+                        <Entry Style="{StaticResource dataEntry}"  Text="{Binding NewItem.Name}" Grid.Row="0" Grid.Column="0"
                                Placeholder="Name"/>
 
-                        <Entry Style="{StaticResource dataEntry}" Text="{Binding Qty}" Grid.Row="0" Grid.Column="1" 
+                        <Entry Style="{StaticResource dataEntry}" Text="{Binding NewItem.Qty}" Grid.Row="0" Grid.Column="1" 
                                Placeholder="Qty" Keyboard="Numeric"/>
 
-                        <Entry Style="{StaticResource dataEditor}" Text="{Binding Description}" Grid.Row="1" Grid.Column="0"
+                        <Entry Style="{StaticResource dataEditor}" Text="{Binding NewItem.Description}" Grid.Row="1" Grid.Column="0"
                            Grid.ColumnSpan="2" Placeholder="Description"/>
                     </Grid>
 

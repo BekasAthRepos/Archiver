@@ -2,6 +2,7 @@
 using Archiver.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -19,11 +20,11 @@ namespace Archiver.View
         private bool _isSync;
         private int _albumId;
 
-        public AddItemPage(int albumId, bool isSync)
+        public AddItemPage(int albumId, bool isSync, ObservableCollection<Item> itemList)
         {
             _isSync = isSync;
             _albumId = albumId;
-            viewModel = new AddItemViewModel(albumId, isSync);
+            viewModel = new AddItemViewModel(albumId, isSync, itemList);
             BindingContext = viewModel;
             InitializeComponent();
         }

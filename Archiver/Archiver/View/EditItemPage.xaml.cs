@@ -1,4 +1,5 @@
 ﻿using Archiver.Model;
+using Archiver.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,10 +14,14 @@ namespace Archiver.View
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class EditItemPage : ContentPage
     {
-        public EditItemPage(Item item)
+        private EditItemViewModel viewModel;
+        private bool _isSync;
+        public EditItemPage(Item item, bool isSync)
         {
+            _isSync = isSync;
+            viewModel = new EditItemViewModel(item, isSync);
+            BindingContext = viewModel;
             InitializeComponent();
-            editItemViewModel.Item = item;
         }
     }
 }

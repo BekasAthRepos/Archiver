@@ -19,6 +19,7 @@ namespace Archiver.ViewModel
         private Item _item;
         private ImageSource _imgSrc;
         private ResourceManager rm;
+        private bool _isSync;
 
         public ICommand CancelImageCmd => new Command(CancelImage);
         public ICommand UploadImageCmd => new Command(UploadImage);
@@ -37,8 +38,10 @@ namespace Archiver.ViewModel
 
         public ICommand SaveClickedCmd => new Command(SaveClicked);
 
-        public EditItemViewModel() 
+        public EditItemViewModel(Item item, bool isSync) 
         {
+            _item = item;
+            _isSync = isSync; 
             rm = new ResourceManager("Archiver.Resources.Strings", this.GetType().Assembly);
         }
 

@@ -3,11 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:ViewModel="clr-namespace:Archiver.ViewModel;assembly=Archiver"
              x:Class="Archiver.View.EditItemPage">
-    
-    <ContentPage.BindingContext>
-        <ViewModel:EditItemViewModel x:Name="editItemViewModel"/>
-    </ContentPage.BindingContext>
-    
     <ContentPage.Content>
         <ScrollView>
             <StackLayout>
@@ -27,7 +22,7 @@
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
 
-                        <Image x:Name="imgMain" Style="{StaticResource imageIcon}" Source="{Binding Item.ImgPath}" Grid.Row="0" Grid.ColumnSpan="2"/>
+                        <Image x:Name="imgMain" Style="{StaticResource imageIcon}" Source="{Binding Item.ImageSource}" Grid.Row="0" Grid.ColumnSpan="2"/>
                         <ImageButton Style="{StaticResource addItemCancelImageButton}" Grid.Row="0" Grid.Column="1"  Source="x_button.png"
                                          Command="{Binding CancelImageCmd}"/>
 
