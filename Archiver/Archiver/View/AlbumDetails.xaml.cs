@@ -23,18 +23,12 @@ namespace Archiver.View
             InitializeComponent();
         }
 
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
-            vmAlbDet.OnAppearing();
-        }
-
         private async void AddItemClicked(object sender, EventArgs e)
         {
             ImageButton btn = sender as ImageButton;
             int albumId = (int) btn.CommandParameter;
 
-             await Navigation.PushAsync(new AddItemPage(albumId));
+            await Navigation.PushAsync(new AddItemPage(albumId, _isSync));
         }
 
         private async void ItemClicked(object sender, ItemTappedEventArgs args)
@@ -42,7 +36,7 @@ namespace Archiver.View
             if (args.Item == null)
                 return;
 
-            await Navigation.PushAsync(new ItemDetails(args.Item as Item));
+            await Navigation.PushAsync(new ItemDetails(args.Item as Item, _isSync));
         }
 
         private async void EditItemClicked(object sender, EventArgs args)

@@ -22,6 +22,8 @@ namespace Archiver.ViewModel
     {
         private ImageSource _imgSrc;
         private ResourceManager rm;
+        private bool _isSync;
+        private bool _isImgDef;
 
         public Item NewItem { get; set; }
         public ICommand AddItemCmd => new Command(AddItem);
@@ -41,24 +43,22 @@ namespace Archiver.ViewModel
             }
         }
 
-        public AddItemViewModel() 
+        public AddItemViewModel(int albumId, bool isSync) 
         {
             rm = new ResourceManager("Archiver.Resources.Strings", this.GetType().Assembly);
             string img = rm.GetString("addItemDefaultImage");
 
             NewItem = new Item();
+            NewItem.AlbumId = albumId;
+            _isSync = isSync;
             ImgSrc = img;
+            _isImgDef = true;
             NewItem.ImgPath = Path.GetFullPath(img);
         }
 
         private void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-        public void SetAlbumId(int albumId)
-        {
-            NewItem.AlbumId = albumId;
         }
 
         private async void AddItem()
@@ -82,13 +82,28 @@ namespace Archiver.ViewModel
                 try
                 {
                     DateTime date = DateTime.Now;
-                    int rows = await App.Database.UpdateAlbumDateAsync(NewItem.AlbumId, date);
-                    rows += await App.Database.InsertItemAsync(NewItem);
-
-                    if (rows == 2)
+                    NewItem.UpdateDate = date;
+                    NewItem.InputDate = date;
+                    if (!_isSync)
                     {
-                        await App.Current.MainPage.DisplayToastAsync("Success. Item has been added.", 1500);
-                        MessagingCenter.Send<Object, DateTime>(this, "AlbumChanged", date);
+                        int rows = await App.Database.UpdateAlbumDateAsync(NewItem.AlbumId, date);
+                        rows += await App.Database.InsertItemAsync(NewItem);
+
+                        if (rows == 2)
+                        {
+                            await App.Current.MainPage.DisplayToastAsync("Success. Item has been added.", 1500);
+                            MessagingCenter.Send<Object, DateTime>(this, "AlbumChanged", date);
+                        }
+                    }
+                    else
+                    {
+                        if(_isImgDef)
+                        {
+                            NewItem.ImageB64 = Convert.ToBase64String(ImgSrc); jhgf
+                        }
+                            
+                            
+
                     }
                 }
                 catch (Exception e)
@@ -103,6 +118,7 @@ namespace Archiver.ViewModel
         private void CancelImage()
         {
             ImgSrc = rm.GetString("addItemDefaultImage");
+            _isImgDef = true;
             NewItem.ImgPath = rm.GetString("addItemDefaultImage");
         }
 
@@ -127,6 +143,7 @@ namespace Archiver.ViewModel
             {
                 _imgSrc = ImageSource.FromStream(() => result.GetStream());
                 NewItem.ImgPath = result.Path;
+                _isImgDef = false;
                 OnPropertyChanged(nameof(ImgSrc));
             }
         }
@@ -173,6 +190,7 @@ namespace Archiver.ViewModel
 
             var newImage = Path.Combine(FileSystem.AppDataDirectory, result.Path);
             NewItem.ImgPath = Path.GetFullPath(newImage);
+            _isImgDef = false;
             OnPropertyChanged(nameof(ImgSrc));
         }
     }

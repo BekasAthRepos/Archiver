@@ -2,6 +2,7 @@
 using Archiver.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,11 +15,17 @@ namespace Archiver.View
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AddItemPage : ContentPage
     {
+        private AddItemViewModel viewModel;
+        private bool _isSync;
+        private int _albumId;
 
-        public AddItemPage(int albumId)
+        public AddItemPage(int albumId, bool isSync)
         {
+            _isSync = isSync;
+            _albumId = albumId;
+            viewModel = new AddItemViewModel(albumId, isSync);
+            BindingContext = viewModel;
             InitializeComponent();
-            addItemViewModel.SetAlbumId(albumId);    
         }
     }
 }

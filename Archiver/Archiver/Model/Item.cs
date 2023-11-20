@@ -17,11 +17,14 @@ namespace Archiver.Model
         [MaxLength(400)]
         public string Description {get; set;}
         public double Qty {get; set;}
-        public string ImgPath { get; set; }
-        [Ignore]
-        public Image Image { get; set;}
         public DateTime InputDate { get; set;}
         public DateTime UpdateDate { get; set; }
+        [JsonIgnore]
+        public string ImgPath { get; set; }
+        [Ignore]
+        public string ImageB64 { get; set;}
+        [Ignore, JsonIgnore]
+        public ImageSource ImageSource { get; set; }
 
         public Item() 
         {

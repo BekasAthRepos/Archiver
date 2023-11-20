@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
 using System.Net.Http;
 using System.Resources;
 using System.Text;
@@ -60,6 +61,8 @@ namespace Archiver.ViewModel
                 ItemQty--;
                 OnPropertyChanged(nameof(ItemQty));
             });
+
+            Task.Run(async () => await LoadItems());
         }
 
         private void OnPropertyChanged(string propertyName)
@@ -68,7 +71,7 @@ namespace Archiver.ViewModel
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public async void OnAppearing()
+        public async Task LoadItems()
         {
             if (!_isSync)
                 await ExcLoadItemsCmd();
@@ -88,7 +91,7 @@ namespace Archiver.ViewModel
             var itemList = await App.Database.GetItemsAsync(Album.Id);
             foreach (var item in itemList)
             {
-                //item.Image.Source = item.ImgPath;
+                item.ImageSource = item.ImgPath;
                 Items.Add(item);
             }
         }
@@ -101,13 +104,15 @@ namespace Archiver.ViewModel
                 string url = endpoint + $"/{_album.Id}";
                 using (HttpClient client = new HttpClient())
                 {
-                    var resultBytes = await client.GetByteArrayAsync(url);
-                    string resultJson = Encoding.UTF8.GetString(resultBytes);
-                    var items = JsonConvert.DeserializeObject<List<Item>>(resultJson);
+                    var result = await client.GetStringAsync(url);
+                    var items = JsonConvert.DeserializeObject<List<Item>>(result);
+                    
                     Items.Clear();
                     foreach (var item in items)
                     {
-                        
+                        byte[] ImgByte;
+                        ImgByte = Convert.FromBase64String(item.ImageB64);
+                        item.ImageSource = ImageSource.FromStream(() => new MemoryStream(ImgByte));
                         Items.Add(item);
                     }
                 }

@@ -3,11 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:ViewModel="clr-namespace:Archiver.ViewModel;assembly=Archiver"
              x:Class="Archiver.View.ItemDetails">
-
-    <ContentPage.BindingContext>
-        <ViewModel:ItemDetailsViewModel x:Name="itemDetailsViewModel"/>
-    </ContentPage.BindingContext>
-
     <ContentPage.Content>
         <ScrollView>
             <Grid RowSpacing="0">
@@ -35,19 +30,19 @@
                         </Grid.ColumnDefinitions>
 
                         <Label Style="{StaticResource headerTitle}" Grid.Row="0" Grid.Column="0" 
-                               Text="{Binding Item.Name}" />
+                               Text="{Binding Name}" />
 
                         <Label Style="{StaticResource itemDetailstTitleQty}" Text="Qty:" Grid.Row="0" Grid.Column="1" 
                                HorizontalOptions="End"/>
 
-                        <Label Style="{StaticResource itemDetailstTitleQty}" Text="{Binding Item.Qty}" Grid.Row="0" Grid.Column="2" 
+                        <Label Style="{StaticResource itemDetailstTitleQty}" Text="{Binding Qty}" Grid.Row="0" Grid.Column="2" 
                                HorizontalOptions="Start" />
 
                     </Grid>
                 </Frame>
 
                 <Frame Style="{StaticResource itemDetailsImageFrame}" Grid.Row="1">
-                    <Image Source="{Binding Item.ImgPath}"/>
+                    <Image Source="{Binding ImageSource}"/>
                 </Frame>
 
                 <Frame Style="{StaticResource itemDetailsDataFrame}" Grid.Row="2">
@@ -63,14 +58,14 @@
                         </Grid.ColumnDefinitions>
 
                         <Label Style="{StaticResource itemDetailsDataLabel}" Text="Description: " Grid.Row="0" Grid.Column="0"/>
-                        <Label Style="{StaticResource itemDetailsDataLabel}" Text="{Binding Item.Description}" Grid.Row="0" Grid.Column="1"/>
+                        <Label Style="{StaticResource itemDetailsDataLabel}" Text="{Binding Description}" Grid.Row="0" Grid.Column="1"/>
 
                         <Label Style="{StaticResource itemDetailsDataLabel}" Text="Created: " Grid.Row="1" Grid.Column="0"/>
-                        <Label Style="{StaticResource itemDetailsDataLabel}" Text="{Binding Item.InputDate, StringFormat='{0:dd/MM/yy,  hh:mm}'}" 
+                        <Label Style="{StaticResource itemDetailsDataLabel}" Text="{Binding InputDate, StringFormat='{0:dd/MM/yy,  hh:mm}'}" 
                                Grid.Row="1" Grid.Column="1"/>
 
                         <Label Style="{StaticResource itemDetailsDataLabel}" Text="Updated: " Grid.Row="2" Grid.Column="0"/>
-                        <Label Style="{StaticResource itemDetailsDataLabel}" Text="{Binding Item.UpdateDate, StringFormat='{0:dd/MM/yy,  hh:mm}'}" 
+                        <Label Style="{StaticResource itemDetailsDataLabel}" Text="{Binding UpdateDate, StringFormat='{0:dd/MM/yy,  hh:mm}'}" 
                                Grid.Row="2" Grid.Column="1"/>
 
                     </Grid>

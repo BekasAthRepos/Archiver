@@ -9,6 +9,7 @@ namespace Archiver.ViewModel
     public class ItemDetailsViewModel: INotifyPropertyChanged
     {
         private Item _item;
+        private bool _isSync;
         public event PropertyChangedEventHandler PropertyChanged;
         public Item Item 
         { 
@@ -20,7 +21,11 @@ namespace Archiver.ViewModel
             }
         }
 
-        public ItemDetailsViewModel() { }
+        public ItemDetailsViewModel(Item item, bool isSync) 
+        {
+            _item = item;
+            _isSync = isSync;
+        }
 
         private void OnPropertyChanged(string propertyName)
         {

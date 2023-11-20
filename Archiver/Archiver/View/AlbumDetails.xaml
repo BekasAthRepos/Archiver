@@ -92,7 +92,7 @@
                                     </Grid.ColumnDefinitions>
 
                                     <Frame Style="{StaticResource listItemImageFrame}"  Grid.Column="0">
-                                        <Image Style="{StaticResource listItemImage}" Source="{Binding Image, Converter={StaticResource ByteArrayToImageConverter}}" />
+                                        <Image Style="{StaticResource listItemImage}" Source="{Binding ImageSource}" />
                                     </Frame>
                                     
                                     <Label Style="{StaticResource listItemDescr}" Grid.Column="1" Text="{Binding Name}" />
