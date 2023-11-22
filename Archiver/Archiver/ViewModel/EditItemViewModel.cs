@@ -11,6 +11,8 @@ using System.Windows.Input;
 using Xamarin.CommunityToolkit.Extensions;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using Newtonsoft.Json;
+using System.Net.Http;
 
 namespace Archiver.ViewModel
 {
@@ -20,6 +22,7 @@ namespace Archiver.ViewModel
         private ImageSource _imgSrc;
         private ResourceManager rm;
         private bool _isSync;
+        private bool _isImgDef;
 
         public ICommand CancelImageCmd => new Command(CancelImage);
         public ICommand UploadImageCmd => new Command(UploadImage);
@@ -43,6 +46,8 @@ namespace Archiver.ViewModel
             _item = item;
             _isSync = isSync; 
             rm = new ResourceManager("Archiver.Resources.Strings", this.GetType().Assembly);
+            if ((!_isSync && String.IsNullOrEmpty(_item.ImgPath)) || (_isSync && String.IsNullOrEmpty(_item.ImageB64)))
+                CancelImage();
         }
 
         private void OnPropertyChanged(string propertyName)
@@ -56,12 +61,42 @@ namespace Archiver.ViewModel
             {
                 DateTime date = DateTime.Now;
                 _item.UpdateItem();
-                int rows = await App.Database.UpdateItemAsync(Item);
-                rows += await App.Database.UpdateAlbumDateAsync(_item.AlbumId, date);
-                if (rows >= 2)
+                if (!_isSync)
                 {
-                    await App.Current.MainPage.DisplayToastAsync("Success. Changes have been saved", 1500);
+                    int rows = await App.Database.UpdateItemAsync(Item);
+                    rows += await App.Database.UpdateAlbumDateAsync(_item.AlbumId, date);
+                    if (rows >= 2)
+                    {
+                        await App.Current.MainPage.DisplayToastAsync("Success. Changes have been saved", 1500);
+                    }
                     MessagingCenter.Send<Object, DateTime>(this, "AlbumChanged", date);
+                }
+                else
+                {
+                    if (_isImgDef)
+                    {
+                        _item.ImageB64 = null;
+                    } 
+                    else
+                    {
+                        byte[] ImgByte;
+                        if (Item.ImgPath != null)
+                        {
+                            ImgByte = File.ReadAllBytes(Item.ImgPath);
+                            Item.ImageB64 = Convert.ToBase64String(ImgByte);
+                            Item.ImageSource = Item.ImgPath;
+                        }
+                    }
+
+                    var client = new HttpClient();
+                    string jsonData = JsonConvert.SerializeObject(Item);
+                    StringContent contnet = new StringContent(jsonData, Encoding.UTF8, "application/json");
+                    string endpoint = rm.GetString("APIBaseUrl").ToString() + rm.GetString("UpdateItem").ToString();
+                    HttpResponseMessage response = await client.PutAsync(endpoint, contnet);
+                    if (response.IsSuccessStatusCode)
+                        await App.Current.MainPage.DisplayToastAsync("Success. Item has been synchronized.", 1500);
+                    else
+                        await App.Current.MainPage.DisplayAlert("Error", response.ToString(), "Ok");
                 }
             }
             catch (Exception e)
@@ -74,7 +109,9 @@ namespace Archiver.ViewModel
 
         private void CancelImage()
         {
+            _isImgDef = true;
             Item.ImgPath = rm.GetString("addItemDefaultImage");
+            Item.ImageSource = Item.ImgPath;
             OnPropertyChanged(nameof(Item));
         }
 
@@ -96,9 +133,11 @@ namespace Archiver.ViewModel
             var result = await CrossMedia.Current.PickPhotoAsync(new PickMediaOptions { });
 
             if (result != null)
-            {                
+            {     
+                _isImgDef = false;
                 _imgSrc = ImageSource.FromStream(() => result.GetStream());
                 Item.ImgPath = result.Path;
+                Item.ImageSource = Item.ImgPath;
                 OnPropertyChanged(nameof(Item));
 
             }
@@ -146,6 +185,8 @@ namespace Archiver.ViewModel
 
             var newImage = Path.Combine(FileSystem.AppDataDirectory, result.Path);
             Item.ImgPath = Path.GetFullPath(newImage);
+            Item.ImageSource = Item.ImgPath;
+            _isImgDef = false;
             OnPropertyChanged(nameof(Item));
         }
     }
