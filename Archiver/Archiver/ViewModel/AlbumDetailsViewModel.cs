@@ -110,9 +110,12 @@ namespace Archiver.ViewModel
                     Items.Clear();
                     foreach (var item in items)
                     {
-                        byte[] ImgByte;
-                        ImgByte = Convert.FromBase64String(item.ImageB64);
-                        item.ImageSource = ImageSource.FromStream(() => new MemoryStream(ImgByte));
+                        if (item.ImageB64 != null)
+                        {
+                            byte[] ImgByte;
+                            ImgByte = Convert.FromBase64String(item.ImageB64);
+                            item.ImageSource = ImageSource.FromStream(() => new MemoryStream(ImgByte));
+                        }
                         Items.Add(item);
                     }
                 }

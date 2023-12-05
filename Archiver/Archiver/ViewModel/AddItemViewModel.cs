@@ -96,6 +96,8 @@ namespace Archiver.ViewModel
 
                         if (rows == 2)
                         {
+                            NewItem.ImageSource = NewItem.ImgPath;
+                            _itemList.Add(NewItem);
                             await App.Current.MainPage.DisplayToastAsync("Success. Item has been added.", 1500);
                             MessagingCenter.Send<Object, DateTime>(this, "AlbumChanged", date);
                         }
@@ -115,6 +117,10 @@ namespace Archiver.ViewModel
                         HttpResponseMessage response = await client.PostAsync(endpoint, contnet);
                         if (response.IsSuccessStatusCode)
                         {
+                            string json = await response.Content.ReadAsStringAsync();
+                            int newId = JsonConvert.DeserializeObject<int>(json);
+                            NewItem.Id = newId;
+                            NewItem.ImageSource = NewItem.ImgPath;
                             _itemList.Add(NewItem);
                             await App.Current.MainPage.DisplayToastAsync("Success. Item has been uploaded.", 1500);
                         }

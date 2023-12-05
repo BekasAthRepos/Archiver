@@ -1,8 +1,13 @@
 ﻿
+--- bugs ---
+	- on item change list does not updated
+	- bad request on item delete after insert (POST must return id after insert)
+	- error on item save with no image
+
 
 --- to do ---
+	- scroll to synch or auto synch
 	- more images on item
-
 
 Resources copyright
 
