@@ -72,38 +72,39 @@
             </Frame>
 
             <SearchBar Style="{StaticResource SearchBar}" Grid.Row="3" Placeholder="Search item..." TextChanged="SearchBar_TextChanged"/>
+            <RefreshView Grid.Row="4" IsRefreshing="{Binding IsRefreshing, Mode=OneWay}" Command="{Binding RefreshItemsCmd}">
+                <ListView x:Name="lvitems" Style="{StaticResource list}" ItemsSource="{Binding Items}" ItemTapped="ItemClicked" >
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
 
-            <ListView x:Name="lvitems" Style="{StaticResource list}" ItemsSource="{Binding Items}" ItemTapped="ItemClicked" Grid.Row="4">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-
-                            <ViewCell.ContextActions>
-                                <MenuItem Text="Edit" Clicked="EditItemClicked" CommandParameter="{Binding .}"/>
-                                <MenuItem Text="Delete" Clicked="DeleteItemClicked" CommandParameter="{Binding .}"/>
-                            </ViewCell.ContextActions>
+                                <ViewCell.ContextActions>
+                                    <MenuItem Text="Edit" Clicked="EditItemClicked" CommandParameter="{Binding .}"/>
+                                    <MenuItem Text="Delete" Clicked="DeleteItemClicked" CommandParameter="{Binding .}"/>
+                                </ViewCell.ContextActions>
                                 
-                            <Frame Style="{StaticResource mainListCell}">
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="0.3*"/>
-                                        <ColumnDefinition Width="0.5*"/>
-                                        <ColumnDefinition Width="0.2*"/>
-                                    </Grid.ColumnDefinitions>
+                                <Frame Style="{StaticResource mainListCell}">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="0.3*"/>
+                                            <ColumnDefinition Width="0.5*"/>
+                                            <ColumnDefinition Width="0.2*"/>
+                                        </Grid.ColumnDefinitions>
 
-                                    <Frame Style="{StaticResource listItemImageFrame}"  Grid.Column="0">
-                                        <Image Style="{StaticResource listItemImage}" Source="{Binding ImageSource}" />
-                                    </Frame>
+                                        <Frame Style="{StaticResource listItemImageFrame}"  Grid.Column="0">
+                                            <Image Style="{StaticResource listItemImage}" Source="{Binding ImageSource}" />
+                                        </Frame>
                                     
-                                    <Label Style="{StaticResource listItemDescr}" Grid.Column="1" Text="{Binding Name}" />
-                                    <Label Style="{StaticResource listItemQty}" Grid.Column="2" Text="{Binding Qty}"/>
-                                </Grid>
-                            </Frame>
+                                        <Label Style="{StaticResource listItemDescr}" Grid.Column="1" Text="{Binding Name}" />
+                                        <Label Style="{StaticResource listItemQty}" Grid.Column="2" Text="{Binding Qty}"/>
+                                    </Grid>
+                                </Frame>
 
-                        </ViewCell>
-                     </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                            </ViewCell>
+                         </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </RefreshView>
          </Grid>
 
   

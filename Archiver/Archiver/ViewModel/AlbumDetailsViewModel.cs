@@ -20,6 +20,8 @@ namespace Archiver.ViewModel
         private Album _album;
         private bool _isSync;
         private ResourceManager _res;
+        private string _defImg;
+        private bool _isRef;
         public Album Album
         {
             get { return _album; }
@@ -41,14 +43,25 @@ namespace Archiver.ViewModel
             } 
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public bool IsRefreshing
+        {
+            get { return _isRef; }
+            set
+            {
+                _isRef = value;
+                OnPropertyChanged(nameof(IsRefreshing));
+            }
+        }
 
+        public event PropertyChangedEventHandler PropertyChanged;
+        public ICommand RefreshItemsCmd => new Command(RefreshItems);
         public AlbumDetailsViewModel(Album album, bool isSync) 
         {   
             _album = album;
             _isSync = isSync;
             Items = new ObservableCollection<Item>();
-            _res = new ResourceManager("Archiver.Resources.Strings", typeof(AlbumDetailsViewModel).Assembly);
+            _res = new ResourceManager("Archiver.Resources.Strings", this.GetType().Assembly);
+            _defImg = _res.GetString("addItemDefaultImage");
 
             MessagingCenter.Subscribe<Object, DateTime>(this, "AlbumChanged", (o, date) =>
             {
@@ -62,7 +75,6 @@ namespace Archiver.ViewModel
                 OnPropertyChanged(nameof(ItemQty));
             });
 
-            Task.Run(async () => await LoadItems());
         }
 
         private void OnPropertyChanged(string propertyName)
@@ -71,7 +83,7 @@ namespace Archiver.ViewModel
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public async Task LoadItems()
+        public async void OnAppearing()
         {
             if (!_isSync)
                 await ExcLoadItemsCmd();
@@ -115,6 +127,10 @@ namespace Archiver.ViewModel
                             byte[] ImgByte;
                             ImgByte = Convert.FromBase64String(item.ImageB64);
                             item.ImageSource = ImageSource.FromStream(() => new MemoryStream(ImgByte));
+                        }else
+                        {
+                            item.ImgPath = _defImg;
+                            item.ImageSource = item.ImgPath;
                         }
                         Items.Add(item);
                     }
@@ -124,6 +140,17 @@ namespace Archiver.ViewModel
             {
                 await App.Current.MainPage.DisplayAlert("Error", e.ToString(), "Ok");
             }
+        }
+
+        private async void RefreshItems()
+        {
+            IsRefreshing = true;
+            if (!_isSync)
+                await ExcLoadItemsCmd();
+            else
+                await SyncGetAllItems();
+            ItemQty = GetItemQty();
+            IsRefreshing = false;
         }
     }
 }

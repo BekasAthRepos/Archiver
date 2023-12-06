@@ -58,35 +58,34 @@
             </Frame>
 
             <SearchBar Style="{StaticResource SearchBar}" Grid.Row="2" Placeholder="Search album..." TextChanged="SearchBar_TextChanged"/>
+            <RefreshView Grid.Row="3" IsRefreshing="{Binding IsRefreshing, Mode=OneWay}" Command="{Binding RefreshAlbumsCmd}">    
+                <ListView x:Name="lvAlbums" Style="{StaticResource list}" ItemsSource="{Binding Albums}" ItemTapped="AlbumClicked">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
 
-            <ListView x:Name="lvAlbums" Style="{StaticResource list}" ItemsSource="{Binding Albums}" ItemTapped="AlbumClicked"
-                          Grid.Row="3">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
+                                <ViewCell.ContextActions>
+                                    <MenuItem Text="Edit" Clicked="EditItemClicked" CommandParameter="{Binding .}"/>
+                                    <MenuItem Text="Delete" Clicked="DeleteItemClicked" CommandParameter="{Binding .}"/>
+                                </ViewCell.ContextActions>
 
-                            <ViewCell.ContextActions>
-                                <MenuItem Text="Edit" Clicked="EditItemClicked" CommandParameter="{Binding .}"/>
-                                <MenuItem Text="Delete" Clicked="DeleteItemClicked" CommandParameter="{Binding .}"/>
-                            </ViewCell.ContextActions>
+                                <Frame Style="{StaticResource mainListCell}">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="0.3*"/>
+                                            <ColumnDefinition Width="0.7*"/>
+                                        </Grid.ColumnDefinitions>
 
-                            <Frame Style="{StaticResource mainListCell}">
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="0.3*"/>
-                                        <ColumnDefinition Width="0.7*"/>
-                                    </Grid.ColumnDefinitions>
+                                        <Label Style="{StaticResource listItemTitle}" Grid.Column="0" Text="{Binding Name}"/>
+                                        <Label Style="{StaticResource listItemDescr}" Grid.Column="1" Text="{Binding Description}"/>
+                                    </Grid>
+                                </Frame>
 
-                                    <Label Style="{StaticResource listItemTitle}" Grid.Column="0" Text="{Binding Name}"/>
-                                    <Label Style="{StaticResource listItemDescr}" Grid.Column="1" Text="{Binding Description}"/>
-                                </Grid>
-                            </Frame>
-
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </RefreshView>            
             <Frame Style="{StaticResource FooterFrame}" Grid.Row="4">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -95,14 +94,14 @@
                         <ColumnDefinition Width="auto"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    
+
                     <ImageButton x:Name="HelpBtn" Style="{StaticResource HelpImageButton}" Grid.Row ="0" Grid.Column="0" 
-                                 Source="question.png" Clicked="OnHelpClicked"/>
+                                    Source="question.png" Clicked="OnHelpClicked"/>
                     <Image Style="{StaticResource CopyRightImage}" Source="copyright.png" Grid.Row ="0" Grid.Column="1"/>
                     <Label Style="{StaticResource CopyRightText}" Grid.Row ="0" Grid.Column="2" 
-                           Text="2022 Bekas Athanasios. All rights reserved"/>
+                            Text="2022 Bekas Athanasios. All rights reserved"/>
                     <ImageButton x:Name="InfoBtn" Style="{StaticResource InfoImageButton}" Grid.Row ="0" Grid.Column="3" 
-                                 Source="info.png" Clicked="OnInfoClicked"/>
+                                    Source="info.png" Clicked="OnInfoClicked"/>
                 </Grid>
             </Frame>
         </Grid>

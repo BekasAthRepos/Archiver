@@ -9,6 +9,7 @@ namespace Archiver.View
     public partial class EditAlbumPage : ContentPage
     {
         private EditAlbumViewModel viewModel;
+
         public EditAlbumPage(Album album, bool IsSync)
         {
             viewModel = new EditAlbumViewModel(album, IsSync);

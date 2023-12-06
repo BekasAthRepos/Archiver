@@ -43,10 +43,10 @@ namespace Archiver.ViewModel
 
         public EditItemViewModel(Item item, bool isSync) 
         {
-            _item = item;
+            Item = item;
             _isSync = isSync; 
             rm = new ResourceManager("Archiver.Resources.Strings", this.GetType().Assembly);
-            if ((!_isSync && String.IsNullOrEmpty(_item.ImgPath)) || (_isSync && String.IsNullOrEmpty(_item.ImageB64)))
+            if ((!_isSync && String.IsNullOrEmpty(Item.ImgPath)) || (_isSync && String.IsNullOrEmpty(Item.ImageB64)))
                 CancelImage();
         }
 
@@ -60,11 +60,11 @@ namespace Archiver.ViewModel
             try
             {
                 DateTime date = DateTime.Now;
-                _item.UpdateItem();
+                Item.UpdateItem();
                 if (!_isSync)
                 {
                     int rows = await App.Database.UpdateItemAsync(Item);
-                    rows += await App.Database.UpdateAlbumDateAsync(_item.AlbumId, date);
+                    rows += await App.Database.UpdateAlbumDateAsync(Item.AlbumId, date);
                     if (rows >= 2)
                     {
                         await App.Current.MainPage.DisplayToastAsync("Success. Changes have been saved", 1500);
@@ -75,8 +75,8 @@ namespace Archiver.ViewModel
                 {
                     if (_isImgDef)
                     {
-                        _item.ImageB64 = null;
-                    } 
+                        Item.ImageB64 = null;
+                    }
                     else
                     {
                         byte[] ImgByte;
@@ -95,6 +95,7 @@ namespace Archiver.ViewModel
                     HttpResponseMessage response = await client.PutAsync(endpoint, contnet);
                     if (response.IsSuccessStatusCode)
                         await App.Current.MainPage.DisplayToastAsync("Success. Item has been synchronized.", 1500);
+                    
                     else
                         await App.Current.MainPage.DisplayAlert("Error", response.ToString(), "Ok");
                 }

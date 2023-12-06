@@ -21,7 +21,7 @@ namespace Archiver.ViewModel
         {
             _isSync = IsSync;
             NewAlbum = new Album();
-            _res = new ResourceManager("Archiver.Resources.Strings", typeof(AddAlbumViewModel).Assembly);
+            _res = new ResourceManager("Archiver.Resources.Strings", this.GetType().Assembly);
         }
 
         private async void AddAlbum()

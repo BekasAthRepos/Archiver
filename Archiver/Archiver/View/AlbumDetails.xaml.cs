@@ -23,6 +23,12 @@ namespace Archiver.View
             InitializeComponent();
         }
 
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            vmAlbDet.OnAppearing();
+        }
+
         private async void AddItemClicked(object sender, EventArgs e)
         {
             ImageButton btn = sender as ImageButton;

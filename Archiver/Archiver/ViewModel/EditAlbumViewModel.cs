@@ -32,7 +32,7 @@ namespace Archiver.ViewModel
         {
             Album = album;
             _isSync = IsSync;
-            _res = new ResourceManager("Archiver.Resources.Strings", typeof(EditAlbumViewModel).Assembly);
+            _res = new ResourceManager("Archiver.Resources.Strings", this.GetType().Assembly);
         }
 
         private void OnPropertyChanged(string propertyName)

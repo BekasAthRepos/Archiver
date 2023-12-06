@@ -23,7 +23,7 @@ namespace Archiver.ViewModel
         {
             _id = id;     
             _isSync = IsSync;
-            _res = new ResourceManager("Archiver.Resources.Strings", typeof(DeleteAlbumViewModel).Assembly);
+            _res = new ResourceManager("Archiver.Resources.Strings", this.GetType().Assembly);
         }
 
         public async Task<int> DeleteAlbum()

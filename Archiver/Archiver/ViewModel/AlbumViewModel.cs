@@ -13,7 +13,8 @@ using Xamarin.Forms;
 namespace Archiver.ViewModel
 {
     public class AlbumViewModel : INotifyPropertyChanged
-    { 
+    {
+        public ICommand RefreshAlbumsCmd => new Command(RefreshAlbums);
         public ObservableCollection<Album> Albums { get; set; }
         public bool IsSync
         {
@@ -24,17 +25,28 @@ namespace Archiver.ViewModel
                 OnPropertyChanged(nameof(IsSync));
             }
         }
+
+        public bool IsRefreshing
+        {
+            get { return _isRef; }
+            set
+            {
+                _isRef = value;
+                OnPropertyChanged(nameof(IsRefreshing));
+            }
+        }
         public event PropertyChangedEventHandler PropertyChanged;
 
         private readonly ResourceManager _res;
         private bool _isSync;
+        private bool _isRef;
 
         public AlbumViewModel()
         {   
             Albums = new ObservableCollection<Album>();
             IsSync = false;
 
-            _res= new ResourceManager("Archiver.Resources.Strings", typeof(AlbumViewModel).Assembly);
+            _res= new ResourceManager("Archiver.Resources.Strings", this.GetType().Assembly);
         }
 
         public async void OnAppearing()
@@ -70,6 +82,16 @@ namespace Archiver.ViewModel
             {
                 await App.Current.MainPage.DisplayAlert("Error", e.ToString(), "Ok");
             }
+        }
+
+        private async void RefreshAlbums()
+        {
+            IsRefreshing = true;
+            if (IsSync)
+                await SyncGetAllAlbums();
+            else
+                await ExcLoadAlbumsCmd();
+            IsRefreshing = false;
         }
 
         private void OnPropertyChanged(string propertyName)

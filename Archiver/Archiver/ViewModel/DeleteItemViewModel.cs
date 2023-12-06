@@ -25,7 +25,7 @@ namespace Archiver.ViewModel
             _albumId = albumId;
             _isSync = isSync;
 
-            _res = new ResourceManager("Archiver.Resources.Strings", typeof(DeleteItemViewModel).Assembly);
+            _res = new ResourceManager("Archiver.Resources.Strings", this.GetType().Assembly);
         }
 
         public async Task<int> DeleteItem()
