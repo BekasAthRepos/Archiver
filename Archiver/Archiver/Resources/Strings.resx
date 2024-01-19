@@ -122,7 +122,7 @@
     <comment>Η default εικόνα για το item</comment>
   </data>
   <data name="APIBaseUrl" xml:space="preserve">
-    <value>http://192.168.0.28:5152</value>
+    <value>http://192.168.1.76:14723</value>
   </data>
   <data name="CreateAlbum" xml:space="preserve">
     <value>/Album/newAlbum</value>

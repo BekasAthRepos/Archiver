@@ -70,7 +70,7 @@ namespace Archiver.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://192.168.0.28:5152.
+        ///   Looks up a localized string similar to http://192.168.1.76:14723.
         /// </summary>
         internal static string APIBaseUrl {
             get {
