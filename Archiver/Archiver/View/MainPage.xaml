@@ -11,7 +11,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/> 
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
@@ -39,23 +39,7 @@
                 </Grid>
             </Frame>
 
-            <Frame Style="{StaticResource contentTitleFrame}" Grid.Row="1">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="auto"/>
-                    </Grid.ColumnDefinitions>
-
-                    <Label Grid.Row="0" Grid.ColumnSpan="2" Style="{StaticResource contentTitle}" Text="Albums"/>
-                    <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource synchLbl}" Text="Sync with Desktop"/>
-                    <Switch x:Name="Sync" Grid.Row="1" Grid.Column="1" Style="{StaticResource synchSwt}" IsToggled="{Binding IsSync}" 
-                            Toggled="Switch_Toggled"/>
-                </Grid>
-            </Frame>
+            <Label Grid.Row="1"  Style="{StaticResource contentTitle}" Text="Albums"/>
 
             <SearchBar Style="{StaticResource SearchBar}" Grid.Row="2" Placeholder="Search album..." TextChanged="SearchBar_TextChanged"/>
             <RefreshView Grid.Row="3" IsRefreshing="{Binding IsRefreshing, Mode=OneWay}" Command="{Binding RefreshAlbumsCmd}">    

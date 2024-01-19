@@ -30,7 +30,7 @@ namespace Archiver
 
         private async void AddAlbumClicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new AddAlbumPage(Sync.IsToggled));
+            await Navigation.PushAsync(new AddAlbumPage(false));
         }
 
         private async void AlbumClicked(object sender, ItemTappedEventArgs args)
@@ -38,7 +38,7 @@ namespace Archiver
             if(args.Item == null)
                 return;          
 
-            await Navigation.PushAsync(new AlbumDetails(args.Item as Album, Sync.IsToggled));
+            await Navigation.PushAsync(new AlbumDetails(args.Item as Album, false));
         }
 
         private async void EditItemClicked(object sender, EventArgs args)
@@ -46,7 +46,7 @@ namespace Archiver
             MenuItem mi = (MenuItem)sender;
             Album album = mi.CommandParameter as Album;
 
-            await Navigation.PushAsync(new EditAlbumPage(album, Sync.IsToggled)); 
+            await Navigation.PushAsync(new EditAlbumPage(album, false)); 
         }
 
         private async void DeleteItemClicked(object sender, EventArgs args)
@@ -54,7 +54,7 @@ namespace Archiver
             MenuItem mi = (MenuItem)sender;
             Album album = mi.CommandParameter as Album;
 
-            DeleteAlbumViewModel dVm = new DeleteAlbumViewModel(album.Id, Sync.IsToggled);
+            DeleteAlbumViewModel dVm = new DeleteAlbumViewModel(album.Id, false);
             await dVm.DeleteAlbum();
             vmAlbum.OnAppearing();
         }
