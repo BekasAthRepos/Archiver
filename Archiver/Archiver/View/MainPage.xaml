@@ -3,6 +3,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:ViewModel="clr-namespace:Archiver.ViewModel;assembly=Archiver"
+             xmlns:local="clr-namespace:Archiver.Ads"
              x:Class="Archiver.MainPage">
 
     <ContentPage.Content >
@@ -13,6 +14,7 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/> 
                 <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
@@ -74,20 +76,20 @@
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="auto"/>
-                        <ColumnDefinition Width="auto"/>
-                        <ColumnDefinition Width="auto"/>
                         <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="auto"/>
                     </Grid.ColumnDefinitions>
 
                     <ImageButton x:Name="HelpBtn" Style="{StaticResource HelpImageButton}" Grid.Row ="0" Grid.Column="0" 
                                     Source="question.png" Clicked="OnHelpClicked"/>
-                    <Image Style="{StaticResource CopyRightImage}" Source="copyright.png" Grid.Row ="0" Grid.Column="1"/>
-                    <Label Style="{StaticResource CopyRightText}" Grid.Row ="0" Grid.Column="2" 
+                    <!-- <Image Style="{StaticResource CopyRightImage}" Source="copyright.png" Grid.Row ="0" Grid.Column="1"/> -->
+                    <Label Style="{StaticResource CopyRightText}" Grid.Row ="0" Grid.Column="1" 
                             Text="2022 Bekas Athanasios. All rights reserved"/>
-                    <ImageButton x:Name="InfoBtn" Style="{StaticResource InfoImageButton}" Grid.Row ="0" Grid.Column="3" 
+                    <ImageButton x:Name="InfoBtn" Style="{StaticResource InfoImageButton}" Grid.Row ="0" Grid.Column="2" 
                                     Source="info.png" Clicked="OnInfoClicked"/>
                 </Grid>
             </Frame>
+            <local:adsView Grid.Row="5" HeightRequest="50"></local:adsView>
         </Grid>
 
     </ContentPage.Content>

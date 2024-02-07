@@ -264,7 +264,7 @@
             <!-- InfoImageButton -->
             <Style x:Key="InfoImageButton" TargetType="ImageButton">
                 <Setter Property="VerticalOptions" Value="Center"/>
-                <Setter Property="HorizontalOptions" Value="End"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
                 <Setter Property="WidthRequest" Value="50"/>
                 <Setter Property="BackgroundColor" Value="Transparent"/>
             </Style>
@@ -272,7 +272,7 @@
             <!-- HelpImageButton -->
             <Style x:Key="HelpImageButton" TargetType="ImageButton">
                 <Setter Property="VerticalOptions" Value="Center"/>
-                <Setter Property="HorizontalOptions" Value="Start"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
                 <Setter Property="WidthRequest" Value="50"/>
                 <Setter Property="BackgroundColor" Value="Transparent"/>
             </Style>
@@ -288,10 +288,9 @@
             <!-- CopyRightText -->
             <Style x:Key="CopyRightText" TargetType="Label">
                 <Setter Property="VerticalOptions" Value="CenterAndExpand"/>
-                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>
                 <Setter Property="TextColor" Value="Black"/>
-                <Setter Property="FontSize" Value="13"/>
-                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="FontSize" Value="10"/>
             </Style>
 
 

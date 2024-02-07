@@ -4,6 +4,7 @@ using Android.App;
 using Android.Content.PM;
 using Android.Runtime;
 using Android.OS;
+using Android.Gms.Ads;
 
 namespace Archiver.Droid
 {
@@ -13,6 +14,10 @@ namespace Archiver.Droid
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+
+            RequestConfiguration.Builder builder = new RequestConfiguration.Builder();
+            builder = builder.SetTestDeviceIds(new string[] { "AA703D27D1D7074C848CAB59A8C013CF" });
+            Android.Gms.Ads.MobileAds.Initialize(ApplicationContext);
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
