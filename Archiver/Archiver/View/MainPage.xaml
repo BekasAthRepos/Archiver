@@ -16,6 +16,7 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
             <Grid.ColumnDefinitions>
@@ -89,7 +90,8 @@
                                     Source="info.png" Clicked="OnInfoClicked"/>
                 </Grid>
             </Frame>
-            <local:adsView Grid.Row="5" HeightRequest="50"></local:adsView>
+            <Button Grid.Row="5" Clicked="ShowAd" />
+            <local:adsView Grid.Row="6" HeightRequest="50"></local:adsView>
         </Grid>
 
     </ContentPage.Content>

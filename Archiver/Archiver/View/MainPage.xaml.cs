@@ -86,5 +86,10 @@ namespace Archiver
         {
             vmAlbum.OnAppearing();
         }
+
+        private async void ShowAd(object sender, EventArgs args)
+        {
+            
+        }
     }
 }
