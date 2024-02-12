@@ -1,9 +1,14 @@
 ﻿using Archiver.Model;
 using Archiver.View;
 using Archiver.ViewModel;
+using MarcTron.Plugin;
+using MarcTron.Plugin.Controls;
+using MarcTron.Plugin.Extra;
 using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using Xamarin.CommunityToolkit.Extensions;
 using Xamarin.Forms;
 
@@ -19,13 +24,18 @@ namespace Archiver
             InitializeComponent();
             vmAlbum = new AlbumViewModel();
             BindingContext = vmAlbum;
-            albums = lvAlbums.ItemsSource as ObservableCollection<Album>; 
+            albums = lvAlbums.ItemsSource as ObservableCollection<Album>;
+            CrossMTAdmob.Current.LoadInterstitial("ca-app-pub-3940256099942544/1033173712");
+            CrossMTAdmob.Current.LoadRewarded("ca-app-pub-3940256099942544/5224354917");
+            CrossMTAdmob.Current.LoadRewardedInterstitial("ca-app-pub-3940256099942544/5354046379");
+            banner.LoadAd();
         }
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
             vmAlbum.OnAppearing();
+            banner.LoadAd();
         }
 
         private async void AddAlbumClicked(object sender, EventArgs e)
@@ -87,9 +97,28 @@ namespace Archiver
             vmAlbum.OnAppearing();
         }
 
-        private async void ShowAd(object sender, EventArgs args)
+        private void ShowInterstitial(object sender, EventArgs args)
         {
-            
+            CrossMTAdmob.Current.ShowInterstitial();
+            CrossMTAdmob.Current.LoadInterstitial("ca-app-pub-3940256099942544/1033173712");
+        }
+
+        private void ShowRewarded(object sender, EventArgs args)
+        {
+            CrossMTAdmob.Current.ShowRewarded();
+            CrossMTAdmob.Current.LoadRewarded("ca-app-pub-3940256099942544/5224354917");
+        }
+
+        private void ShowRewardedInterstitial(object sender, EventArgs args)
+        {
+            CrossMTAdmob.Current.ShowRewardedInterstitial();
+            CrossMTAdmob.Current.LoadRewardedInterstitial("ca-app-pub-3940256099942544/5354046379");
+        }
+
+        private void LoadAd(object sender, EventArgs args)
+        {
+            banner.LoadAd();
+            //CrossMTAdmob.Current.LoadRewardedInterstitial("ca-app-pub-3940256099942544/5354046379");
         }
     }
 }

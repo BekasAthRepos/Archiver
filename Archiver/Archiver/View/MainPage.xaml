@@ -3,17 +3,22 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:ViewModel="clr-namespace:Archiver.ViewModel;assembly=Archiver"
-             xmlns:local="clr-namespace:Archiver.Ads"
+             xmlns:local="clr-namespace:Archiver.Ads" 
+             xmlns:controls="clr-namespace:MarcTron.Plugin.Controls;assembly=Plugin.MtAdmob"
              x:Class="Archiver.MainPage">
 
     <ContentPage.Content >
 
-        <Grid Style="{StaticResource mainGrid}">
+        <Grid x:Name="mainGrid" Style="{StaticResource mainGrid}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/> 
                 <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -90,8 +95,12 @@
                                     Source="info.png" Clicked="OnInfoClicked"/>
                 </Grid>
             </Frame>
-            <Button Grid.Row="5" Clicked="ShowAd" />
-            <local:adsView Grid.Row="6" HeightRequest="50"></local:adsView>
+            <Button Grid.Row="5" Clicked="ShowInterstitial" Text="Interstitial"/>
+            <local:adsView Grid.Row="6" HeightRequest="50" ></local:adsView>
+            <Button Grid.Row="7" Clicked="ShowRewarded" Text="Rewarded"/>
+            <Button Grid.Row="8" Clicked="ShowRewardedInterstitial" Text="Rewarded Interstitial"/>
+            <Button Grid.Row="9" Clicked="LoadAd" Text="LoadAd"/>
+            <controls:MTAdView x:Name="banner" Grid.Row="10" AdsId="ca-app-pub-3940256099942544/6300978111" HeightRequest="50"></controls:MTAdView>
         </Grid>
 
     </ContentPage.Content>
