@@ -1,38 +1,42 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:ViewModel="clr-namespace:Archiver.ViewModel;assembly=Archiver"
+             xmlns:ViewModel="clr-namespace:Archiver.ViewModel;assembly=Archiver" 
+             xmlns:View="clr-namespace:Archiver.View"
              x:Class="Archiver.View.AddAlbumPage">
     <ContentPage.Content>
         <ScrollView>
             <StackLayout>
-                <Frame Style="{StaticResource addPageHeaderFrame}">
-                    <Label Style="{StaticResource addPageTitle}" Text="Add album"/>
-                </Frame>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Frame Grid.Row="0" Style="{StaticResource addPageHeaderFrame}">
+                        <Label Style="{StaticResource addPageTitle}" Text="Add album"/>
+                    </Frame>
 
-                <Frame Style="{StaticResource addEditPageDataFrame}">
-                
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition/>
-                        </Grid.RowDefinitions>
+                    <Frame Grid.Row="1" Style="{StaticResource addEditPageDataFrame}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
 
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
 
-                        <Entry x:Name="inName" Style="{StaticResource dataEntry}" Grid.Row="0" Placeholder="Name"
-                            Text="{Binding NewAlbum.Name}" />
-
-                        <Entry x:Name="inDescr" Style="{StaticResource dataEditor}" Grid.Row="1" Placeholder="Description" 
-                            Text="{Binding NewAlbum.Description}"/>
-                    </Grid>
-
-                </Frame>
-            
-
-                <Button x:Name="btnAddAlbum" Style="{StaticResource addSaveButton}" Text="Add Album" Command="{Binding AddAlbumCmd}"/>
-
+                            <Entry x:Name="inName" Style="{StaticResource dataEntry}" Grid.Row="0" Placeholder="Name"
+                                Text="{Binding NewAlbum.Name}" />
+                            <Entry x:Name="inDescr" Style="{StaticResource dataEditor}" Grid.Row="1" Placeholder="Description" 
+                                Text="{Binding NewAlbum.Description}"/>
+                        </Grid>
+                    </Frame>
+                    <Button Grid.Row="2" x:Name="btnAddAlbum" Style="{StaticResource addSaveButton}" Text="Add Album" Command="{Binding AddAlbumCmd}"/>
+                </Grid>
+                <View:AdBanner VerticalOptions="EndAndExpand"/>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

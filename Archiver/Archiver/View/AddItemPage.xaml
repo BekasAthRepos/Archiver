@@ -1,63 +1,74 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:ViewModel="clr-namespace:Archiver.ViewModel;assembly=Archiver"
+             xmlns:ViewModel="clr-namespace:Archiver.ViewModel;assembly=Archiver" xmlns:View="clr-namespace:Archiver.View"
              x:Class="Archiver.View.AddItemPage">
 
     <ContentPage.Content>
         <ScrollView>
             <StackLayout>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
 
-                <Frame Style="{StaticResource addPageHeaderFrame}">
-                    <Label Style="{StaticResource addPageTitle}" Text="Add item"/>
-                </Frame>
+                    <Frame Grid.Row="0" Style="{StaticResource addPageHeaderFrame}">
+                        <Label Style="{StaticResource addPageTitle}" Text="Add item"/>
+                    </Frame>
 
-                <Frame Style="{StaticResource addEditPageDataFrame}">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="auto"/>
-                        </Grid.RowDefinitions>
+                    <Frame Grid.Row="1" Style="{StaticResource addEditPageDataFrame}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
 
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
 
-                        <Image x:Name="imgMain" Style="{StaticResource imageIcon}" Source="{Binding ImgSrc}" Grid.Row="0" Grid.ColumnSpan="2"/>
-                        <ImageButton Style="{StaticResource addItemCancelImageButton}" Grid.Row="0" Grid.Column="1"  Source="x_button.png"
-                                     Command="{Binding CancelImageCmd}"/>
+                            <Image x:Name="imgMain" Style="{StaticResource imageIcon}" Source="{Binding ImgSrc}" Grid.Row="0" Grid.ColumnSpan="2"/>
+                            <ImageButton Style="{StaticResource addItemCancelImageButton}" Grid.Row="0" Grid.Column="1"  Source="x_button.png"
+                                         Command="{Binding CancelImageCmd}"/>
 
-                        <ImageButton Style="{StaticResource addItemImageButton}" Grid.Row="1" Grid.Column="0" Source="camera.png"
-                                     Command="{Binding TakePhotoCmd}"/>
-                        <ImageButton Style="{StaticResource addItemImageButton}" Grid.Row="1" Grid.Column="1" Source="upload.png"
-                                     Command="{Binding UploadImageCmd}"/>
-                    </Grid>
-                </Frame>
+                            <ImageButton Style="{StaticResource addItemImageButton}" Grid.Row="1" Grid.Column="0" Source="camera.png"
+                                         Command="{Binding TakePhotoCmd}"/>
+                            <ImageButton Style="{StaticResource addItemImageButton}" Grid.Row="1" Grid.Column="1" Source="upload.png"
+                                         Command="{Binding UploadImageCmd}"/>
+                        </Grid>
+                    </Frame>
 
-                <Frame Style="{StaticResource addEditPageDataFrame}">
+                    <Frame Grid.Row="2" Style="{StaticResource addEditPageDataFrame}">
 
-                    <Grid>
-                        <Grid.RowDefinitions>
-                        </Grid.RowDefinitions>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                            </Grid.RowDefinitions>
 
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="0.4*"/>
-                        </Grid.ColumnDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="0.4*"/>
+                            </Grid.ColumnDefinitions>
 
 
-                        <Entry Style="{StaticResource dataEntry}"  Text="{Binding NewItem.Name}" Grid.Row="0" Grid.Column="0"
-                               Placeholder="Name"/>
+                            <Entry Style="{StaticResource dataEntry}"  Text="{Binding NewItem.Name}" Grid.Row="0" Grid.Column="0"
+                                   Placeholder="Name"/>
 
-                        <Entry Style="{StaticResource dataEntry}" Text="{Binding NewItem.Qty}" Grid.Row="0" Grid.Column="1" 
-                               Placeholder="Qty" Keyboard="Numeric"/>
+                            <Entry Style="{StaticResource dataEntry}" Text="{Binding NewItem.Qty}" Grid.Row="0" Grid.Column="1" 
+                                   Placeholder="Qty" Keyboard="Numeric"/>
 
-                        <Entry Style="{StaticResource dataEditor}" Text="{Binding NewItem.Description}" Grid.Row="1" Grid.Column="0"
-                           Grid.ColumnSpan="2" Placeholder="Description"/>
-                    </Grid>
+                            <Entry Style="{StaticResource dataEditor}" Text="{Binding NewItem.Description}" Grid.Row="1" Grid.Column="0"
+                               Grid.ColumnSpan="2" Placeholder="Description"/>
+                        </Grid>
 
-                </Frame>
+                    </Frame>
 
-                <Button x:Name="btnAddAlbum" Style="{StaticResource addSaveButton}" Text="Add Item" Command="{Binding AddItemCmd}"/>
+                    <Button Grid.Row="3" x:Name="btnAddAlbum" Style="{StaticResource addSaveButton}" Text="Add Item" Command="{Binding AddItemCmd}"/>
+
+                </Grid>
+                <View:AdBanner VerticalOptions="EndAndExpand"/>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

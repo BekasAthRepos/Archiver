@@ -1,18 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:ViewModel="clr-namespace:Archiver.ViewModel;assembly=Archiver"
+             xmlns:ViewModel="clr-namespace:Archiver.ViewModel;assembly=Archiver" xmlns:View="clr-namespace:Archiver.View"
              x:Class="Archiver.View.AlbumDetails">
 
     <ContentPage.Content>
 
         <Grid RowSpacing="0">
             <Grid.RowDefinitions>
-                <RowDefinition Height="90"/>
                 <RowDefinition Height="auto"/>
-                <RowDefinition Height="70"/>
-                <RowDefinition Height="50"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
 
             <Grid.ColumnDefinitions>
@@ -40,6 +41,8 @@
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
                     </Grid.RowDefinitions>
 
                     <Grid.ColumnDefinitions>
@@ -49,20 +52,20 @@
                     </Grid.ColumnDefinitions>
 
                     <Label x:Name="txtDescription" Style="{StaticResource subHeaderLabel}" Grid.Row="0" 
-                            Grid.Column="0" Text="{Binding Album.Description}" Grid.ColumnSpan="2"/>
+                            Grid.Column="0" Text="{Binding Album.Description}" />
 
                     <Label Style="{StaticResource subHeaderLabel}" Grid.Row="0" Grid.Column="1" Text="Items:"/>
 
                     <Label x:Name="txtItemQty" Style="{StaticResource subHeaderLabel}" Grid.Row="0" Grid.Column="2" Text="{Binding ItemQty}"/>
 
-                <Label Text="Created: " HorizontalOptions="Start" Grid.Row="1" Grid.ColumnSpan="3" />
+                    <Label Text="Created: " HorizontalOptions="Start" Grid.Row="1" Grid.ColumnSpan="3" />
                     <Label x:Name="txtInputDate" Grid.Row="2" Text="{Binding Album.InputDate, StringFormat='{0:dd/MM/yy,  hh:mm}'}" 
                            HorizontalOptions="Start"
                             Grid.ColumnSpan="3"/>
 
-                <Label Text="Last update: " HorizontalOptions="End" Grid.Row="1" Grid.ColumnSpan="3"/>
+                    <Label Text="Last update: " HorizontalOptions="End" Grid.Row="1" Grid.ColumnSpan="3"/>
                     <Label x:Name="txtUpdateDate" Grid.Row="2" Text="{Binding Album.UpdateDate, StringFormat='{0:dd/MM/yy,  hh:mm}'}" 
-                           HorizontalOptions="End"
+                            HorizontalOptions="End"
                             Grid.ColumnSpan="3"/>
                 </Grid>
             </Frame>
@@ -85,18 +88,21 @@
                                 
                                 <Frame Style="{StaticResource mainListCell}">
                                     <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="auto"/>
+                                        </Grid.RowDefinitions>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="0.3*"/>
-                                            <ColumnDefinition Width="0.5*"/>
+                                            <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="0.2*"/>
                                         </Grid.ColumnDefinitions>
 
-                                        <Frame Style="{StaticResource listItemImageFrame}"  Grid.Column="0">
+                                        <Frame Style="{StaticResource listItemImageFrame}"  Grid.Column="0" Grid.Row="0">
                                             <Image Style="{StaticResource listItemImage}" Source="{Binding ImageSource}" />
                                         </Frame>
-                                    
-                                        <Label Style="{StaticResource listItemDescr}" Grid.Column="1" Text="{Binding Name}" />
-                                        <Label Style="{StaticResource listItemQty}" Grid.Column="2" Text="{Binding Qty}"/>
+
+                                        <Label Style="{StaticResource itlistItemTitle}" Grid.Column="1" Grid.Row="0" Text="{Binding Name}" />
+                                        <Label Style="{StaticResource listItemQty}" Grid.Column="2" Grid.Row="0" Text="{Binding Qty}"/>
                                     </Grid>
                                 </Frame>
 
@@ -105,6 +111,7 @@
                     </ListView.ItemTemplate>
                 </ListView>
             </RefreshView>
+            <View:AdBanner Grid.Row="4" VerticalOptions="EndAndExpand"/>
          </Grid>
 
   

@@ -3,7 +3,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:ViewModel="clr-namespace:Archiver.ViewModel;assembly=Archiver"
-             xmlns:local="clr-namespace:Archiver.Ads" 
+             xmlns:View="clr-namespace:Archiver.View;assembly=Archiver"
              xmlns:controls="clr-namespace:MarcTron.Plugin.Controls;assembly=Plugin.MtAdmob"
              x:Class="Archiver.MainPage">
 
@@ -17,16 +17,11 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
             <Grid.ColumnDefinitions>
             </Grid.ColumnDefinitions>
-
+            
             <Frame Style="{StaticResource headerFrame}" Grid.Row="0">
                 <Grid>
                     <Grid.RowDefinitions>
@@ -46,7 +41,7 @@
                     <ImageButton Style="{StaticResource headerAddImage}" Grid.Column="2" Source ="add.png" Clicked="AddAlbumClicked" />
                 </Grid>
             </Frame>
-
+            
             <Label Grid.Row="1"  Style="{StaticResource contentTitle}" Text="Albums"/>
 
             <SearchBar Style="{StaticResource SearchBar}" Grid.Row="2" Placeholder="Search album..." TextChanged="SearchBar_TextChanged"/>
@@ -63,13 +58,13 @@
 
                                 <Frame Style="{StaticResource mainListCell}">
                                     <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="0.3*"/>
-                                            <ColumnDefinition Width="0.7*"/>
-                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
 
-                                        <Label Style="{StaticResource listItemTitle}" Grid.Column="0" Text="{Binding Name}"/>
-                                        <Label Style="{StaticResource listItemDescr}" Grid.Column="1" Text="{Binding Description}"/>
+                                        <Label Style="{StaticResource alblistItemTitle}" Grid.Row="0" Text="{Binding Name}"/>
+                                        <Label Style="{StaticResource alblistItemDescr}" Grid.Row="1" Text="{Binding Description}"/>
                                     </Grid>
                                 </Frame>
 
@@ -77,30 +72,16 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-            </RefreshView>            
-            <Frame Style="{StaticResource FooterFrame}" Grid.Row="4">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="auto"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="auto"/>
-                    </Grid.ColumnDefinitions>
-
-                    <ImageButton x:Name="HelpBtn" Style="{StaticResource HelpImageButton}" Grid.Row ="0" Grid.Column="0" 
-                                    Source="question.png" Clicked="OnHelpClicked"/>
-                    <!-- <Image Style="{StaticResource CopyRightImage}" Source="copyright.png" Grid.Row ="0" Grid.Column="1"/> -->
-                    <Label Style="{StaticResource CopyRightText}" Grid.Row ="0" Grid.Column="1" 
-                            Text="2022 Bekas Athanasios. All rights reserved"/>
-                    <ImageButton x:Name="InfoBtn" Style="{StaticResource InfoImageButton}" Grid.Row ="0" Grid.Column="2" 
-                                    Source="info.png" Clicked="OnInfoClicked"/>
-                </Grid>
-            </Frame>
-            <Button Grid.Row="5" Clicked="ShowInterstitial" Text="Interstitial"/>
-            <local:adsView Grid.Row="6" HeightRequest="50" ></local:adsView>
-            <Button Grid.Row="7" Clicked="ShowRewarded" Text="Rewarded"/>
-            <Button Grid.Row="8" Clicked="ShowRewardedInterstitial" Text="Rewarded Interstitial"/>
-            <Button Grid.Row="9" Clicked="LoadAd" Text="LoadAd"/>
-            <controls:MTAdView x:Name="banner" Grid.Row="10" AdsId="ca-app-pub-3940256099942544/6300978111" HeightRequest="50"></controls:MTAdView>
+            </RefreshView>
+            <View:AdBanner Grid.Row="4"/>
+            <View:Footer Grid.Row="5"/>
+            
+            <!-- <Button Grid.Row="5" Clicked="ShowInterstitial" Text="Interstitial"/> -->
+            <!-- <local:adsView Grid.Row="6" HeightRequest="50" ></local:adsView> -->
+            <!-- <Button Grid.Row="7" Clicked="ShowRewarded" Text="Rewarded"/> -->
+            <!-- <Button Grid.Row="8" Clicked="ShowRewardedInterstitial" Text="Rewarded Interstitial"/> -->
+            <!-- <Button Grid.Row="9" Clicked="LoadAd" Text="LoadAd"/> -->
+            <!-- <controls:MTAdView x:Name="banner" Grid.Row="10" AdsId="ca-app-pub-3940256099942544/6300978111" HeightRequest="50"></controls:MTAdView> -->
         </Grid>
 
     </ContentPage.Content>

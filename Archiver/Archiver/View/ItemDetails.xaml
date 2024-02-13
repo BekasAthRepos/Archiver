@@ -8,7 +8,7 @@
             <Grid RowSpacing="0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
-                    <RowDefinition Height="400"/>
+                    <RowDefinition Height="*"/>
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
 
@@ -18,25 +18,11 @@
                 <Frame Style="{StaticResource headerFrame}" Grid.Row="0">
                     <Grid>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="0.1*"/>
-                            <RowDefinition Height="0.1*"/>
+                            <RowDefinition Height="auto"/>
                         </Grid.RowDefinitions>
 
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="0.1*"/>
-                            <ColumnDefinition Width="0.15*"/>
-                        </Grid.ColumnDefinitions>
-
                         <Label Style="{StaticResource headerTitle}" Grid.Row="0" Grid.Column="0" 
-                               Text="{Binding Name}" />
-
-                        <Label Style="{StaticResource itemDetailstTitleQty}" Text="Qty:" Grid.Row="0" Grid.Column="1" 
-                               HorizontalOptions="End"/>
-
-                        <Label Style="{StaticResource itemDetailstTitleQty}" Text="{Binding Qty}" Grid.Row="0" Grid.Column="2" 
-                               HorizontalOptions="Start" />
+                               Text="{Binding Name}"/>
 
                     </Grid>
                 </Frame>
@@ -50,6 +36,8 @@
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
                         </Grid.RowDefinitions>
 
                         <Grid.ColumnDefinitions>
@@ -60,13 +48,16 @@
                         <Label Style="{StaticResource itemDetailsDataLabel}" Text="Description: " Grid.Row="0" Grid.Column="0"/>
                         <Label Style="{StaticResource itemDetailsDataLabel}" Text="{Binding Description}" Grid.Row="0" Grid.Column="1"/>
 
-                        <Label Style="{StaticResource itemDetailsDataLabel}" Text="Created: " Grid.Row="1" Grid.Column="0"/>
-                        <Label Style="{StaticResource itemDetailsDataLabel}" Text="{Binding InputDate, StringFormat='{0:dd/MM/yy,  hh:mm}'}" 
-                               Grid.Row="1" Grid.Column="1"/>
+                        <Label Style="{StaticResource itemDetailstTitleQty}" Text="Qty:" Grid.Row="1" Grid.Column="1" HorizontalOptions="End"/>
+                        <Label Style="{StaticResource itemDetailstTitleQty}" Text="{Binding Qty}" Grid.Row="1" Grid.Column="2" HorizontalOptions="Start" />
 
-                        <Label Style="{StaticResource itemDetailsDataLabel}" Text="Updated: " Grid.Row="2" Grid.Column="0"/>
-                        <Label Style="{StaticResource itemDetailsDataLabel}" Text="{Binding UpdateDate, StringFormat='{0:dd/MM/yy,  hh:mm}'}" 
+                        <Label Style="{StaticResource itemDetailsDataLabel}" Text="Created: " Grid.Row="2" Grid.Column="0"/>
+                        <Label Style="{StaticResource itemDetailsDataLabel}" Text="{Binding InputDate, StringFormat='{0:dd/MM/yy,  hh:mm}'}" 
                                Grid.Row="2" Grid.Column="1"/>
+
+                        <Label Style="{StaticResource itemDetailsDataLabel}" Text="Updated: " Grid.Row="3" Grid.Column="0"/>
+                        <Label Style="{StaticResource itemDetailsDataLabel}" Text="{Binding UpdateDate, StringFormat='{0:dd/MM/yy,  hh:mm}'}" 
+                               Grid.Row="3" Grid.Column="1"/>
 
                     </Grid>
                 </Frame>

@@ -28,14 +28,12 @@ namespace Archiver
             CrossMTAdmob.Current.LoadInterstitial("ca-app-pub-3940256099942544/1033173712");
             CrossMTAdmob.Current.LoadRewarded("ca-app-pub-3940256099942544/5224354917");
             CrossMTAdmob.Current.LoadRewardedInterstitial("ca-app-pub-3940256099942544/5354046379");
-            banner.LoadAd();
         }
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
             vmAlbum.OnAppearing();
-            banner.LoadAd();
         }
 
         private async void AddAlbumClicked(object sender, EventArgs e)
@@ -69,16 +67,6 @@ namespace Archiver
             vmAlbum.OnAppearing();
         }
 
-        private async void OnHelpClicked(object sender, EventArgs args)
-        {
-            await Navigation.PushAsync(new HelpPage());
-        }
-
-        private async void OnInfoClicked(object sender, EventArgs args)
-        {
-            await Navigation.PushAsync(new InfoPage());
-        }
-
         private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (e.NewTextValue != null && e.NewTextValue != "")
@@ -90,11 +78,6 @@ namespace Archiver
             {
                 lvAlbums.ItemsSource = albums;
             }
-        }
-
-        private void Switch_Toggled(object sender, ToggledEventArgs e)
-        {
-            vmAlbum.OnAppearing();
         }
 
         private void ShowInterstitial(object sender, EventArgs args)
@@ -117,8 +100,7 @@ namespace Archiver
 
         private void LoadAd(object sender, EventArgs args)
         {
-            banner.LoadAd();
-            //CrossMTAdmob.Current.LoadRewardedInterstitial("ca-app-pub-3940256099942544/5354046379");
+            //banner.LoadAd();
         }
     }
 }

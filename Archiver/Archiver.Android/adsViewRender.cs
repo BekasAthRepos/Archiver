@@ -28,11 +28,9 @@ namespace Archiver.Droid
             {
                 var adview = new AdView(Context)
                 {
-                    AdSize = AdSize.Banner, //or newAdSize(300,60)
+                    AdSize = AdSize.Banner,
                     AdUnitId = "ca-app-pub-3940256099942544/6300978111"
-                    //AdUnitId= "ca-app-pub-3940256099942544/1033173712"
                 };
-
                 adview.LoadAd(new AdRequest.Builder().Build());
                 SetNativeControl(adview);
             }
