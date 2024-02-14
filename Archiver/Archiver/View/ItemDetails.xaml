@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:ViewModel="clr-namespace:Archiver.ViewModel;assembly=Archiver"
+             xmlns:ViewModel="clr-namespace:Archiver.ViewModel;assembly=Archiver" xmlns:View="clr-namespace:Archiver.View"
              x:Class="Archiver.View.ItemDetails">
     <ContentPage.Content>
         <ScrollView>
@@ -9,6 +9,7 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
 
@@ -48,8 +49,8 @@
                         <Label Style="{StaticResource itemDetailsDataLabel}" Text="Description: " Grid.Row="0" Grid.Column="0"/>
                         <Label Style="{StaticResource itemDetailsDataLabel}" Text="{Binding Description}" Grid.Row="0" Grid.Column="1"/>
 
-                        <Label Style="{StaticResource itemDetailstTitleQty}" Text="Qty:" Grid.Row="1" Grid.Column="1" HorizontalOptions="End"/>
-                        <Label Style="{StaticResource itemDetailstTitleQty}" Text="{Binding Qty}" Grid.Row="1" Grid.Column="2" HorizontalOptions="Start" />
+                        <Label Style="{StaticResource itemDetailsDataLabel}" Text="Qty:" Grid.Row="1" Grid.Column="0" />
+                        <Label Style="{StaticResource itemDetailsDataLabel}" Text="{Binding Qty}" Grid.Row="1" Grid.Column="1" />
 
                         <Label Style="{StaticResource itemDetailsDataLabel}" Text="Created: " Grid.Row="2" Grid.Column="0"/>
                         <Label Style="{StaticResource itemDetailsDataLabel}" Text="{Binding InputDate, StringFormat='{0:dd/MM/yy,  hh:mm}'}" 
@@ -61,6 +62,7 @@
 
                     </Grid>
                 </Frame>
+                <View:AdBanner Grid.Row="3"/>
             </Grid>
         </ScrollView>
     </ContentPage.Content>

@@ -257,6 +257,7 @@
             <Style x:Key="itemDetailstTitleQty" TargetType="Label">
                 <Setter Property="VerticalTextAlignment" Value="Center"/>
                 <Setter Property="FontAttributes" Value="Bold"/>
+                
                 <Setter Property="TextColor" Value="DimGray"/>
             </Style>
 

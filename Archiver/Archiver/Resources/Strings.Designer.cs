@@ -70,6 +70,42 @@ namespace Archiver.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ca-app-pub-5254772256939632/1381202108.
+        /// </summary>
+        internal static string AdInterstitialId {
+            get {
+                return ResourceManager.GetString("AdInterstitialId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ca-app-pub-3940256099942544/1033173712.
+        /// </summary>
+        internal static string AdInterstitialTestId {
+            get {
+                return ResourceManager.GetString("AdInterstitialTestId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ca-app-pub-5254772256939632/3078001544.
+        /// </summary>
+        internal static string AdRewardedId {
+            get {
+                return ResourceManager.GetString("AdRewardedId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ca-app-pub-3940256099942544/5224354917.
+        /// </summary>
+        internal static string AdRewardedTestId {
+            get {
+                return ResourceManager.GetString("AdRewardedTestId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to http://192.168.1.76:14723.
         /// </summary>
         internal static string APIBaseUrl {

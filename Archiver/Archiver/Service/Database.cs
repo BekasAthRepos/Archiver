@@ -9,7 +9,7 @@ namespace Archiver.Service
 {
     public class Database
     {
-        private const int LAST_VERSION = 2;
+        private const int LAST_VERSION = 3;
         private readonly SQLiteAsyncConnection _connection;
 
         public Database(string dbPath)
@@ -30,6 +30,22 @@ namespace Archiver.Service
         {
             return await _connection.ExecuteScalarAsync<int>("PRAGMA user_version = " + version);
         }
+
+        public async Task<bool> InsertSysIniAsync(SysIni ini)
+        {
+            return await _connection.InsertAsync(ini) == 1;
+        }
+
+        public async Task<SysIni> GetSysIniAsync(string Code)
+        {
+            return await _connection.Table<SysIni>().Where(ini => ini.Code == Code).FirstOrDefaultAsync();
+        }
+
+        public async Task<SysIni> UpdateSysIniAsync(SysIni ini)
+        {
+            return await _connection.ExecuteScalarAsync<SysIni>("update SysIni set Value = ? where Code = ?", ini.Value, ini.Code);
+        }
+
 
         // Album functions
 
@@ -100,7 +116,6 @@ namespace Archiver.Service
         private async Task VersionUpdate()
         { 
             int userVersion = await GetDBVersionAsync();
-
             if (userVersion < LAST_VERSION)
             {
                 if (userVersion == 0)
@@ -113,6 +128,11 @@ namespace Archiver.Service
                     BuildVersion2();
                     userVersion = await GetDBVersionAsync();
                 }
+                if (userVersion == 2)
+                {
+                    BuildVersion3();
+                    userVersion = await GetDBVersionAsync();
+                }
             }
         }
         
@@ -121,8 +141,8 @@ namespace Archiver.Service
         {
             try 
             {
-                await _connection.CreateTableAsync<Album>();
-                await _connection.CreateTableAsync<Item>();
+                _connection.CreateTableAsync<Album>().Wait();
+                _connection.CreateTableAsync<Item>().Wait();
                 await SetDBVersionAsync(1);
             }
             catch(Exception e)
@@ -136,8 +156,23 @@ namespace Archiver.Service
         {
             try
             {
-                await _connection.CreateTableAsync<Item>();
+                _connection.CreateTableAsync<SysIni>().Wait();
                 await SetDBVersionAsync(2);
+            }
+            catch (Exception e)
+            {
+                await App.Current.MainPage.DisplayAlert("Error", e.ToString(), "Ok");
+            }
+        }
+
+        // Version 2 - 1.0.2
+        private async void BuildVersion3()
+        {
+            try
+            {
+                await InsertSysIniAsync(new SysIni { Code = "AdInterCount", Value = "0" });
+                await InsertSysIniAsync(new SysIni { Code = "AdRewardCount", Value = "0" });
+                await SetDBVersionAsync(3);
             }
             catch (Exception e)
             {

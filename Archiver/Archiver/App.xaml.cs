@@ -18,7 +18,18 @@ namespace Archiver
                     return connection;
                 else
                     return null;
+            }
+        }
 
+        private static AdManager adManager;
+        public static AdManager AdManager
+        {
+            get
+            {
+                if (adManager != null)
+                    return adManager;
+                else
+                    return null;
             }
         }
 
@@ -28,7 +39,9 @@ namespace Archiver
                          GetFolderPath(Environment.SpecialFolder
                          .LocalApplicationData), "archiver.db3"));
             InitializeComponent();
+            adManager = new AdManager();
             MainPage = new NavigationPage(new WelcomePage());
+
         }
 
         protected override void OnStart()

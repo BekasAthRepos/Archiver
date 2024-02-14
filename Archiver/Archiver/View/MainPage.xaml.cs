@@ -25,9 +25,6 @@ namespace Archiver
             vmAlbum = new AlbumViewModel();
             BindingContext = vmAlbum;
             albums = lvAlbums.ItemsSource as ObservableCollection<Album>;
-            CrossMTAdmob.Current.LoadInterstitial("ca-app-pub-3940256099942544/1033173712");
-            CrossMTAdmob.Current.LoadRewarded("ca-app-pub-3940256099942544/5224354917");
-            CrossMTAdmob.Current.LoadRewardedInterstitial("ca-app-pub-3940256099942544/5354046379");
         }
 
         protected override void OnAppearing()
@@ -38,14 +35,17 @@ namespace Archiver
 
         private async void AddAlbumClicked(object sender, EventArgs e)
         {
+            App.AdManager.ShowInterstitial();
+            App.AdManager.ShowRewarded();
             await Navigation.PushAsync(new AddAlbumPage(false));
         }
 
         private async void AlbumClicked(object sender, ItemTappedEventArgs args)
         {
             if(args.Item == null)
-                return;          
-
+                return;
+            App.AdManager.ShowInterstitial();
+            App.AdManager.ShowRewarded();
             await Navigation.PushAsync(new AlbumDetails(args.Item as Album, false));
         }
 
@@ -53,7 +53,8 @@ namespace Archiver
         {
             MenuItem mi = (MenuItem)sender;
             Album album = mi.CommandParameter as Album;
-
+            App.AdManager.ShowInterstitial();
+            App.AdManager.ShowRewarded();
             await Navigation.PushAsync(new EditAlbumPage(album, false)); 
         }
 
@@ -78,24 +79,6 @@ namespace Archiver
             {
                 lvAlbums.ItemsSource = albums;
             }
-        }
-
-        private void ShowInterstitial(object sender, EventArgs args)
-        {
-            CrossMTAdmob.Current.ShowInterstitial();
-            CrossMTAdmob.Current.LoadInterstitial("ca-app-pub-3940256099942544/1033173712");
-        }
-
-        private void ShowRewarded(object sender, EventArgs args)
-        {
-            CrossMTAdmob.Current.ShowRewarded();
-            CrossMTAdmob.Current.LoadRewarded("ca-app-pub-3940256099942544/5224354917");
-        }
-
-        private void ShowRewardedInterstitial(object sender, EventArgs args)
-        {
-            CrossMTAdmob.Current.ShowRewardedInterstitial();
-            CrossMTAdmob.Current.LoadRewardedInterstitial("ca-app-pub-3940256099942544/5354046379");
         }
 
         private void LoadAd(object sender, EventArgs args)

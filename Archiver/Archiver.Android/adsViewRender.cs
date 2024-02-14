@@ -1,16 +1,7 @@
-﻿using Android.App;
-using Android.Content;
+﻿using Android.Content;
 using Android.Gms.Ads;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using Archiver.Ads;
 using Archiver.Droid;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
@@ -19,6 +10,9 @@ namespace Archiver.Droid
 {
     public class adsViewRender:ViewRenderer<adsView, AdView>
     {
+        private string bannerId = "ca-app-pub-3940256099942544/6300978111"; // testId = "ca-app-pub-3940256099942544/6300978111"
+                                                                            // prodId = "ca-app-pub-5254772256939632/1295811312"
+
         public adsViewRender(Context context) : base(context) { }
 
         protected override void OnElementChanged(ElementChangedEventArgs<adsView> e)
@@ -29,7 +23,7 @@ namespace Archiver.Droid
                 var adview = new AdView(Context)
                 {
                     AdSize = AdSize.Banner,
-                    AdUnitId = "ca-app-pub-3940256099942544/6300978111"
+                    AdUnitId = bannerId
                 };
                 adview.LoadAd(new AdRequest.Builder().Build());
                 SetNativeControl(adview);
