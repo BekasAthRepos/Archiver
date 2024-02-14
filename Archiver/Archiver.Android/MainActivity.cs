@@ -16,7 +16,7 @@ namespace Archiver.Droid
             base.OnCreate(savedInstanceState);
 
             RequestConfiguration.Builder builder = new RequestConfiguration.Builder();
-            builder = builder.SetTestDeviceIds(new string[] { "AA703D27D1D7074C848CAB59A8C013CF" });
+            //builder = builder.SetTestDeviceIds(new string[] { "AA703D27D1D7074C848CAB59A8C013CF" });
             Android.Gms.Ads.MobileAds.Initialize(ApplicationContext);
             CrossMTAdmob.Current.Init(this, "ca-app-pub-5254772256939632~3306934976");
 

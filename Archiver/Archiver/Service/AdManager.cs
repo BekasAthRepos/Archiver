@@ -9,8 +9,8 @@ namespace Archiver.Service
 {
     public class AdManager
     {
-        const int ADINTERCOUNT = 5;
-        const int ADREWCOUNT = 10;
+        const int ADINTERCOUNT = 4;
+        const int ADREWCOUNT = 9;
         private readonly ResourceManager _res;
         private string interId;
         private string rewardId;
@@ -18,8 +18,8 @@ namespace Archiver.Service
         public AdManager() 
         {
             _res = new ResourceManager("Archiver.Resources.Strings", this.GetType().Assembly);
-            interId = _res.GetString("AdInterstitialTestId").ToString();
-            rewardId = _res.GetString("AdRewardedTestId").ToString();
+            interId = _res.GetString("AdInterstitialId").ToString();
+            rewardId = _res.GetString("AdRewardedId").ToString();
 
             CrossMTAdmob.Current.LoadInterstitial(interId);
             CrossMTAdmob.Current.LoadRewarded(rewardId);
@@ -44,6 +44,7 @@ namespace Archiver.Service
 
         public async void ShowRewarded()
         {
+            /*
             SysIni ini = await App.Database.GetSysIniAsync("AdRewardCount");
             int adCount = Int32.Parse(ini.Value);
             if (adCount >= ADREWCOUNT)
@@ -57,6 +58,7 @@ namespace Archiver.Service
                 adCount++;
             }
             await App.Database.UpdateSysIniAsync(new SysIni { Code = "AdRewardCount", Value = adCount.ToString() });
+            */
         }
     }
 }

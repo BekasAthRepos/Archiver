@@ -10,7 +10,7 @@ namespace Archiver.Droid
 {
     public class adsViewRender:ViewRenderer<adsView, AdView>
     {
-        private string bannerId = "ca-app-pub-3940256099942544/6300978111"; // testId = "ca-app-pub-3940256099942544/6300978111"
+        private string bannerId = "ca-app-pub-5254772256939632/1295811312"; // testId = "ca-app-pub-3940256099942544/6300978111"
                                                                             // prodId = "ca-app-pub-5254772256939632/1295811312"
 
         public adsViewRender(Context context) : base(context) { }
