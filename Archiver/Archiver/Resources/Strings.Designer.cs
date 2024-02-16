@@ -70,7 +70,7 @@ namespace Archiver.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ca-app-pub-5254772256939632/1381202108.
+        ///   Looks up a localized string similar to ca-app-pub-1016100392281834/8737344724.
         /// </summary>
         internal static string AdInterstitialId {
             get {
@@ -88,7 +88,7 @@ namespace Archiver.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ca-app-pub-5254772256939632/3078001544.
+        ///   Looks up a localized string similar to .
         /// </summary>
         internal static string AdRewardedId {
             get {
@@ -97,7 +97,7 @@ namespace Archiver.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ca-app-pub-3940256099942544/5224354917.
+        ///   Looks up a localized string similar to .
         /// </summary>
         internal static string AdRewardedTestId {
             get {

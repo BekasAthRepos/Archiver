@@ -36,7 +36,7 @@ namespace Archiver
         private async void AddAlbumClicked(object sender, EventArgs e)
         {
             App.AdManager.ShowInterstitial();
-            App.AdManager.ShowRewarded();
+            //App.AdManager.ShowRewarded();
             await Navigation.PushAsync(new AddAlbumPage(false));
         }
 
@@ -45,7 +45,7 @@ namespace Archiver
             if(args.Item == null)
                 return;
             App.AdManager.ShowInterstitial();
-            App.AdManager.ShowRewarded();
+            //App.AdManager.ShowRewarded();
             await Navigation.PushAsync(new AlbumDetails(args.Item as Album, false));
         }
 
@@ -54,7 +54,7 @@ namespace Archiver
             MenuItem mi = (MenuItem)sender;
             Album album = mi.CommandParameter as Album;
             App.AdManager.ShowInterstitial();
-            App.AdManager.ShowRewarded();
+            //App.AdManager.ShowRewarded();
             await Navigation.PushAsync(new EditAlbumPage(album, false)); 
         }
 

@@ -122,16 +122,16 @@
     <comment>Η default εικόνα για το item</comment>
   </data>
   <data name="AdInterstitialId" xml:space="preserve">
-    <value>ca-app-pub-5254772256939632/1381202108</value>
+    <value>ca-app-pub-1016100392281834/8737344724</value>
   </data>
   <data name="AdInterstitialTestId" xml:space="preserve">
     <value>ca-app-pub-3940256099942544/1033173712</value>
   </data>
   <data name="AdRewardedId" xml:space="preserve">
-    <value>ca-app-pub-5254772256939632/3078001544</value>
+    <value />
   </data>
   <data name="AdRewardedTestId" xml:space="preserve">
-    <value>ca-app-pub-3940256099942544/5224354917</value>
+    <value />
   </data>
   <data name="APIBaseUrl" xml:space="preserve">
     <value>http://192.168.1.76:14723</value>

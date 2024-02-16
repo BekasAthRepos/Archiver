@@ -9,7 +9,7 @@ namespace Archiver.Service
 {
     public class Database
     {
-        private const int LAST_VERSION = 3;
+        private const int LAST_VERSION_COUNT = 1;  // ανεβαίνει χειροκίνητα κατά 1 σε κάθε ενημέρωση 
         private readonly SQLiteAsyncConnection _connection;
 
         public Database(string dbPath)
@@ -21,12 +21,12 @@ namespace Archiver.Service
 
         // -- System functions
 
-        private async Task<int> GetDBVersionAsync()
+        private async Task<int> GetDBVersionCountAsync()
         {
             return await _connection.ExecuteScalarAsync<int>("PRAGMA user_version");
         }
 
-        private async Task<int> SetDBVersionAsync(int version)
+        private async Task<int> SetDBVersionCountAsync(int version)
         {
             return await _connection.ExecuteScalarAsync<int>("PRAGMA user_version = " + version);
         }
@@ -115,35 +115,36 @@ namespace Archiver.Service
         //Version Update
         private async Task VersionUpdate()
         { 
-            int userVersion = await GetDBVersionAsync();
-            if (userVersion < LAST_VERSION)
+            int userVersionCount = await GetDBVersionCountAsync();
+            if (userVersionCount < LAST_VERSION_COUNT)
             {
-                if (userVersion == 0)
+                if (userVersionCount == 0)
                 {
-                    BuildVersion1();
-                    userVersion = await GetDBVersionAsync();
+                    BuildVersionCount1();
+                    userVersionCount = await GetDBVersionCountAsync();
                 }
+                /*
                 if (userVersion == 1)
                 {
                     BuildVersion2();
                     userVersion = await GetDBVersionAsync();
                 }
-                if (userVersion == 2)
-                {
-                    BuildVersion3();
-                    userVersion = await GetDBVersionAsync();
-                }
+                */
             }
         }
         
-        // Version 1 - 1.0.0
-        private async void BuildVersion1() 
+        // Version Count 1 - v1.1.0
+        private async void BuildVersionCount1() 
         {
             try 
             {
                 _connection.CreateTableAsync<Album>().Wait();
                 _connection.CreateTableAsync<Item>().Wait();
-                await SetDBVersionAsync(1);
+                _connection.CreateTableAsync<SysIni>().Wait();
+                await InsertSysIniAsync(new SysIni { Code = "AdInterCount", Value = "0" });
+                await InsertSysIniAsync(new SysIni { Code = "AdRewardCount", Value = "0" });
+                await InsertSysIniAsync(new SysIni { Code = "Version", Value = "1.1.0" });
+                await SetDBVersionCountAsync(1);
             }
             catch(Exception e)
             {
@@ -151,33 +152,22 @@ namespace Archiver.Service
             }
         }
 
-        // Version 2 - 1.0.1
-        private async void BuildVersion2()
+        // Version 2 - 1.1.1
+        /*
+        private async void BuildVersionCount2()
         {
             try
             {
-                _connection.CreateTableAsync<SysIni>().Wait();
-                await SetDBVersionAsync(2);
+                // changes
+                await SetDBVersionCountAsync(2);
+                await UpdateSysIniAsync(new SysIni { Code = "Version", Value = "1.1.1" });
             }
             catch (Exception e)
             {
                 await App.Current.MainPage.DisplayAlert("Error", e.ToString(), "Ok");
             }
         }
+        */
 
-        // Version 2 - 1.0.2
-        private async void BuildVersion3()
-        {
-            try
-            {
-                await InsertSysIniAsync(new SysIni { Code = "AdInterCount", Value = "0" });
-                await InsertSysIniAsync(new SysIni { Code = "AdRewardCount", Value = "0" });
-                await SetDBVersionAsync(3);
-            }
-            catch (Exception e)
-            {
-                await App.Current.MainPage.DisplayAlert("Error", e.ToString(), "Ok");
-            }
-        }
     }
 }

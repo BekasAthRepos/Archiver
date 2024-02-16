@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Archiver.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Resources;
@@ -22,6 +23,13 @@ namespace Archiver.View
             StringBuilder sb = new StringBuilder();
             sb.AppendLine(rm.GetString("references"));
             refLbl.Text = sb.ToString();
+            Task.Run(async () => await SetVersion());
+        }
+
+        private async Task SetVersion()
+        {
+            SysIni version = await App.Database.GetSysIniAsync("Version");
+            lblVersion.Text = "Version " + version.Value.ToString();
         }
     }
 }

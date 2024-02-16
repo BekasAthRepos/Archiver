@@ -34,7 +34,7 @@ namespace Archiver.View
             ImageButton btn = sender as ImageButton;
             int albumId = (int) btn.CommandParameter;
             App.AdManager.ShowInterstitial();
-            App.AdManager.ShowRewarded();
+            //App.AdManager.ShowRewarded();
             await Navigation.PushAsync(new AddItemPage(albumId, _isSync, vmAlbDet.Items));
         }
 
@@ -43,7 +43,7 @@ namespace Archiver.View
             if (args.Item == null)
                 return;
             App.AdManager.ShowInterstitial();
-            App.AdManager.ShowRewarded();
+            //AdManager.ShowRewarded();
             await Navigation.PushAsync(new ItemDetails(args.Item as Item, _isSync));
         }
 
@@ -52,7 +52,7 @@ namespace Archiver.View
             MenuItem mi = (MenuItem)sender;
             Item item = mi.CommandParameter as Item;
             App.AdManager.ShowInterstitial();
-            App.AdManager.ShowRewarded();
+            //App.AdManager.ShowRewarded();
             await Navigation.PushAsync(new EditItemPage(item, _isSync));
         }
 
