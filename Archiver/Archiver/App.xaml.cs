@@ -21,25 +21,12 @@ namespace Archiver
             }
         }
 
-        private static AdManager adManager;
-        public static AdManager AdManager
-        {
-            get
-            {
-                if (adManager != null)
-                    return adManager;
-                else
-                    return null;
-            }
-        }
-
         public App()
         {
             connection = new Database(Path.Combine(Environment.
                          GetFolderPath(Environment.SpecialFolder
                          .LocalApplicationData), "archiver.db3"));
             InitializeComponent();
-            adManager = new AdManager();
             MainPage = new NavigationPage(new WelcomePage());
 
         }

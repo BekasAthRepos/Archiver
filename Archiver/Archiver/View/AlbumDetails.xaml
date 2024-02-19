@@ -13,7 +13,6 @@
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
 
             <Grid.ColumnDefinitions>
@@ -85,7 +84,7 @@
                                     <MenuItem Text="Edit" Clicked="EditItemClicked" CommandParameter="{Binding .}"/>
                                     <MenuItem Text="Delete" Clicked="DeleteItemClicked" CommandParameter="{Binding .}"/>
                                 </ViewCell.ContextActions>
-                                
+
                                 <Frame Style="{StaticResource mainListCell}">
                                     <Grid>
                                         <Grid.RowDefinitions>
@@ -107,12 +106,11 @@
                                 </Frame>
 
                             </ViewCell>
-                         </DataTemplate>
+                        </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
             </RefreshView>
-            <View:AdBanner Grid.Row="4" VerticalOptions="EndAndExpand"/>
-         </Grid>
+        </Grid>
 
   
     </ContentPage.Content>

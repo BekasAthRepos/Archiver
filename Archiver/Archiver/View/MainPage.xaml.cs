@@ -1,9 +1,6 @@
 ﻿using Archiver.Model;
 using Archiver.View;
 using Archiver.ViewModel;
-using MarcTron.Plugin;
-using MarcTron.Plugin.Controls;
-using MarcTron.Plugin.Extra;
 using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
@@ -35,8 +32,6 @@ namespace Archiver
 
         private async void AddAlbumClicked(object sender, EventArgs e)
         {
-            App.AdManager.ShowInterstitial();
-            //App.AdManager.ShowRewarded();
             await Navigation.PushAsync(new AddAlbumPage(false));
         }
 
@@ -44,8 +39,6 @@ namespace Archiver
         {
             if(args.Item == null)
                 return;
-            App.AdManager.ShowInterstitial();
-            //App.AdManager.ShowRewarded();
             await Navigation.PushAsync(new AlbumDetails(args.Item as Album, false));
         }
 
@@ -53,8 +46,6 @@ namespace Archiver
         {
             MenuItem mi = (MenuItem)sender;
             Album album = mi.CommandParameter as Album;
-            App.AdManager.ShowInterstitial();
-            //App.AdManager.ShowRewarded();
             await Navigation.PushAsync(new EditAlbumPage(album, false)); 
         }
 
@@ -79,11 +70,6 @@ namespace Archiver
             {
                 lvAlbums.ItemsSource = albums;
             }
-        }
-
-        private void LoadAd(object sender, EventArgs args)
-        {
-            //banner.LoadAd();
         }
     }
 }

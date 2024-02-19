@@ -13,7 +13,6 @@
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="auto"/>
-                        <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
                     <Frame Grid.Row="0" Style="{StaticResource addPageHeaderFrame}">
@@ -68,7 +67,6 @@
                     <Button Grid.Row="3" x:Name="btnAddAlbum" Style="{StaticResource addSaveButton}" Text="Add Item" Command="{Binding AddItemCmd}"/>
 
                 </Grid>
-                <View:AdBanner VerticalOptions="EndAndExpand"/>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

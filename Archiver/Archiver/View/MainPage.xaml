@@ -4,7 +4,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:ViewModel="clr-namespace:Archiver.ViewModel;assembly=Archiver"
              xmlns:View="clr-namespace:Archiver.View;assembly=Archiver"
-             xmlns:controls="clr-namespace:MarcTron.Plugin.Controls;assembly=Plugin.MtAdmob"
              x:Class="Archiver.MainPage">
 
     <ContentPage.Content >
@@ -13,9 +12,8 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/> 
-                <RowDefinition Height="*"/>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
@@ -45,7 +43,7 @@
             <Label Grid.Row="1"  Style="{StaticResource contentTitle}" Text="Albums"/>
 
             <SearchBar Style="{StaticResource SearchBar}" Grid.Row="2" Placeholder="Search album..." TextChanged="SearchBar_TextChanged"/>
-            <RefreshView Grid.Row="3" IsRefreshing="{Binding IsRefreshing, Mode=OneWay}" Command="{Binding RefreshAlbumsCmd}">    
+            <RefreshView Grid.Row="3" IsRefreshing="{Binding IsRefreshing, Mode=OneWay}" Command="{Binding RefreshAlbumsCmd}">
                 <ListView x:Name="lvAlbums" Style="{StaticResource list}" ItemsSource="{Binding Albums}" ItemTapped="AlbumClicked">
                     <ListView.ItemTemplate>
                         <DataTemplate>
@@ -73,8 +71,7 @@
                     </ListView.ItemTemplate>
                 </ListView>
             </RefreshView>
-            <View:AdBanner Grid.Row="4"/>
-            <View:Footer Grid.Row="5"/>
+            <View:Footer Grid.Row="4"/>
             
             <!-- <Button Grid.Row="9" Clicked="LoadAd" Text="LoadAd"/> -->
             <!-- <controls:MTAdView x:Name="banner" Grid.Row="10" AdsId="ca-app-pub-3940256099942544/6300978111" HeightRequest="50"></controls:MTAdView> -->
